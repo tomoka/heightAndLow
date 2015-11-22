@@ -16,6 +16,21 @@ var canvas, stage, exportRoot;
 
 function init() {
 	canvas = document.getElementById("canvas");
+	exportRoot = new lib.hightAndLow();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+/*
+使わない
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
 	images = images||{};
 
 	var loader = new createjs.LoadQueue(false);
@@ -37,7 +52,9 @@ function handleComplete() {
 	createjs.Ticker.setFPS(lib.properties.fps);
 	createjs.Ticker.addEventListener("tick", stage);
 }
+*/
 </script>
+
 </head>
 
 <body onload="init();" style="background-color:#D4D4D4">

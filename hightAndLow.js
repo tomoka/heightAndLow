@@ -110,7 +110,7 @@ p.nominalBounds = new cjs.Rectangle(-1,-1,431,109);
 		
 		this.init = function () {
 			image = images[index];
-			this.container.addChild(image);
+			//this.container.addChild(image);
 		}
 		
 		stage.on("stagemousedown", function (e) {
