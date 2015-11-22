@@ -92,12 +92,54 @@ lib.properties = {
 		var l = 0;
 		
 		//表示するカード
-		visibleCade = trumpArrya[l];
+		visibleCard = trumpArrya[l];
 		//比較するカード
 		hiddenCard = trumpArrya[l + 1];
 		
-		this.visibleCade.text = trumpArrya[l];
-		this.hiddenCard.text = trumpArrya[l + 1];
+		//カードの番号からのカードの要素の抽出
+		//割った数のあまりがカードの番号
+		visibleCardMunber = (visibleCard+1) % 13;
+		hiddenCardMunber = (hiddenCard+1) % 13;
+		
+		visibleCardMark = (visibleCard +1- visibleCardMunber) / 13;
+		hiddenCardMark = (hiddenCard +1- hiddenCardMunber) / 13;
+		
+		//マークの特定
+		switch (visibleCardMark) {
+			case 0:
+				visibleCardMark = "スペード";
+				break;
+			case 1:
+				visibleCardMark = "クラブ";
+				break;
+			case 2:
+				visibleCardMark = "ハート";
+				break;
+			case 3:
+				visibleCardMark = "ダイヤ";
+				break;
+			default:
+				break;
+		}
+		switch (hiddenCardMark) {
+			case 0:
+				hiddenCardMark = "スペード";
+				break;
+			case 1:
+				hiddenCardMark = "クラブ";
+				break;
+			case 2:
+				hiddenCardMark = "ハート";
+				break;
+			case 3:
+				hiddenCardMark = "ダイヤ";
+				break;
+			default:
+				break;
+		}
+		
+		this.visibleCard.text = trumpArrya[l] + "(" + visibleCardMunber + "," + visibleCardMark + ")";
+		this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
 		
 		l++;
 	}
@@ -109,19 +151,19 @@ lib.properties = {
 	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#0066CC");
 	this.hiddenCard.name = "hiddenCard";
 	this.hiddenCard.lineHeight = 32;
-	this.hiddenCard.lineWidth = 143;
-	this.hiddenCard.setTransform(259.5,62.6);
+	this.hiddenCard.lineWidth = 428;
+	this.hiddenCard.setTransform(67.5,179.6);
 
-	this.visibleCade = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#993366");
-	this.visibleCade.name = "visibleCade";
-	this.visibleCade.lineHeight = 32;
-	this.visibleCade.lineWidth = 143;
-	this.visibleCade.setTransform(65,64.2);
+	this.visibleCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#993366");
+	this.visibleCard.name = "visibleCard";
+	this.visibleCard.lineHeight = 32;
+	this.visibleCard.lineWidth = 429;
+	this.visibleCard.setTransform(65,64.2);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCade},{t:this.hiddenCard}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(340,262.6,341.5,94.4);
+p.nominalBounds = new cjs.Rectangle(340,264.2,435,208.3);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
