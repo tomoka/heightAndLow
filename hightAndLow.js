@@ -37,10 +37,11 @@ lib.properties = {
 		
 		------------------------------*/
 		
-		cardArrya = new Array(); // 例）cardArray[0][0]：スペードの１
+		cardArrya = new Array(); // カードの配列 0,0 ~ 4,12 例）0,0だったらスペードのA
+		trumpArrya = new Array(); // カードの並び順配列 0 ~ 41 
 		
-		markArrya = new Array(); //マークの配列
-		numberArrya = new Array(); //番号の配列
+		markArrya = [0, 1, 2, 3]; //マークの配列
+		numberArrya = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; //番号の配列
 		
 		//カード準備
 		var i;
@@ -49,22 +50,43 @@ lib.properties = {
 		// １次元配列を作成する
 		var array = new Array();
 		
+		//トランプカードを用意する
 		for (i = 0; i < 4; i++) {
 		
 			// １次元配列の各番地に、配列をさらに作成。
 			cardArrya[i] = new Array();
-			markArrya[i];
 		
 			for (j = 0; j < 13; j++) {
 		
 				// 格納する
 				cardArrya[i][j] = j;
-				numberArrya[j];
+				trumpArrya[i * 13 + j] = i * 13 + j;
 			}
 		}
-		console.log(cardArrya);
-		console.log("numberArrya------->" + numberArrya);
-		console.log("markArrya------->" + markArrya);
+		
+		var k;
+		var r;
+		var t;
+		
+		//トランプカードをシャッフルする
+		for (k = 0; k < 52; k++) {
+			// ランダムな番地を取得
+			var r = Math.floor(Math.random() * 52);
+			console.log("r---->" + r);
+		
+			// trumpArryaの番地をランダム値rに引き出し
+			var t = trumpArrya[r];
+			console.log("t---->" + trumpArrya[r]);
+		
+			// ランダムでだしたtrumpArryaの配列indexに格納されていた数値を入れる
+			trumpArrya[r] = trumpArrya[k];
+		
+			// 順番のnumberArryaの番地にランダムでだした数値の番地を入れる
+			trumpArrya[k] = t;
+		}
+		
+		
+		console.log(trumpArrya);
 		this.stop();
 	}
 
