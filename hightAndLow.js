@@ -58,7 +58,7 @@ lib.properties = {
 		
 			for (j = 0; j < 13; j++) {
 		
-				// 格納する
+				// カードの要素をそれぞれ格納する
 				cardArrya[i][j] = j;
 				trumpArrya[i * 13 + j] = i * 13 + j;
 			}
@@ -70,31 +70,58 @@ lib.properties = {
 		
 		//トランプカードをシャッフルする
 		for (k = 0; k < 52; k++) {
-			// ランダムな番地を取得
+			// 0~51の間でランダムな番地を取得
 			var r = Math.floor(Math.random() * 52);
-			console.log("r---->" + r);
 		
-			// trumpArryaの番地をランダム値rに引き出し
+			// ランダムで出したtrumpArryaの番地をtに代入
 			var t = trumpArrya[r];
-			console.log("t---->" + trumpArrya[r]);
 		
-			// ランダムでだしたtrumpArryaの配列indexに格納されていた数値を入れる
+			// ランダムで指定した番地のindex同士を入れ替える
 			trumpArrya[r] = trumpArrya[k];
 		
-			// 順番のnumberArryaの番地にランダムでだした数値の番地を入れる
+			// ランダムでだしたtrumpArryaの配列indexに格納されていた数値を入れる
 			trumpArrya[k] = t;
 		}
 		
 		
 		console.log(trumpArrya);
 		this.stop();
+		
+		/* 表示するトランプの選出 */
+		
+		var l = 0;
+		
+		//表示するカード
+		visibleCade = trumpArrya[l];
+		//比較するカード
+		hiddenCard = trumpArrya[l + 1];
+		
+		this.visibleCade.text = trumpArrya[l];
+		this.hiddenCard.text = trumpArrya[l + 1];
+		
+		l++;
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
+	// obj
+	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#0066CC");
+	this.hiddenCard.name = "hiddenCard";
+	this.hiddenCard.lineHeight = 32;
+	this.hiddenCard.lineWidth = 143;
+	this.hiddenCard.setTransform(259.5,62.6);
+
+	this.visibleCade = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#993366");
+	this.visibleCade.name = "visibleCade";
+	this.visibleCade.lineHeight = 32;
+	this.visibleCade.lineWidth = 143;
+	this.visibleCade.setTransform(65,64.2);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCade},{t:this.hiddenCard}]}).wait(1));
+
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = null;
+p.nominalBounds = new cjs.Rectangle(340,262.6,341.5,94.4);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
