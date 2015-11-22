@@ -17,6 +17,23 @@ lib.properties = {
 
 
 
+(lib.container = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("#993300").ss(1,1,1).p("EghfgIWMBC/AAAIAAQtMhC/AAAg");
+	this.shape.setTransform(214.5,53.5);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#993366").s().p("EghfAIXIAAwtMBC/AAAIAAQtg");
+	this.shape_1.setTransform(214.5,53.5);
+
+	this.addChild(this.shape_1,this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(-1,-1,431,109);
+
+
 // stage content:
 (lib.hightAndLow = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
@@ -87,65 +104,122 @@ lib.properties = {
 		console.log(trumpArrya);
 		this.stop();
 		
-		/* 表示するトランプの選出 */
+		var images = [];
+		var image;
+		var index = 0;
 		
-		var l = 0;
-		
-		//表示するカード
-		visibleCard = trumpArrya[l];
-		//比較するカード
-		hiddenCard = trumpArrya[l + 1];
-		
-		//カードの番号からのカードの要素の抽出
-		//割った数のあまりがカードの番号
-		visibleCardMunber = (visibleCard+1) % 13;
-		hiddenCardMunber = (hiddenCard+1) % 13;
-		
-		visibleCardMark = (visibleCard +1- visibleCardMunber) / 13;
-		hiddenCardMark = (hiddenCard +1- hiddenCardMunber) / 13;
-		
-		//マークの特定
-		switch (visibleCardMark) {
-			case 0:
-				visibleCardMark = "スペード";
-				break;
-			case 1:
-				visibleCardMark = "クラブ";
-				break;
-			case 2:
-				visibleCardMark = "ハート";
-				break;
-			case 3:
-				visibleCardMark = "ダイヤ";
-				break;
-			default:
-				break;
-		}
-		switch (hiddenCardMark) {
-			case 0:
-				hiddenCardMark = "スペード";
-				break;
-			case 1:
-				hiddenCardMark = "クラブ";
-				break;
-			case 2:
-				hiddenCardMark = "ハート";
-				break;
-			case 3:
-				hiddenCardMark = "ダイヤ";
-				break;
-			default:
-				break;
+		this.init = function () {
+			image = images[index];
+			this.container.addChild(image);
 		}
 		
-		this.visibleCard.text = trumpArrya[l] + "(" + visibleCardMunber + "," + visibleCardMark + ")";
-		this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
+		stage.on("stagemousedown", function (e) {
+			createjs.Tween.get(this.container, {
+				override: true
+			})
+				.to({
+					alpha: 0
+				}, 400, createjs.Ease.circOut)
+				.wait(200)
+				.call(function () {
+					this.container.removeChild(image);
+					index++;
+					if (index >= images.length) {
+						index = 0;
+					}
+					image = images[index];
+					this.container.addChild(image);
+				}, null, this)
+				.to({
+					alpha: 1
+				}, 600, createjs.Ease.circIn);
+		}, this);
 		
-		l++;
+		var queue = new createjs.LoadQueue(true);　
+		queue.on("fileload", fileLoadHandler, this);　
+		queue.on("complete", completeHandler, this);　
+		queue.loadManifest("manifest.json");　
+		function fileLoadHandler(event) {
+			if (event.item.type === createjs.LoadQueue.IMAGE) {　
+				images.push(new createjs.Bitmap(event.result));
+			}　
+		}
+		function completeHandler(event) {
+			this.init();
+		};
+		
+		
+			/* 表示するトランプの選出 */
+		
+			var l = 0;
+		
+			//表示するカード
+			visibleCard = trumpArrya[l];
+			//比較するカード
+			hiddenCard = trumpArrya[l + 1];
+		
+			//カードの番号からのカードの要素の抽出
+			//割った数のあまりがカードの番号
+			visibleCardMunber = (visibleCard + 1) % 13;
+			hiddenCardMunber = (hiddenCard + 1) % 13;
+		
+			visibleCardMark = (visibleCard + 1 - visibleCardMunber) / 13;
+			hiddenCardMark = (hiddenCard + 1 - hiddenCardMunber) / 13;
+		
+			//マークの特定
+			switch (visibleCardMark) {
+				case 0:
+					visibleCardMark = "スペード";
+					break;
+				case 1:
+					visibleCardMark = "クラブ";
+					break;
+				case 2:
+					visibleCardMark = "ハート";
+					break;
+				case 3:
+					visibleCardMark = "ダイヤ";
+					break;
+				default:
+					break;
+			}
+			switch (hiddenCardMark) {
+				case 0:
+					hiddenCardMark = "スペード";
+					break;
+				case 1:
+					hiddenCardMark = "クラブ";
+					break;
+				case 2:
+					hiddenCardMark = "ハート";
+					break;
+				case 3:
+					hiddenCardMark = "ダイヤ";
+					break;
+				default:
+					break;
+			}
+		
+			this.visibleCard.text = trumpArrya[l] + "(" + visibleCardMunber + "," + visibleCardMark + ")";
+			this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
+		
+			l++;
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// script
+	this.instance = new lib.container();
+	this.instance.setTransform(285.5,336.5,1,1,0,0,0,214.5,53.5);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	// container
+	this.container = new lib.container();
+	this.container.setTransform(120,54);
+
+	this.timeline.addTween(cjs.Tween.get(this.container).wait(1));
 
 	// obj
 	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#0066CC");
@@ -163,7 +237,7 @@ lib.properties = {
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(340,264.2,435,208.3);
+p.nominalBounds = new cjs.Rectangle(340,264.2,435.5,326.4);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
