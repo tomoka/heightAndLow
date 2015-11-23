@@ -207,6 +207,10 @@
     {
       "src": "trump_png/trump51.png",
       "id": "trump51"
+    },
+    {
+      "src": "trump_png/trump52.png",
+      "id": "trump52"
     }
   ]
 }
