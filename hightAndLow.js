@@ -7,7 +7,7 @@ lib.properties = {
 	width: 550,
 	height: 400,
 	fps: 24,
-	color: "#FFFFCC",
+	color: "#003300",
 	manifest: [
 		{src:"images/trump52.png", id:"trump52"}
 	]
@@ -59,12 +59,80 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 
+(lib.btn_02 = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#CC6666").s().p("AqTDNIAAmZIUnAAIAAGZg");
+	this.shape.setTransform(66,20.5);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,132,41);
+
+
+(lib.btn_01 = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#CC6666").s().p("AqODHIAAmOIUdAAIAAGOg");
+	this.shape.setTransform(65.5,20);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,131,40);
+
+
+(lib.btn_00 = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#CC6666").s().p("AqODNIAAmZIUdAAIAAGZg");
+	this.shape.setTransform(65.5,20.5);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,131,41);
+
+
 // stage content:
 (lib.hightAndLow = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// timeline functions:
 	this.frame_0 = function() {
+		this.button_1.addEventListener("click", fl_MouseClickHandler.bind(this));
+		
+		function fl_MouseClickHandler()
+		{
+			// カスタムコードを開始
+			// このコード例では、出力パネルに "マウスクリック" という用語が表示されます。
+			alert("マウスクリック");
+			// カスタムコードを終了
+		}
+		
+		this.button_2.addEventListener("click", fl_MouseClickHandler_2.bind(this));
+		
+		function fl_MouseClickHandler_2()
+		{
+			// カスタムコードを開始
+			// このコード例では、出力パネルに "マウスクリック" という用語が表示されます。
+			alert("マウスクリック");
+			// カスタムコードを終了
+		}
+		
+		this.button_3.addEventListener("click", fl_MouseClickHandler_3.bind(this));
+		
+		function fl_MouseClickHandler_3()
+		{
+			// カスタムコードを開始
+			// このコード例では、出力パネルに "マウスクリック" という用語が表示されます。
+			alert("マウスクリック");
+			// カスタムコードを終了
+		}
 		/* ---------------------------
 		トランプ配列
 		
@@ -273,6 +341,21 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
+	// btn
+	this.button_1 = new lib.btn_02();
+	this.button_1.setTransform(460,368,1,1,0,0,0,66,20.5);
+	new cjs.ButtonHelper(this.button_1, 0, 1, 1);
+
+	this.button_3 = new lib.btn_01();
+	this.button_3.setTransform(274.7,368,1,1,0,0,0,65.5,20);
+	new cjs.ButtonHelper(this.button_3, 0, 1, 1);
+
+	this.button_2 = new lib.btn_00();
+	this.button_2.setTransform(89.5,368,1,1,0,0,0,65.5,20.5);
+	new cjs.ButtonHelper(this.button_2, 0, 1, 1);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.button_2},{t:this.button_3},{t:this.button_1}]}).wait(1));
+
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
 	this.containerHeddin.setTransform(298.1,79.1);
@@ -295,7 +378,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(300,223.2,728.1,734.9);
+p.nominalBounds = new cjs.Rectangle(299,223.2,729.1,734.9);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
