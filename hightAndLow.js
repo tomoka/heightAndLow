@@ -119,8 +119,8 @@ p.nominalBounds = null;
 		//var containerHeddin = new lib.containerHeddin();
 		//this.addChild(containerHeddin);
 		//変形等は
-		//setTransform(伸縮x, 傾斜y, 傾斜x, 伸縮y, 移動x, 移動y)
-		
+		//setTransform(x, y,伸縮x, 伸縮y, x軸回転, 傾斜x, 傾斜y, 移動x*-1(+だとマイナス方向へ移動), 移動y*-1(+だとマイナス方向へ移動))
+		                           
 		this.init = function () {
 			//image = images[index];
 			visibleImage = images[visibleCard];
@@ -130,13 +130,21 @@ p.nominalBounds = null;
 			console.log("visibleCard--------->" + visibleCard);
 			console.log("visibleImage--------->" + visibleImage);
 			this.containerVisuble.addChild(visibleImage);
-			this.containerVisuble.setTransform(28,80,1,1,0,0,0,0,1);
+			this.containerVisuble.setTransform(
+												0, 0, 0.3,
+												0.3, 0, 0,
+												0, -28, -80
+												);
 		
 			//該当するカードの画像を格納
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
 			this.containerHeddin.addChild(hiddenImage);
-			this.containerHeddin.setTransform(300,80,1,1,0,0,0,0,1);
+			this.containerHeddin.setTransform(
+												0, 0, 0.3,
+												0.3, 0, 0,
+												0, -300, -80
+												);
 		}
 		
 		//ステージの何処をクリックしてもカードが更新される
@@ -163,22 +171,20 @@ p.nominalBounds = null;
 		}, this);
 		
 		var queue = new createjs.LoadQueue(true);　
-		queue.on("fileload", fileLoadHandler, this);　
-		queue.on("complete", completeHandler, this);　
-		queue.loadManifest("manifest.json");
+			queue.on("fileload", fileLoadHandler, this);　
+			queue.on("complete", completeHandler, this);　
+			queue.loadManifest("manifest.json");
 		
 		function fileLoadHandler(event) {
 			if (event.item.type === createjs.LoadQueue.IMAGE) {　
 				images.push(new createjs.Bitmap(event.result));
-			}　
-		}
+				}　
+			}
 		function completeHandler(event) {
 			this.init();
-		};
-		
+			};
 		
 		/* 表示するトランプの選出 */
-		
 		var l = 0;
 		
 		//表示するカード
@@ -192,13 +198,13 @@ p.nominalBounds = null;
 		visibleCardMunber = (visibleCard + 1) % 13;
 		if (visibleCardMunber == 0) {
 			visibleCardMunber = 13;
-		
 		}
+		
 		hiddenCardMunber = (hiddenCard + 1) % 13;
 		if (hiddenCardMunber == 0) {
 			hiddenCardMunber = 13;
-		
 		}
+		
 		visibleCardMark = (visibleCard + 1 - visibleCardMunber) / 13;
 		hiddenCardMark = (hiddenCard + 1 - hiddenCardMunber) / 13;
 		
