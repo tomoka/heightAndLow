@@ -104,35 +104,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		this.button_1.addEventListener("click", fl_MouseClickHandler.bind(this));
-		
-		function fl_MouseClickHandler()
-		{
-			// カスタムコードを開始
-			// このコード例では、出力パネルに "マウスクリック" という用語が表示されます。
-			alert("マウスクリック");
-			// カスタムコードを終了
-		}
-		
-		this.button_2.addEventListener("click", fl_MouseClickHandler_2.bind(this));
-		
-		function fl_MouseClickHandler_2()
-		{
-			// カスタムコードを開始
-			// このコード例では、出力パネルに "マウスクリック" という用語が表示されます。
-			alert("マウスクリック");
-			// カスタムコードを終了
-		}
-		
-		this.button_3.addEventListener("click", fl_MouseClickHandler_3.bind(this));
-		
-		function fl_MouseClickHandler_3()
-		{
-			// カスタムコードを開始
-			// このコード例では、出力パネルに "マウスクリック" という用語が表示されます。
-			alert("マウスクリック");
-			// カスタムコードを終了
-		}
 		/* ---------------------------
 		トランプ配列
 		
@@ -237,7 +208,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 		}
 		
 		//ステージの何処をクリックしてもカードが更新される
-		stage.on("stagemousedown", function (e) {
+		/*stage.on("stagemousedown", function (e) {
 			createjs.Tween.get(this.container, {
 				override: true
 			})
@@ -257,7 +228,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 				.to({
 					alpha: 1
 				}, 600, createjs.Ease.circIn);
-		}, this);
+		}, this);*/
 		
 		var queue = new createjs.LoadQueue(true);　
 			queue.on("fileload", fileLoadHandler, this);　
@@ -336,6 +307,31 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 		this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
 		
 		l++;
+		
+		//ボタンイベント
+		this.button_1.addEventListener("click", fl_MouseClickHandler.bind(this));
+		function fl_MouseClickHandler()
+		{
+			this.containerHeddin.addChild(hiddenImage);
+			console.log("hiddenCard--------->" + hiddenCard);
+			console.log("hiddenImage--------->" + hiddenImage);
+		}
+		
+		this.button_2.addEventListener("click", fl_MouseClickHandler_2.bind(this));
+		function fl_MouseClickHandler_2()
+		{
+			this.containerHeddin.addChild(hiddenImage);
+			console.log("hiddenCard--------->" + hiddenCard);
+			console.log("hiddenImage--------->" + hiddenImage);
+		}
+		
+		this.button_3.addEventListener("click", fl_MouseClickHandler_3.bind(this));
+		function fl_MouseClickHandler_3()
+		{
+			this.containerHeddin.addChild(hiddenImage);
+			console.log("hiddenCard--------->" + hiddenCard);
+			console.log("hiddenImage--------->" + hiddenImage);
+		}
 	}
 
 	// actions tween:
