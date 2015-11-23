@@ -7,10 +7,8 @@ lib.properties = {
 	width: 550,
 	height: 400,
 	fps: 24,
-	color: "#FFFFCC",
-	manifest: [
-		{src:"images/trump52.png", id:"trump52"}
-	]
+	color: "#003300",
+	manifest: []
 };
 
 
@@ -19,10 +17,32 @@ lib.properties = {
 
 
 
+(lib.drow = function() {
+	this.spriteSheet = ss["hightAndLow_atlas_"];
+	this.gotoAndStop(0);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.hight = function() {
+	this.spriteSheet = ss["hightAndLow_atlas_"];
+	this.gotoAndStop(1);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.low = function() {
+	this.spriteSheet = ss["hightAndLow_atlas_"];
+	this.gotoAndStop(2);
+}).prototype = p = new cjs.Sprite();
+
+
+
 (lib.trump52 = function() {
-	this.initialize(img.trump52);
-}).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,455,679);
+	this.spriteSheet = ss["hightAndLow_atlas_"];
+	this.gotoAndStop(3);
+}).prototype = p = new cjs.Sprite();
+
 
 
 (lib.containerVisuble = function() {
@@ -59,12 +79,73 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 
+(lib.btn_low = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.instance = new lib.low();
+
+	this.addChild(this.instance);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,500,159);
+
+
+(lib.btn_hight = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.instance = new lib.hight();
+
+	this.addChild(this.instance);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,500,160);
+
+
+(lib.btn_drow = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.instance = new lib.drow();
+
+	this.addChild(this.instance);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,500,160);
+
+
 // stage content:
 (lib.hightAndLow = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// timeline functions:
 	this.frame_0 = function() {
+		/* マウスクリックイベント
+		特定のシンボルインスタンス上でクリックすると、独自のカスタムコードを追加できる関数が実行されます。
+		
+		手順 :
+		1. 以下の「// カスタムコードを開始」と記述された行の後ろに新しい行を挿入して、カスタムコードを追加します。
+		シンボルインスタンスをクリックすると、コードが実行されます。
+		*/
+		
+		this.btn_hight.addEventListener("click", fl_MouseClickHandler.bind(this));
+		
+		function fl_MouseClickHandler()
+		{
+			this.containerHeddin.addChild(images[hiddenCard]);
+		}
+		
+		this.btn_drow.addEventListener("click", fl_MouseClickHandler_2.bind(this));
+		
+		function fl_MouseClickHandler_2()
+		{
+			this.containerHeddin.addChild(images[hiddenCard]);
+		}
+		
+		this.btn_low.addEventListener("click", fl_MouseClickHandler_3.bind(this));
+		
+		function fl_MouseClickHandler_3()
+		{
+			this.containerHeddin.addChild(images[hiddenCard]);
+		}
 		/* ---------------------------
 		トランプ配列
 		
@@ -274,6 +355,18 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// obj
+	this.btn_drow = new lib.btn_drow();
+	this.btn_drow.setTransform(291.9,362.3,0.325,0.325,0,0,0,250,80);
+	new cjs.ButtonHelper(this.btn_drow, 0, 1, 1);
+
+	this.btn_hight = new lib.btn_hight();
+	this.btn_hight.setTransform(107.4,362.2,0.325,0.325,0,0,0,250,79.9);
+	new cjs.ButtonHelper(this.btn_hight, 0, 1, 1);
+
+	this.btn_low = new lib.btn_low();
+	this.btn_low.setTransform(476.5,362.2,0.325,0.325,0,0,0,250,79.5);
+	new cjs.ButtonHelper(this.btn_low, 0, 1, 1);
+
 	this.containerHeddin = new lib.containerHeddin();
 	this.containerHeddin.setTransform(298.1,79.1);
 
@@ -292,7 +385,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 	this.visibleCard.lineWidth = 251;
 	this.visibleCard.setTransform(25,23.2);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin},{t:this.btn_low},{t:this.btn_hight},{t:this.btn_drow}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(300,223.2,728.1,734.9);
