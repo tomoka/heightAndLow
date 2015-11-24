@@ -25,6 +25,24 @@ lib.properties = {
 p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 
+(lib.MC_start = function() {
+	this.initialize();
+
+	// レイヤー 2
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFFFF").s().p("AOwDVQgmgPgbgeQgcgegOgpQgOgqAAg1QAAgyAOgqQAOgpAcgeQA3g8BfAAQBeAAA4A8QA3A8AABnQAABqg3A8QgcAeglAPQgmAOgvAAQgwAAglgOgAO5hlQgZAjAABEQAACOBlgBQBkABAAiOQAAhEgZgjQgZgjgyAAQgzAAgZAjgAhnDaIAAmuQA8gIBAgBQBsABA6A5QAdAcAPAoQAOApAAA1QAAA3gOArQgPArgdAdQg6A7hsgBQhAAAg8gJgAgDiJIAAEZQAOAEASAAQAfAAAWgJQAWgJAPgSQAdgjAAhOQAAglgHgaQgIgbgOgQQgegig8AAQgSAAgOAEgAd7DeIAAhaIBoAAIAABagAYkDeIgulNIgBAAIgtFNIh3AAIhXm1IBnAAIAuFNIABAAIAplNIB8AAIApFNIABAAIAulNIBlAAIhXG1gAHkDeIAAm1IBpAAIAAFgIC5AAIAABVgAkkDeIiNkLIgBAAIAAELIhiAAIAAm1IBiAAICNELIABAAIAAkLIBiAAIAAG1gAq7DeIgYhgIiCAAIgXBgIhrAAICOm1IBtAAICOG1gArmAxIgtivIgBAAIgtCvIBbAAgA2hDeIAAhaIBoAAIAABagA6xDeIAAk3IBmAAIAAE3gA97DeIAAi9IiHAAIAAC9IhmAAIAAm1IBmAAIAACsICHAAIAAisIBmAAIAAG1gAeABSQAAgXAGgTQAHgUAOgQIAYgWIA0grIAQgSQAHgKAAgLQAAgohBAAQgfAAgiAGQgiAFglAMIAAhWQBJgSBOAAQAlAAAdAIQAcAHAVAPQAqAdAAAvQAAAXgGASQgGARgNAOIgWAWIg7ApQgLAJgKAQQgLARgBAUgA2cBSQAAgXAGgTQAHgUAOgQIAYgWIA0grIAQgSQAHgKAAgLQAAgohBAAQgfAAgiAGQgiAFglAMIAAhWQBJgSBOAAQAlAAAdAIQAcAHAVAPQAqAdAAAvQAAAXgGASQgGARgNAOIgWAWIg7ApQgLAJgKAQQgLARgBAUgA6xiVIAAhNIBmAAIAABNg");
+	this.shape.setTransform(280.9,73.3);
+
+	// レイヤー 1
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(69,69,69,0.8)").s().p("Egq9ALuIAA3bMBV6AAAIAAXbg");
+	this.shape_1.setTransform(275,75,1,0.586);
+
+	this.addChild(this.shape_1,this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,31.1,550,87.9);
+
+
 (lib.containerVisuble = function() {
 	this.initialize();
 
@@ -62,7 +80,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 (lib.btn_02 = function() {
 	this.initialize();
 
-<<<<<<< HEAD
 	// レイヤー 2
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#CC6666").s().p("AhcBpQgTgIgOgPQgOgOgGgWQgIgUAAgaQAAgZAIgUQAGgVAOgPQAcgeAvAAQAvAAAaAeQAcAeAAAzQAAA0gcAeQgOAPgQAIQgTAHgYAAQgYAAgSgHgAhYg0QgMASAAAiQAABGAyAAQAyAAAAhGQAAgigMgSQgNgRgZAAQgZAAgNARgADcBtIgXilIgBAAIgXClIg7AAIgrjZIAzAAIAXClIABAAIAUilIA+AAIAVClIAAAAIAXilIAzAAIgsDZgAlCBtIAAjZIA1AAIAACuIBcAAIAAArg");
@@ -71,22 +88,11 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 	this.addChild(this.shape);
 }).prototype = p = new cjs.Container();
 p.nominalBounds = new cjs.Rectangle(0,0,64.7,22.5);
-=======
-	// レイヤー 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#CC6666").s().p("AqTDNIAAmZIUnAAIAAGZg");
-	this.shape.setTransform(66,20.5);
-
-	this.addChild(this.shape);
-}).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,0,132,41);
->>>>>>> 310a97ef6eaaf3abab90040f0f8c07856c0c55c1
 
 
 (lib.btn_01 = function() {
 	this.initialize();
 
-<<<<<<< HEAD
 	// レイヤー 2
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#CC6666").s().p("AASBpQgSgIgNgPQgOgOgGgWQgIgUAAgaQAAgZAIgUQAGgVAOgPQAageAwAAQAuAAAcAeQAcAeAAAzQAAA0gcAeQgOAPgSAIQgTAHgXAAQgYAAgTgHgAAWg0QgMASAAAiQAABGAzAAQAyAAAAhGQAAgigNgSQgMgRgZAAQgaAAgNARgAmyBrIAAjWQAegEAhAAQA2AAAdAdQAOANAHAVQAIAVAAAaQAAAagIAVQgHAWgOAPQgdAdg2AAQghAAgegFgAmBhGIAACNQAJABAJAAQAPAAALgEQALgFAIgJQAOgRAAgmQAAgTgEgNQgDgNgHgIQgPgRgeAAQgJAAgJABgAFMBtIgXilIgBAAIgWClIg8AAIgrjZIAzAAIAYClIAAAAIAVilIA+AAIAUClIAAAAIAYilIAyAAIgsDZgAhxBtIgUg7QgEgNgGgEQgHgFgMAAIgPAAIAABRIgyAAIAAjYQAhgEAnAAQAXAAAQAEQARAFALAIQAWARAAAfQAAAUgMARQgFAHgIAEQgIAGgJADIAAAAQAHAFAGAJQAHAJAFANIAXA+gAixhHIAAA/IARAAQAVABAKgKQAHgEACgGQADgGAAgIQAAgggpABQgLAAgIABg");
@@ -95,22 +101,11 @@ p.nominalBounds = new cjs.Rectangle(0,0,132,41);
 	this.addChild(this.shape);
 }).prototype = p = new cjs.Container();
 p.nominalBounds = new cjs.Rectangle(0,0,87.1,22.5);
-=======
-	// レイヤー 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#CC6666").s().p("AqODHIAAmOIUdAAIAAGOg");
-	this.shape.setTransform(65.5,20);
-
-	this.addChild(this.shape);
-}).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,0,131,40);
->>>>>>> 310a97ef6eaaf3abab90040f0f8c07856c0c55c1
 
 
 (lib.btn_00 = function() {
 	this.initialize();
 
-<<<<<<< HEAD
 	// レイヤー 2
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#CC6666").s().p("AhPBpQgUgIgPgPQgPgOgIgWQgIgUAAgaQAAg0AegdQAPgPAVgIQAVgHAbAAQAfAAAaAHIAAAqIgagHQgNgCgMAAQgiABgRARQgRASAAAjQAAAkAQARQARASAeAAQAMAAAJgCIAAg2IgvAAIAAglIBdAAIAAB5QghANglAAQgaAAgUgHgAFaBtIAAiuIg6AAIAAgrICoAAIAAArIg6AAIAACugADHBtIAAheIhDAAIAABeIgzAAIAAjZIAzAAIAABWIBDAAIAAhWIAzAAIAADZgAjtBtIAAjZIA4AAIAADZgAlRBtIAAheIhDAAIAABeIgzAAIAAjZIAzAAIAABWIBDAAIAAhWIAzAAIAADZg");
@@ -119,16 +114,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,40);
 	this.addChild(this.shape);
 }).prototype = p = new cjs.Container();
 p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
-=======
-	// レイヤー 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#CC6666").s().p("AqODNIAAmZIUdAAIAAGZg");
-	this.shape.setTransform(65.5,20.5);
-
-	this.addChild(this.shape);
-}).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,0,131,41);
->>>>>>> 310a97ef6eaaf3abab90040f0f8c07856c0c55c1
 
 
 // stage content:
@@ -208,12 +193,31 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 		var hiddenImage;
 		var index = 0;
 		
+		
+		createjs.Tween.get(this.MC_start, {
+			loop: false
+		}).wait(1000)
+			.to({
+				scaleX:4,
+				scaleY:4,
+				alpha: 0,
+				visible: false
+			}, 2000, createjs.Ease.sineInOut);
+			
+		/*
+		lib:TransformMatrixPlugin.js
+		createjs.Tween
+			.get(this.MC_start, {loop: false})
+			.wait(500).set({matEnabled:true})
+		    .to({mat:{rotation:45,scaleX:1.0, scaleY:0.3}, x:160, y:280 - i * 10}, 2000, createjs.Ease.circlnOut);
+		*/
+		
 		//ライブラリからインスタンスの追加
 		//var containerHeddin = new lib.containerHeddin();
 		//this.addChild(containerHeddin);
 		//変形等は
 		//setTransform(x, y,伸縮x, 伸縮y, x軸回転, 傾斜x, 傾斜y, 移動x*-1(+だとマイナス方向へ移動), 移動y*-1(+だとマイナス方向へ移動))
-		                           
+		
 		this.init = function () {
 			//image = images[index];
 			visibleImage = images[visibleCard];
@@ -224,20 +228,20 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 			console.log("visibleImage--------->" + visibleImage);
 			this.containerVisuble.addChild(visibleImage);
 			this.containerVisuble.setTransform(
-												28, 80, 0.3,
-												0.3, 0, 0,
-												0, 0, 0
-												);
+				28, 80, 0.3,
+				0.3, 0, 0,
+				0, 0, 0
+			);
 		
 			//該当するカードの画像を格納
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
 			this.containerHeddin.addChild(images[52]);
 			this.containerHeddin.setTransform(
-												300, 80, 0.3,
-												0.3, 0, 0,
-												0, 0, 0
-												);
+				300, 80, 0.3,
+				0.3, 0, 0,
+				0, 0, 0
+			);
 		}
 		
 		//ステージの何処をクリックしてもカードが更新される
@@ -264,18 +268,18 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 		}, this);*/
 		
 		var queue = new createjs.LoadQueue(true);　
-			queue.on("fileload", fileLoadHandler, this);　
-			queue.on("complete", completeHandler, this);　
-			queue.loadManifest("manifest.json");
+		queue.on("fileload", fileLoadHandler, this);　
+		queue.on("complete", completeHandler, this);　
+		queue.loadManifest("manifest.json");
 		
 		function fileLoadHandler(event) {
 			if (event.item.type === createjs.LoadQueue.IMAGE) {　
 				images.push(new createjs.Bitmap(event.result));
-				}　
-			}
+			}　
+		}
 		function completeHandler(event) {
 			this.init();
-			};
+		};
 		
 		/* 表示するトランプの選出 */
 		var l = 0;
@@ -343,24 +347,21 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 		
 		//ボタンイベント
 		this.button_1.addEventListener("click", fl_MouseClickHandler.bind(this));
-		function fl_MouseClickHandler()
-		{
+		function fl_MouseClickHandler() {
 			this.containerHeddin.addChild(hiddenImage);
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
 		}
 		
 		this.button_2.addEventListener("click", fl_MouseClickHandler_2.bind(this));
-		function fl_MouseClickHandler_2()
-		{
+		function fl_MouseClickHandler_2() {
 			this.containerHeddin.addChild(hiddenImage);
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
 		}
 		
 		this.button_3.addEventListener("click", fl_MouseClickHandler_3.bind(this));
-		function fl_MouseClickHandler_3()
-		{
+		function fl_MouseClickHandler_3() {
 			this.containerHeddin.addChild(hiddenImage);
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
@@ -369,6 +370,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// anime
+	this.MC_start = new lib.MC_start();
+	this.MC_start.setTransform(315.4,212,1,0.933,0,0,0,315.4,75);
+
+	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1));
 
 	// btn
 	this.button_1 = new lib.btn_02();
@@ -392,13 +399,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 	this.containerVisuble = new lib.containerVisuble();
 	this.containerVisuble.setTransform(27,80.1,1,1,0,0,0,-0.1,1);
 
-	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#0066CC");
+	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#003303");
 	this.hiddenCard.name = "hiddenCard";
 	this.hiddenCard.lineHeight = 32;
 	this.hiddenCard.lineWidth = 236;
 	this.hiddenCard.setTransform(294,23.6);
 
-	this.visibleCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#993366");
+	this.visibleCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#003303");
 	this.visibleCard.name = "visibleCard";
 	this.visibleCard.lineHeight = 32;
 	this.visibleCard.lineWidth = 251;
@@ -407,7 +414,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,131,41);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(299,223.2,729.1,734.9);
+p.nominalBounds = new cjs.Rectangle(275,223.2,753.1,734.9);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
