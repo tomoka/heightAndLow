@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"images": ["images/hightAndLow_atlas_.png"], "frames": [[457,162,500,160],[457,0,500,160],[457,324,500,159],[0,0,455,679]]}
-=======
-{"images": ["images/hightAndLow_atlas_.png"], "frames": [[457,0,500,160],[457,162,500,160],[457,324,500,159],[0,0,455,679]]}
->>>>>>> 960d3cce3321e6d9a5818cf08866ada5175fc4f0
+{"images": ["images/hightAndLow_atlas_.png"], "frames": [[0,681,500,159],[0,0,455,679]]}
