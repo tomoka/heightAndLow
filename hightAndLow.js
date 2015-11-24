@@ -62,6 +62,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 (lib.btn_02 = function() {
 	this.initialize();
 
+<<<<<<< HEAD
 	// レイヤー 2
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#CC6666").s().p("AhcBpQgTgIgOgPQgOgOgGgWQgIgUAAgaQAAgZAIgUQAGgVAOgPQAcgeAvAAQAvAAAaAeQAcAeAAAzQAAA0gcAeQgOAPgQAIQgTAHgYAAQgYAAgSgHgAhYg0QgMASAAAiQAABGAyAAQAyAAAAhGQAAgigMgSQgNgRgZAAQgZAAgNARgADcBtIgXilIgBAAIgXClIg7AAIgrjZIAzAAIAXClIABAAIAUilIA+AAIAVClIAAAAIAXilIAzAAIgsDZgAlCBtIAAjZIA1AAIAACuIBcAAIAAArg");
@@ -70,11 +71,22 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 	this.addChild(this.shape);
 }).prototype = p = new cjs.Container();
 p.nominalBounds = new cjs.Rectangle(0,0,64.7,22.5);
+=======
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#CC6666").s().p("AqTDNIAAmZIUnAAIAAGZg");
+	this.shape.setTransform(66,20.5);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,132,41);
+>>>>>>> 310a97ef6eaaf3abab90040f0f8c07856c0c55c1
 
 
 (lib.btn_01 = function() {
 	this.initialize();
 
+<<<<<<< HEAD
 	// レイヤー 2
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#CC6666").s().p("AASBpQgSgIgNgPQgOgOgGgWQgIgUAAgaQAAgZAIgUQAGgVAOgPQAageAwAAQAuAAAcAeQAcAeAAAzQAAA0gcAeQgOAPgSAIQgTAHgXAAQgYAAgTgHgAAWg0QgMASAAAiQAABGAzAAQAyAAAAhGQAAgigNgSQgMgRgZAAQgaAAgNARgAmyBrIAAjWQAegEAhAAQA2AAAdAdQAOANAHAVQAIAVAAAaQAAAagIAVQgHAWgOAPQgdAdg2AAQghAAgegFgAmBhGIAACNQAJABAJAAQAPAAALgEQALgFAIgJQAOgRAAgmQAAgTgEgNQgDgNgHgIQgPgRgeAAQgJAAgJABgAFMBtIgXilIgBAAIgWClIg8AAIgrjZIAzAAIAYClIAAAAIAVilIA+AAIAUClIAAAAIAYilIAyAAIgsDZgAhxBtIgUg7QgEgNgGgEQgHgFgMAAIgPAAIAABRIgyAAIAAjYQAhgEAnAAQAXAAAQAEQARAFALAIQAWARAAAfQAAAUgMARQgFAHgIAEQgIAGgJADIAAAAQAHAFAGAJQAHAJAFANIAXA+gAixhHIAAA/IARAAQAVABAKgKQAHgEACgGQADgGAAgIQAAgggpABQgLAAgIABg");
@@ -83,11 +95,22 @@ p.nominalBounds = new cjs.Rectangle(0,0,64.7,22.5);
 	this.addChild(this.shape);
 }).prototype = p = new cjs.Container();
 p.nominalBounds = new cjs.Rectangle(0,0,87.1,22.5);
+=======
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#CC6666").s().p("AqODHIAAmOIUdAAIAAGOg");
+	this.shape.setTransform(65.5,20);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,131,40);
+>>>>>>> 310a97ef6eaaf3abab90040f0f8c07856c0c55c1
 
 
 (lib.btn_00 = function() {
 	this.initialize();
 
+<<<<<<< HEAD
 	// レイヤー 2
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#CC6666").s().p("AhPBpQgUgIgPgPQgPgOgIgWQgIgUAAgaQAAg0AegdQAPgPAVgIQAVgHAbAAQAfAAAaAHIAAAqIgagHQgNgCgMAAQgiABgRARQgRASAAAjQAAAkAQARQARASAeAAQAMAAAJgCIAAg2IgvAAIAAglIBdAAIAAB5QghANglAAQgaAAgUgHgAFaBtIAAiuIg6AAIAAgrICoAAIAAArIg6AAIAACugADHBtIAAheIhDAAIAABeIgzAAIAAjZIAzAAIAABWIBDAAIAAhWIAzAAIAADZgAjtBtIAAjZIA4AAIAADZgAlRBtIAAheIhDAAIAABeIgzAAIAAjZIAzAAIAABWIBDAAIAAhWIAzAAIAADZg");
@@ -96,6 +119,16 @@ p.nominalBounds = new cjs.Rectangle(0,0,87.1,22.5);
 	this.addChild(this.shape);
 }).prototype = p = new cjs.Container();
 p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
+=======
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#CC6666").s().p("AqODNIAAmZIUdAAIAAGZg");
+	this.shape.setTransform(65.5,20.5);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,131,41);
+>>>>>>> 310a97ef6eaaf3abab90040f0f8c07856c0c55c1
 
 
 // stage content:
