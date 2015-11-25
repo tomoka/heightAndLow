@@ -193,8 +193,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 		var hiddenImage;
 		var index = 0;
 		
-		
-		createjs.Tween.get(this.MC_start, {
+		/*createjs.Tween.get(this.MC_start, {
 			loop: false
 		}).wait(1000)
 			.to({
@@ -202,15 +201,30 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 				scaleY:4,
 				alpha: 0,
 				visible: false
-			}, 2000, createjs.Ease.sineInOut);
+			}, 1500, createjs.Ease.sineInOut);
 			
-		/*
-		lib:TransformMatrixPlugin.js
+		
+		lib:TransformMatrixPlugin.js 
 		createjs.Tween
 			.get(this.MC_start, {loop: false})
 			.wait(500).set({matEnabled:true})
-		    .to({mat:{rotation:45,scaleX:1.0, scaleY:0.3}, x:160, y:280 - i * 10}, 2000, createjs.Ease.circlnOut);
-		*/
+		    .to({mat:{rotation:30.0,scaleX:1.0, scaleY:1.0, skewX:30.0, skewY:30.0}, x:160, y:280}, 2000, createjs.Ease.circlnOut);
+		 */
+		createjs.Tween
+				.get(this.MC_start,{override:false})
+				.to({x:100, y:40},3000, createjs.Ease.backOut)
+				.to({rotation:20, skewX:20},3000, createjs.Ease.backOut);
+		
+		createjs.Tween
+			.get(this.containerVisuble,{override:false})
+			.to({rotation:3600,scaleX:0.3,scaleY:0.2,skewX:30,skewY:0, x:30, y:80}, 5000,createjs.Ease.quadOut)
+			.to({x:100, y: 200},3000, createjs.Ease.backOut);
+		
+		createjs.Tween
+			.get(this.containerHeddin,{override:false})
+			.to({rotation:-3000,scaleX:0.3,scaleY:0.2,skewX:0,skewY:-10, x:30, y:80}, 5000,createjs.Ease.quadOut)
+			.to({x:300, y: 100},3000, createjs.Ease.backOut);
+		
 		
 		//ライブラリからインスタンスの追加
 		//var containerHeddin = new lib.containerHeddin();
@@ -230,7 +244,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 			this.containerVisuble.setTransform(
 				28, 80, 0.3,
 				0.3, 0, 0,
-				0, 0, 0
+				30, 0, 0
 			);
 		
 			//該当するカードの画像を格納
