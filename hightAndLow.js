@@ -48,11 +48,11 @@ p.nominalBounds = new cjs.Rectangle(0,31.1,550,87.9);
 
 	// レイヤー 1
 	this.instance = new lib.trump52();
-	this.instance.setTransform(-0.5,-0.5);
+	this.instance.setTransform(-227,-339);
 
 	this.addChild(this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(-0.5,-0.5,455,679);
+p.nominalBounds = new cjs.Rectangle(-227,-339,455,679);
 
 
 (lib.containerHeddin = function() {
@@ -60,10 +60,11 @@ p.nominalBounds = new cjs.Rectangle(-0.5,-0.5,455,679);
 
 	// レイヤー 1
 	this.instance = new lib.trump52();
+	this.instance.setTransform(-227,-339);
 
 	this.addChild(this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,0,455,679);
+p.nominalBounds = new cjs.Rectangle(-227,-339,455,679);
 
 
 (lib.container = function() {
@@ -212,18 +213,27 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 		 */
 		createjs.Tween
 				.get(this.MC_start,{override:false})
-				.to({x:100, y:40},3000, createjs.Ease.backOut)
-				.to({rotation:20, skewX:20},3000, createjs.Ease.backOut);
+				.to({alpha:0},0)
+				.wait(4000)
+				.to({alpha:1},3000, createjs.Ease.backOut)
+				.to({alpha:0,scaleX:4,scaleY:4},1000, createjs.Ease.backOut);
 		
 		createjs.Tween
 			.get(this.containerVisuble,{override:false})
-			.to({rotation:3600,scaleX:0.3,scaleY:0.2,skewX:30,skewY:0, x:30, y:80}, 5000,createjs.Ease.quadOut)
-			.to({x:100, y: 200},3000, createjs.Ease.backOut);
+			.to({rotation:3600,scaleX:0.35,scaleY:0.35,skewX:0,skewY:0, x:100, y:70}, 2000,createjs.Ease.quadOut)
+			.to({x:80, y: 50},3000, createjs.Ease.backOut)
+			.to({scaleX: 0.01},3000, createjs.Ease.backOut)
+			.call(handleComplete)
+			.to({scaleX: 0.35},1000, createjs.Ease.backOut);
+		    function handleComplete() {
+		        //Tween complete
+				that.containerVisuble.addChild(visibleImage);
+		    };
 		
 		createjs.Tween
 			.get(this.containerHeddin,{override:false})
-			.to({rotation:-3000,scaleX:0.3,scaleY:0.2,skewX:0,skewY:-10, x:30, y:80}, 5000,createjs.Ease.quadOut)
-			.to({x:300, y: 100},3000, createjs.Ease.backOut);
+			.to({rotation:-3600,scaleX:0.35,scaleY:0.35,skewX:0,skewY:0, x:330, y:70}, 2000,createjs.Ease.quadOut)
+			.to({x:300, y: 50},3000, createjs.Ease.backOut);
 		
 		
 		//ライブラリからインスタンスの追加
@@ -240,22 +250,14 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 			//該当するカードの画像を格納
 			console.log("visibleCard--------->" + visibleCard);
 			console.log("visibleImage--------->" + visibleImage);
-			this.containerVisuble.addChild(visibleImage);
-			this.containerVisuble.setTransform(
-				28, 80, 0.3,
-				0.3, 0, 0,
-				30, 0, 0
-			);
+			this.containerVisuble.addChild(images[53]);
+			this.containerVisuble.setTransform(28, -50);
 		
 			//該当するカードの画像を格納
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
 			this.containerHeddin.addChild(images[52]);
-			this.containerHeddin.setTransform(
-				300, 80, 0.3,
-				0.3, 0, 0,
-				0, 0, 0
-			);
+			this.containerHeddin.setTransform(300, -50);
 		}
 		
 		//ステージの何処をクリックしてもカードが更新される
@@ -387,7 +389,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 
 	// anime
 	this.MC_start = new lib.MC_start();
-	this.MC_start.setTransform(315.4,212,1,0.933,0,0,0,315.4,75);
+	this.MC_start.setTransform(315.4,192,1,0.933,0,0,0,315.4,75);
 
 	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1));
 
@@ -408,10 +410,10 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
-	this.containerHeddin.setTransform(298.1,79.1);
+	this.containerHeddin.setTransform(402.1,183,0.44,0.439);
 
 	this.containerVisuble = new lib.containerVisuble();
-	this.containerVisuble.setTransform(27,80.1,1,1,0,0,0,-0.1,1);
+	this.containerVisuble.setTransform(141,183.4,0.44,0.44,0,0,0,-0.1,0.9);
 
 	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#003303");
 	this.hiddenCard.name = "hiddenCard";
@@ -428,7 +430,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,91.4,22.5);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(275,223.2,753.1,734.9);
+p.nominalBounds = new cjs.Rectangle(275,223.2,550,347.4);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
