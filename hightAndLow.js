@@ -477,11 +477,10 @@ p.nominalBounds = new cjs.Rectangle(0,0,145.3,47.8);
 
 	// レイヤー 1
 	this.instance = new lib.trump52();
-	this.instance.setTransform(-227,-339);
 
 	this.addChild(this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(-227,-339,455,679);
+p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 
 (lib.containerHeddin = function() {
@@ -489,11 +488,10 @@ p.nominalBounds = new cjs.Rectangle(-227,-339,455,679);
 
 	// レイヤー 1
 	this.instance = new lib.trump52();
-	this.instance.setTransform(-227,-339);
 
 	this.addChild(this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(-227,-339,455,679);
+p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 
 (lib.container = function() {
@@ -634,19 +632,23 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			.get(this.containerVisuble, {
 				override: false
 			})
+			.set({
+				x: -100,
+				y: -100
+			})
 			.to({
 				rotation: 3600,
 				scaleX: 0.35,
 				scaleY: 0.35,
 				skewX: 0,
 				skewY: 0,
-				x: -200,
-				y: 600
-			}, 2000, createjs.Ease.quadOut)
+				x: 170,
+				y: 180
+			}, 2500, createjs.Ease.quadOut)
 			.to({
-				x: 80,
-				y: 50
-			}, 3000, createjs.Ease.backOut)
+				x: 170,
+				y: 180
+			}, 500, createjs.Ease.backOut)
 			.to({
 				scaleX: 0.01
 			}, 3000, createjs.Ease.backOut)
@@ -683,19 +685,23 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			.get(this.containerHeddin, {
 				override: false
 			})
+			.set({
+				x: -100,
+				y: 700
+			})
 			.to({
 				rotation: -3600,
 				scaleX: 0.35,
 				scaleY: 0.35,
 				skewX: 0,
 				skewY: 0,
-				x: 600,
-				y: -70
-			}, 2000, createjs.Ease.quadOut)
+				x: 380,
+				y: 180
+			}, 2500, createjs.Ease.quadOut)
 			.to({
-				x: 300,
-				y: 50
-			}, 3000, createjs.Ease.backOut);
+				x: 380,
+				y: 180
+			}, 500, createjs.Ease.backOut);
 		
 		
 		//ライブラリからインスタンスの追加
@@ -863,7 +869,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			this.containerHeddin.addChild(hiddenImage);
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
-			if (visibleCardMunber < hiddenCardMunber) {
+			if (visibleCardMunber == hiddenCardMunber) {
 				createjs.Tween
 					.get(this.MC_win, {
 						override: false
@@ -888,8 +894,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 					.wait(1000)
 					.to({
 						alpha: 0,
-						scaleX: 4,
-						scaleY: 4
+						y: 700
 					}, 1000, createjs.Ease.backOut);
 			}
 		}
@@ -899,7 +904,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			this.containerHeddin.addChild(hiddenImage);
 			console.log("hiddenCard--------->" + hiddenCard);
 			console.log("hiddenImage--------->" + hiddenImage);
-			if (visibleCardMunber < hiddenCardMunber) {
+			if (visibleCardMunber > hiddenCardMunber) {
 				createjs.Tween
 					.get(this.MC_win, {
 						override: false
@@ -935,22 +940,22 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// レイヤー 1
-	this.Mc_lost = new lib.MC_lost();
-	this.Mc_lost.setTransform(280,72,1,1,0,0,0,108.8,37.3);
-	this.Mc_lost.alpha = 0;
+	this.MC_lost = new lib.MC_lost();
+	this.MC_lost.setTransform(273,155.1,1,1,0,0,0,108.8,37.3);
+	this.MC_lost.alpha = 0;
 
-	this.timeline.addTween(cjs.Tween.get(this.Mc_lost).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1));
 
-	// レイヤー 1
+	// anime
 	this.MC_win = new lib.MC_win();
-	this.MC_win.setTransform(272.1,158,1,1,0,0,0,82.7,36.4);
+	this.MC_win.setTransform(273.1,156,1,1,0,0,0,82.7,36.4);
 	this.MC_win.alpha = 0;
 
 	this.timeline.addTween(cjs.Tween.get(this.MC_win).wait(1));
 
 	// title
 	this.MC_start = new lib.MC_start();
-	this.MC_start.setTransform(315.4,192,1,0.933,0,0,0,315.4,75);
+	this.MC_start.setTransform(275.4,193,1,0.933,0,0,0,275.4,76);
 	this.MC_start.alpha = 0;
 
 	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1));
@@ -972,10 +977,10 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
-	this.containerHeddin.setTransform(375,160.1,0.348,0.348);
+	this.containerHeddin.setTransform(641.9,182.1,0.348,0.348,0,0,0,226.7,344.6);
 
 	this.containerVisuble = new lib.containerVisuble();
-	this.containerVisuble.setTransform(168.2,160.4,0.348,0.348,0,0,0,-0.1,0.8);
+	this.containerVisuble.setTransform(-96.8,182.4,0.348,0.348,0,0,0,232.5,345.4);
 
 	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#003303");
 	this.hiddenCard.name = "hiddenCard";
@@ -992,7 +997,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(264.6,223.2,560.4,359.5);
+p.nominalBounds = new cjs.Rectangle(97.2,223.2,899.2,359.5);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
