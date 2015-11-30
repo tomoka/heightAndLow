@@ -623,54 +623,49 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		var visibleImage;
 		var hiddenImage;
 		var index = 0;
+		var btnFlag = true;
 		
 		//this.Mc_lost.visible = false;
 		//this.Mc_win.visible = false;
 		
+		console.log(this.containerVisuble.x);
+		console.log(this.containerHeddin.x);
 		
 		createjs.Tween
 			.get(this.containerVisuble, {
 				override: false
 			})
 			.set({
-				x: -100,
-				y: -100
+				x: 0,
+				y: 0
 			})
 			.to({
-				rotation: 3600,
+				x: 170,
+				y: 180,
+				rotation: 1080,
 				scaleX: 0.35,
 				scaleY: 0.35,
 				skewX: 0,
-				skewY: 0,
-				x: 170,
-				y: 180
-			}, 2500, createjs.Ease.quadOut)
-			.to({
-				x: 170,
-				y: 180
-			}, 500, createjs.Ease.backOut)
+				skewY: 0
+			}, 1500, createjs.Ease.quadOut)
 			.to({
 				scaleX: 0.01
-			}, 3000, createjs.Ease.backOut)
+			}, 1000, createjs.Ease.backOut)
 			.call(handleComplete1)
 			.to({
 				scaleX: 0.35
-			}, 1000, createjs.Ease.backOut)
-			.call(handleComplete2);
+			}, 1000, createjs.Ease.backOut);
 		
 		function handleComplete1() {
 			//Tween complete
 			that.containerVisuble.addChild(visibleImage);
 		};
 		
-		function handleComplete2() {
-			//Tween complete
-		};
 		createjs.Tween
 			.get(this.MC_start, {
 				override: false
 			})
-			.wait(8000)
+			.wait(3000)
 			.to({
 				alpha: 1
 			}, 1000)
@@ -679,25 +674,32 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				alpha: 0,
 				scaleX: 4,
 				scaleY: 4
-			}, 1000, createjs.Ease.backOut);
+			}, 1000, createjs.Ease.backOut)
+			.call(handleComplete2);
+		
+		function handleComplete2() {
+			//Tween complete
+			btnFlag = false;
+			console.log("ボタンフラグ");
+		};
 		
 		createjs.Tween
 			.get(this.containerHeddin, {
 				override: false
 			})
 			.set({
-				x: -100,
-				y: 700
+				x: 0,
+				y: 0
 			})
 			.to({
-				rotation: -3600,
+				x: 380,
+				y: 180,
+				rotation: -1080,
 				scaleX: 0.35,
 				scaleY: 0.35,
 				skewX: 0,
-				skewY: 0,
-				x: 380,
-				y: 180
-			}, 2500, createjs.Ease.quadOut)
+				skewY: 0
+			}, 1800, createjs.Ease.quadOut)
 			.to({
 				x: 380,
 				y: 180
@@ -822,136 +824,136 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				break;
 		}
 		
-		this.visibleCard.text = trumpArrya[l] + "(" + visibleCardMunber + "," + visibleCardMark + ")";
-		this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
-		
-		l++;
+		//this.visibleCard.text = trumpArrya[l] + "(" + visibleCardMunber + "," + visibleCardMark + ")";
+		//this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
 		
 		//ボタンイベント
 		this.btn_hight.addEventListener("click", fl_MouseClickHandler.bind(this));
 		function fl_MouseClickHandler() {
-			this.containerHeddin.addChild(hiddenImage);
-			console.log("hiddenCard--------->" + hiddenCard);
-			console.log("hiddenImage--------->" + hiddenImage);
-			if (visibleCardMunber < hiddenCardMunber) {
-				createjs.Tween
-					.get(this.MC_win, {
-						override: false
-					})
-					.to({
-						alpha: 1
-					}, 1000)
-					.wait(1000)
-					.to({
-						alpha: 0,
-						scaleX: 4,
-						scaleY: 4
-					}, 1000, createjs.Ease.backOut);
-			} else {
-				createjs.Tween
-					.get(this.MC_lost, {
-						override: false
-					})
-					.to({
-						alpha: 1
-					}, 1000)
-					.wait(1000)
-					.to({
-						alpha: 0,
-						scaleX: 4,
-						scaleY: 4
-					}, 1000, createjs.Ease.backOut);
+			if (!btnFlag) {
+				this.containerHeddin.addChild(hiddenImage);
+				if (visibleCardMunber < hiddenCardMunber) {
+					createjs.Tween
+						.get(this.MC_win, {
+							override: false
+						})
+						.to({
+							alpha: 1
+						}, 1000)
+						.wait(1000)
+						.to({
+							alpha: 0,
+							scaleX: 4,
+							scaleY: 4
+						}, 1000, createjs.Ease.backOut);
+				} else {
+					createjs.Tween
+						.get(this.MC_lost, {
+							override: false
+						})
+						.to({
+							alpha: 1
+						}, 1000)
+						.wait(1000)
+						.to({
+							alpha: 0,
+							y: 400
+						}, 1000, createjs.Ease.backOut);
+				}
+				btnFlag = true;
 			}
 		}
 		
 		this.btn_drow.addEventListener("click", fl_MouseClickHandler_2.bind(this));
 		function fl_MouseClickHandler_2() {
-			this.containerHeddin.addChild(hiddenImage);
-			console.log("hiddenCard--------->" + hiddenCard);
-			console.log("hiddenImage--------->" + hiddenImage);
-			if (visibleCardMunber == hiddenCardMunber) {
-				createjs.Tween
-					.get(this.MC_win, {
-						override: false
-					})
-					.to({
-						alpha: 1
-					}, 1000)
-					.wait(1000)
-					.to({
-						alpha: 0,
-						scaleX: 4,
-						scaleY: 4
-					}, 1000, createjs.Ease.backOut);
-			} else {
-				createjs.Tween
-					.get(this.MC_lost, {
-						override: false
-					})
-					.to({
-						alpha: 1
-					}, 1000)
-					.wait(1000)
-					.to({
-						alpha: 0,
-						y: 700
-					}, 1000, createjs.Ease.backOut);
+			if (!btnFlag) {
+				this.containerHeddin.addChild(hiddenImage);
+				if (visibleCardMunber == hiddenCardMunber) {
+					createjs.Tween
+						.get(this.MC_win, {
+							override: false
+						})
+						.to({
+							alpha: 1
+						}, 1000)
+						.wait(1000)
+						.to({
+							alpha: 0,
+							scaleX: 4,
+							scaleY: 4
+						}, 1000, createjs.Ease.backOut);
+				} else {
+					createjs.Tween
+						.get(this.MC_lost, {
+							override: false
+						})
+						.to({
+							alpha: 1
+						}, 1000)
+						.wait(1000)
+						.to({
+							alpha: 0,
+							y: 400
+						}, 1000, createjs.Ease.backOut);
+				}
+				btnFlag = true;
 			}
 		}
 		
 		this.btn_low.addEventListener("click", fl_MouseClickHandler_3.bind(this));
 		function fl_MouseClickHandler_3() {
-			this.containerHeddin.addChild(hiddenImage);
-			console.log("hiddenCard--------->" + hiddenCard);
-			console.log("hiddenImage--------->" + hiddenImage);
-			if (visibleCardMunber > hiddenCardMunber) {
-				createjs.Tween
-					.get(this.MC_win, {
-						override: false
-					})
-					.to({
-						alpha: 1
-					}, 1000)
-					.wait(1000)
-					.to({
-						alpha: 0,
-						scaleX: 4,
-						scaleY: 4
-					}, 1000, createjs.Ease.backOut);
-			} else {
-				createjs.Tween
-					.get(this.MC_lost, {
-						override: false
-					})
-					.to({
-						alpha: 1
-					}, 1000)
-					.wait(1000)
-					.to({
-						alpha: 0,
-						scaleX: 4,
-						scaleY: 4
-					}, 1000, createjs.Ease.backOut);
+			if (!btnFlag) {
+				this.containerHeddin.addChild(hiddenImage);
+				if (visibleCardMunber > hiddenCardMunber) {
+					createjs.Tween
+						.get(this.MC_win, {
+							override: false
+						})
+						.to({
+							alpha: 1
+						}, 1000)
+						.wait(1000)
+						.to({
+							alpha: 0,
+							scaleX: 4,
+							scaleY: 4
+						}, 1000, createjs.Ease.backOut);
+				} else {
+					createjs.Tween
+						.get(this.MC_lost, {
+							override: false
+						})
+						.to({
+							alpha: 1
+						}, 1000)
+						.wait(1000)
+						.to({
+							alpha: 0,
+							y: 400
+						}, 1000, createjs.Ease.backOut);
+				}
+				btnFlag = true;
 			}
+		
 		}
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
-	// レイヤー 1
-	this.MC_lost = new lib.MC_lost();
-	this.MC_lost.setTransform(273,155.1,1,1,0,0,0,108.8,37.3);
-	this.MC_lost.alpha = 0;
-
-	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1));
-
-	// anime
+	// win
 	this.MC_win = new lib.MC_win();
-	this.MC_win.setTransform(273.1,156,1,1,0,0,0,82.7,36.4);
+	this.MC_win.setTransform(273.1,192,1,1,0,0,0,82.7,36.4);
 	this.MC_win.alpha = 0;
 
 	this.timeline.addTween(cjs.Tween.get(this.MC_win).wait(1));
+
+	// lost
+	this.MC_lost = new lib.MC_lost();
+	this.MC_lost.setTransform(273,192,1,1,0,0,0,108.8,37.3);
+	this.MC_lost.alpha = 0;
+
+	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1));
 
 	// title
 	this.MC_start = new lib.MC_start();
@@ -977,27 +979,15 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
-	this.containerHeddin.setTransform(641.9,182.1,0.348,0.348,0,0,0,226.7,344.6);
+	this.containerHeddin.setTransform(819.7,120,0.348,0.348,0,0,0,226.7,344.6);
 
 	this.containerVisuble = new lib.containerVisuble();
-	this.containerVisuble.setTransform(-96.8,182.4,0.348,0.348,0,0,0,232.5,345.4);
+	this.containerVisuble.setTransform(76.7,113.9,0.33,0.33,0,0,0,232.5,345.4);
 
-	this.hiddenCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#003303");
-	this.hiddenCard.name = "hiddenCard";
-	this.hiddenCard.lineHeight = 32;
-	this.hiddenCard.lineWidth = 236;
-	this.hiddenCard.setTransform(294,23.6);
-
-	this.visibleCard = new cjs.Text("", "bold 30px 'M+ 1c heavy'", "#003303");
-	this.visibleCard.name = "visibleCard";
-	this.visibleCard.lineHeight = 32;
-	this.visibleCard.lineWidth = 251;
-	this.visibleCard.setTransform(25,23.2);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.visibleCard},{t:this.hiddenCard},{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(97.2,223.2,899.2,359.5);
+p.nominalBounds = new cjs.Rectangle(264.6,200,909.6,382.7);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
