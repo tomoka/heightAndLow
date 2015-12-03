@@ -101,7 +101,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,165.3,72.8);
 
 	// レイヤー 2
 	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#FFFFFF").s().p("AOwDVQgmgPgbgeQgcgegOgpQgOgqAAg1QAAgyAOgqQAOgpAcgeQA3g8BfAAQBeAAA4A8QA3A8AABnQAABqg3A8QgcAeglAPQgmAOgvAAQgwAAglgOgAO5hlQgZAjAABEQAACOBlgBQBkABAAiOQAAhEgZgjQgZgjgyAAQgzAAgZAjgAhnDaIAAmuQA8gIBAgBQBsABA6A5QAdAcAPAoQAOApAAA1QAAA3gOArQgPArgdAdQg6A7hsgBQhAAAg8gJgAgDiJIAAEZQAOAEASAAQAfAAAWgJQAWgJAPgSQAdgjAAhOQAAglgHgaQgIgbgOgQQgegig8AAQgSAAgOAEgAd7DeIAAhaIBoAAIAABagAYkDeIgulNIgBAAIgtFNIh3AAIhXm1IBnAAIAuFNIABAAIAplNIB8AAIApFNIABAAIAulNIBlAAIhXG1gAHkDeIAAm1IBpAAIAAFgIC5AAIAABVgAkkDeIiNkLIgBAAIAAELIhiAAIAAm1IBiAAICNELIABAAIAAkLIBiAAIAAG1gAq7DeIgYhgIiCAAIgXBgIhrAAICOm1IBtAAICOG1gArmAxIgtivIgBAAIgtCvIBbAAgA2hDeIAAhaIBoAAIAABagA6xDeIAAk3IBmAAIAAE3gA97DeIAAi9IiHAAIAAC9IhmAAIAAm1IBmAAIAACsICHAAIAAisIBmAAIAAG1gAeABSQAAgXAGgTQAHgUAOgQIAYgWIA0grIAQgSQAHgKAAgLQAAgohBAAQgfAAgiAGQgiAFglAMIAAhWQBJgSBOAAQAlAAAdAIQAcAHAVAPQAqAdAAAvQAAAXgGASQgGARgNAOIgWAWIg7ApQgLAJgKAQQgLARgBAUgA2cBSQAAgXAGgTQAHgUAOgQIAYgWIA0grIAQgSQAHgKAAgLQAAgohBAAQgfAAgiAGQgiAFglAMIAAhWQBJgSBOAAQAlAAAdAIQAcAHAVAPQAqAdAAAvQAAAXgGASQgGARgNAOIgWAWIg7ApQgLAJgKAQQgLARgBAUgA6xiVIAAhNIBmAAIAABNg");
+	this.shape.graphics.f("#FFFFFF").s().p("AOwDUQgmgOgbgeQgcgegOgqQgOgoAAg1QAAg0AOgpQAOgpAcgeQA3g8BfABQBegBA4A8QA3A8AABoQAABpg3A8QgcAeglAOQgmAPgvABQgwgBglgPgAO5hlQgZAjAABFQAACMBlAAQBkAAAAiMQAAhFgZgjQgZgkgyAAQgzAAgZAkgAhnDbIAAmuQA8gKBAABQBsAAA6A4QAdAdAPApQAOAoAAA0QAAA3gOArQgPAsgdAdQg6A6hsABQhAgBg8gIgAgDiJIAAEZQAOADASABQAfAAAWgJQAWgJAPgSQAdgjAAhPQAAgkgHgaQgIgagOgRQgegig8ABQgSgBgOAEgAd7DdIAAhaIBoAAIAABagAYkDdIgulMIgBAAIgtFMIh3AAIhXm0IBnAAIAuFNIABAAIAplNIB8AAIApFNIABAAIAulNIBlAAIhXG0gAHkDdIAAm0IBpAAIAAFgIC5AAIAABUgAkkDdIiNkLIgBAAIAAELIhiAAIAAm0IBiAAICNELIABAAIAAkLIBiAAIAAG0gAq7DdIgYheIiCAAIgXBeIhrAAICOm0IBtAAICOG0gArmAxIgtiwIgBAAIgtCwIBbAAgA2hDdIAAhaIBoAAIAABagA6xDdIAAk2IBmAAIAAE2gA97DdIAAi9IiHAAIAAC9IhmAAIAAm0IBmAAIAACsICHAAIAAisIBmAAIAAG0gAeABTQAAgYAGgTQAHgUAOgQIAYgXIA0gpIAQgSQAHgLAAgMQAAgnhBAAQgfAAgiAGQgiAFglAMIAAhVQBJgTBOABQAlAAAdAHQAcAHAVAPQAqAdAAAwQAAAWgGARQgGASgNAOIgWAWIg7ApQgLAJgKARQgLAQgBAVgA2cBTQAAgYAGgTQAHgUAOgQIAYgXIA0gpIAQgSQAHgLAAgMQAAgnhBAAQgfAAgiAGQgiAFglAMIAAhVQBJgTBOABQAlAAAdAHQAcAHAVAPQAqAdAAAwQAAAWgGARQgGASgNAOIgWAWIg7ApQgLAJgKARQgLAQgBAVgA6xiUIAAhPIBmAAIAABPg");
 	this.shape.setTransform(280.9,73.3);
 
 	// レイヤー 1
@@ -472,6 +472,19 @@ p.nominalBounds = new cjs.Rectangle(0,0,149.9,47.8);
 p.nominalBounds = new cjs.Rectangle(0,0,145.3,47.8);
 
 
+(lib.MC_chip = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFF00").s().p("AiMCNQg6g7gBhSQABhSA6g6QA6g6BSgBQBSABA7A6QA7A6gBBSQABBSg7A7Qg7A7hSgBQhSABg6g7g");
+	this.shape.setTransform(20,20);
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(0,0,40,40);
+
+
 (lib.containerVisuble = function() {
 	this.initialize();
 
@@ -553,6 +566,80 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 	// timeline functions:
 	this.frame_0 = function() {
+		this.stop();
+		
+		that = this;
+		
+		//カード準備
+		i = 0;
+		j = 0;
+		
+		/* 表示するトランプの選出 */
+		l = 0;
+		
+		// １次元配列を作成する
+		
+		cardArrya = new Array(); // カードの配列 0,0 ~ 4,12 例）0,0だったらスペードのA
+		trumpArrya = new Array(); // カードの並び順配列 0 ~ 41 
+		
+		markArrya = [0, 1, 2, 3]; //マークの配列
+		numberArrya = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; //番号の配列
+		
+		//トランプカード配列を用意
+		arrya = new Array();
+		cardArrya = new Array();
+		
+		k = 0;
+		r = 0;
+		t = 0;
+		
+		
+		//シーン番号
+		scene = 0;
+		
+		//勝った回数と遊んだ回数
+		winCount = 0;
+		attackCount = 0;
+		
+		//画像読み込み準備
+		images = new Array();
+		visibleImage = 0;
+		hiddenImage = 0;
+		index = 0;
+		btnFlag = true;
+		
+		queue = new createjs.LoadQueue(true);　
+		
+		queue.on("fileload", fileLoadHandler, this);　
+		queue.on("complete", completeHandler, this);　
+		queue.loadManifest("manifest.json");
+		
+		function fileLoadHandler(event) {
+			if (event.item.type === createjs.LoadQueue.IMAGE) {　
+				images.push(new createjs.Bitmap(event.result));
+			}　
+		}
+		function completeHandler(event) {
+			this.init();
+			console.log("こんぷりーと");
+			this.play();
+		};
+		
+		this.init = function () {
+			//image = images[index];
+			//該当するカードの画像を格納
+			//console.log("visibleCard--------->" + visibleCard);
+			//console.log("visibleImage--------->" + visibleImage);
+			this.containerVisuble.addChild(images[53]);
+		
+			//該当するカードの画像を格納
+			//console.log("hiddenCard--------->" + hiddenCard);
+			//console.log("hiddenImage--------->" + hiddenImage);
+			this.containerHeddin.addChild(images[52]);
+		}
+	}
+	this.frame_1 = function() {
+		this.stop();
 		/* ---------------------------
 		トランプ配列
 		
@@ -565,25 +652,18 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		#数値
 		0~12:カードの番号
 		
+		#シーンの用意
+		scene00:スタート
+		scene01:初期化
+		scene02:メインループ
+		scene03:リザルト
+		scene04:ヘルプ
+		
 		------------------------------*/
 		
-		cardArrya = new Array(); // カードの配列 0,0 ~ 4,12 例）0,0だったらスペードのA
-		trumpArrya = new Array(); // カードの並び順配列 0 ~ 41 
-		
-		markArrya = [0, 1, 2, 3]; //マークの配列
-		numberArrya = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; //番号の配列
-		
-		//カード準備
-		var i;
-		var j;
-		
-		// １次元配列を作成する
-		var array = new Array();
 		
 		//トランプカードを用意する
 		for (i = 0; i < 4; i++) {
-		
-			// １次元配列の各番地に、配列をさらに作成。
 			cardArrya[i] = new Array();
 		
 			for (j = 0; j < 13; j++) {
@@ -594,9 +674,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			}
 		}
 		
-		var k;
-		var r;
-		var t;
 		
 		//トランプカードをシャッフルする
 		for (k = 0; k < 52; k++) {
@@ -613,20 +690,37 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			trumpArrya[k] = t;
 		}
 		
-		
 		console.log(trumpArrya);
+		/*
+		sceneアップデート
+		
+		
+		*/
+		
+		function upDate() {
+			switch (scene) {
+				case 0:
+					l = 0;
+					scene = 1
+					break;
+				case 1:
+					l++;
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				default:
+					l = 0;
+					scene = 1
+					break;
+			}
+			console.log("l--------->" + l);
+			console.log("scene--------->" + scene);
+		}
 		this.stop();
-		
-		var that = this;
-		
-		var images = [];
-		var visibleImage;
-		var hiddenImage;
-		var index = 0;
-		var btnFlag = true;
-		
-		//this.Mc_lost.visible = false;
-		//this.Mc_win.visible = false;
 		
 		console.log(this.containerVisuble.x);
 		console.log(this.containerHeddin.x);
@@ -658,6 +752,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		
 		function handleComplete1() {
 			//Tween complete
+			console.log(trumpArrya[l]);
 			that.containerVisuble.addChild(visibleImage);
 		};
 		
@@ -712,22 +807,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		//変形等は
 		//setTransform(x, y,伸縮x, 伸縮y, x軸回転, 傾斜x, 傾斜y, 移動x*-1(+だとマイナス方向へ移動), 移動y*-1(+だとマイナス方向へ移動))
 		
-		this.init = function () {
-			//image = images[index];
-			visibleImage = images[visibleCard];
-			hiddenImage = images[hiddenCard];
-		
-			//該当するカードの画像を格納
-			console.log("visibleCard--------->" + visibleCard);
-			console.log("visibleImage--------->" + visibleImage);
-			this.containerVisuble.addChild(images[53]);
-		
-			//該当するカードの画像を格納
-			console.log("hiddenCard--------->" + hiddenCard);
-			console.log("hiddenImage--------->" + hiddenImage);
-			this.containerHeddin.addChild(images[52]);
-		}
-		
 		//ステージの何処をクリックしてもカードが更新される
 		/*stage.on("stagemousedown", function (e) {
 			createjs.Tween.get(this.container, {
@@ -751,27 +830,15 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				}, 600, createjs.Ease.circIn);
 		}, this);*/
 		
-		var queue = new createjs.LoadQueue(true);　
-		queue.on("fileload", fileLoadHandler, this);　
-		queue.on("complete", completeHandler, this);　
-		queue.loadManifest("manifest.json");
-		
-		function fileLoadHandler(event) {
-			if (event.item.type === createjs.LoadQueue.IMAGE) {　
-				images.push(new createjs.Bitmap(event.result));
-			}　
-		}
-		function completeHandler(event) {
-			this.init();
-		};
-		
-		/* 表示するトランプの選出 */
-		var l = 0;
-		
+		//カード表示のセット
 		//表示するカード
 		visibleCard = trumpArrya[l];
 		//比較するカード
-		hiddenCard = trumpArrya[l + 1];
+		hiddenCard = trumpArrya[l+1];
+		
+		visibleImage = images[visibleCard];
+		hiddenImage = images[hiddenCard];
+		
 		
 		//カードの番号からのカードの要素の抽出
 		//割った数のあまりがカードの番号
@@ -846,6 +913,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							scaleX: 4,
 							scaleY: 4
 						}, 1000, createjs.Ease.backOut);
+						that.MC_chip00.alpha = 1;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
@@ -939,28 +1007,54 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
+
+	// chip
+	this.MC_chip05 = new lib.MC_chip();
+	this.MC_chip05.setTransform(522,94,1,1,0,0,0,30,30);
+	this.MC_chip05.alpha = 0.5;
+
+	this.MC_chip04 = new lib.MC_chip();
+	this.MC_chip04.setTransform(522,140,1,1,0,0,0,30,30);
+	this.MC_chip04.alpha = 0.5;
+
+	this.MC_chip03 = new lib.MC_chip();
+	this.MC_chip03.setTransform(522,185,1,1,0,0,0,30,30);
+	this.MC_chip03.alpha = 0.5;
+
+	this.MC_chip01 = new lib.MC_chip();
+	this.MC_chip01.setTransform(522,232,1,1,0,0,0,30,30);
+	this.MC_chip01.alpha = 0.5;
+
+	this.MC_chip00 = new lib.MC_chip();
+	this.MC_chip00.setTransform(522,281,1,1,0,0,0,30,30);
+	this.MC_chip00.alpha = 0.5;
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip03},{t:this.MC_chip04},{t:this.MC_chip05}]},1).wait(1));
 
 	// win
 	this.MC_win = new lib.MC_win();
 	this.MC_win.setTransform(273.1,192,1,1,0,0,0,82.7,36.4);
 	this.MC_win.alpha = 0;
+	this.MC_win._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.MC_win).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.MC_win).wait(1).to({_off:false},0).wait(1));
 
 	// lost
 	this.MC_lost = new lib.MC_lost();
 	this.MC_lost.setTransform(273,192,1,1,0,0,0,108.8,37.3);
 	this.MC_lost.alpha = 0;
+	this.MC_lost._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1).to({_off:false},0).wait(1));
 
 	// title
 	this.MC_start = new lib.MC_start();
 	this.MC_start.setTransform(275.4,193,1,0.933,0,0,0,275.4,76);
 	this.MC_start.alpha = 0;
+	this.MC_start._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1).to({_off:false},0).wait(1));
 
 	// btn
 	this.btn_low = new lib.btn_02();
@@ -975,19 +1069,19 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 	this.btn_hight.setTransform(160.5,366,1,1,0,0,0,65.5,20.5);
 	new cjs.ButtonHelper(this.btn_hight, 0, 1, 2, false, new lib.btn_00(), 3);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.btn_hight},{t:this.btn_drow},{t:this.btn_low}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.btn_hight},{t:this.btn_drow},{t:this.btn_low}]},1).wait(1));
 
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
-	this.containerHeddin.setTransform(819.7,120,0.348,0.348,0,0,0,226.7,344.6);
+	this.containerHeddin.setTransform(79,120,0.348,0.348,0,0,0,226.7,344.6);
 
 	this.containerVisuble = new lib.containerVisuble();
 	this.containerVisuble.setTransform(76.7,113.9,0.33,0.33,0,0,0,232.5,345.4);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.containerVisuble},{t:this.containerHeddin}]}).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(264.6,200,909.6,382.7);
+p.nominalBounds = new cjs.Rectangle(275,200,158.5,236.5);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
