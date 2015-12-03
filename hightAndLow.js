@@ -566,6 +566,10 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 	// timeline functions:
 	this.frame_0 = function() {
+		/*
+		初期設定フレーム
+		*/
+		
 		this.stop();
 		
 		that = this;
@@ -592,7 +596,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		k = 0;
 		r = 0;
 		t = 0;
-		
 		
 		//シーン番号
 		scene = 0;
@@ -626,15 +629,8 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		};
 		
 		this.init = function () {
-			//image = images[index];
-			//該当するカードの画像を格納
-			//console.log("visibleCard--------->" + visibleCard);
-			//console.log("visibleImage--------->" + visibleImage);
+			//該当するカードの画像を格納の準備
 			this.containerVisuble.addChild(images[53]);
-		
-			//該当するカードの画像を格納
-			//console.log("hiddenCard--------->" + hiddenCard);
-			//console.log("hiddenImage--------->" + hiddenImage);
 			this.containerHeddin.addChild(images[52]);
 		}
 	}
@@ -913,7 +909,12 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							scaleX: 4,
 							scaleY: 4
 						}, 1000, createjs.Ease.backOut);
-						that.MC_chip00.alpha = 1;
+						
+						//勝ったら印をつける
+						var name = "MC_chip0" + winCount;
+						console.log(name);
+						that[name].alpha = 1;
+						winCount++;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
@@ -950,6 +951,12 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							scaleX: 4,
 							scaleY: 4
 						}, 1000, createjs.Ease.backOut);
+						
+						//勝ったら印をつける
+						var name = "MC_chip0" + winCount;
+						console.log(name);
+						that[name].alpha = 1;
+						winCount++;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
@@ -986,6 +993,12 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							scaleX: 4,
 							scaleY: 4
 						}, 1000, createjs.Ease.backOut);
+						
+						//勝ったら印をつける
+						var name = "MC_chip0" + winCount;
+						console.log(name);
+						that[name].alpha = 1;
+						winCount++;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
