@@ -830,7 +830,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		//表示するカード
 		visibleCard = trumpArrya[l];
 		//比較するカード
-		hiddenCard = trumpArrya[l+1];
+		hiddenCard = trumpArrya[l + 1];
 		
 		visibleImage = images[visibleCard];
 		hiddenImage = images[hiddenCard];
@@ -908,13 +908,12 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							alpha: 0,
 							scaleX: 4,
 							scaleY: 4
-						}, 1000, createjs.Ease.backOut);
-						
-						//勝ったら印をつける
-						var name = "MC_chip0" + winCount;
-						console.log(name);
-						that[name].alpha = 1;
-						winCount++;
+						}, 1000, createjs.Ease.backOut).call(nextCard);
+					//勝ったら印をつける
+					var name = "MC_chip0" + winCount;
+					console.log(name);
+					that[name].alpha = 1;
+					winCount++;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
@@ -927,7 +926,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 						.to({
 							alpha: 0,
 							y: 400
-						}, 1000, createjs.Ease.backOut);
+						}, 1000, createjs.Ease.backOut).call(nextCard);
 				}
 				btnFlag = true;
 			}
@@ -950,13 +949,13 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							alpha: 0,
 							scaleX: 4,
 							scaleY: 4
-						}, 1000, createjs.Ease.backOut);
-						
-						//勝ったら印をつける
-						var name = "MC_chip0" + winCount;
-						console.log(name);
-						that[name].alpha = 1;
-						winCount++;
+						}, 1000, createjs.Ease.backOut).call(nextCard);
+		
+					//勝ったら印をつける
+					var name = "MC_chip0" + winCount;
+					console.log(name);
+					that[name].alpha = 1;
+					winCount++;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
@@ -969,7 +968,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 						.to({
 							alpha: 0,
 							y: 400
-						}, 1000, createjs.Ease.backOut);
+						}, 1000, createjs.Ease.backOut).call(nextCard);
 				}
 				btnFlag = true;
 			}
@@ -992,13 +991,13 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 							alpha: 0,
 							scaleX: 4,
 							scaleY: 4
-						}, 1000, createjs.Ease.backOut);
-						
-						//勝ったら印をつける
-						var name = "MC_chip0" + winCount;
-						console.log(name);
-						that[name].alpha = 1;
-						winCount++;
+						}, 1000, createjs.Ease.backOut).call(nextCard);
+		
+					//勝ったら印をつける
+					var name = "MC_chip0" + winCount;
+					console.log(name);
+					that[name].alpha = 1;
+					winCount++;
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
@@ -1011,11 +1010,91 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 						.to({
 							alpha: 0,
 							y: 400
-						}, 1000, createjs.Ease.backOut);
+						}, 1000, createjs.Ease.backOut).call(nextCard);
 				}
 				btnFlag = true;
 			}
+		}
 		
+		function nextCard() {
+			console.log("こんぷりーと");
+			createjs.Tween.get(that.containerVisuble, {
+				override: false
+			}).to({
+				x: 390,
+				y: -390
+			}, 2500, createjs.Ease.quadOut);
+			createjs.Tween.get(that.containerHeddin, {
+				override: false
+			}).to({
+				x: 390,
+				y: -390
+			}, 2500, createjs.Ease.quadOut);
+			that.nextAttack();
+		}
+		
+		
+		this.nextAttack = function () {
+			that.containerVisuble.addChild(images[53]);
+			that.containerHeddin.addChild(images[52]);
+		
+			//カード表示のセット
+			visibleCard = trumpArrya[l++];
+			hiddenCard = trumpArrya[l++];
+			visibleImage = images[visibleCard];
+			hiddenImage = images[hiddenCard];
+		
+			createjs.Tween
+				.get(this.containerVisuble, {
+					override: false
+				})
+				.set({
+					x: 0,
+					y: 0
+				})
+				.to({
+					x: 170,
+					y: 180,
+					rotation: 1080,
+					scaleX: 0.35,
+					scaleY: 0.35,
+					skewX: 0,
+					skewY: 0
+				}, 1500, createjs.Ease.quadOut)
+				.to({
+					scaleX: 0.01
+				}, 1000, createjs.Ease.backOut)
+				.call(handleComplete1)
+				.to({
+					scaleX: 0.35
+				}, 1000, createjs.Ease.backOut);
+		
+			function handleComplete1() {
+				//Tween complete
+				that.containerVisuble.addChild(visibleImage);
+			};
+			createjs.Tween
+				.get(that.containerHeddin, {
+					override: false
+				})
+				.set({
+					x: 0,
+					y: 0
+				})
+				.to({
+					x: 380,
+					y: 180,
+					rotation: -1080,
+					scaleX: 0.35,
+					scaleY: 0.35,
+					skewX: 0,
+					skewY: 0
+				}, 1800, createjs.Ease.quadOut)
+				.to({
+					x: 380,
+					y: 180
+				}, 500, createjs.Ease.backOut);
+			btnFlag = false;
 		}
 	}
 
