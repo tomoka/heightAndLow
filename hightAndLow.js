@@ -603,6 +603,8 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		//勝った回数と遊んだ回数
 		winCount = 0;
 		attackCount = 0;
+		gameWin = false;
+		
 		
 		//画像読み込み準備
 		images = new Array();
@@ -718,12 +720,9 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		}
 		this.stop();
 		
-		console.log(this.containerVisuble.x);
-		console.log(this.containerHeddin.x);
-		
 		createjs.Tween
 			.get(this.containerVisuble, {
-				override: false
+				override: true
 			})
 			.set({
 				x: 0,
@@ -754,7 +753,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		
 		createjs.Tween
 			.get(this.MC_start, {
-				override: false
+				override: true
 			})
 			.wait(3000)
 			.to({
@@ -766,9 +765,9 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				scaleX: 4,
 				scaleY: 4
 			}, 1000, createjs.Ease.backOut)
-			.call(handleComplete2);
+			.call(handleComplete0);
 		
-		function handleComplete2() {
+		function handleComplete0() {
 			//Tween complete
 			btnFlag = false;
 			console.log("ボタンフラグ");
@@ -776,7 +775,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		
 		createjs.Tween
 			.get(this.containerHeddin, {
-				override: false
+				override: true
 			})
 			.set({
 				x: 0,
@@ -830,7 +829,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		//表示するカード
 		visibleCard = trumpArrya[l];
 		//比較するカード
-		hiddenCard = trumpArrya[l + 1];
+		hiddenCard = trumpArrya[l++];
 		
 		visibleImage = images[visibleCard];
 		hiddenImage = images[hiddenCard];
@@ -887,18 +886,38 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				break;
 		}
 		
-		//this.visibleCard.text = trumpArrya[l] + "(" + visibleCardMunber + "," + visibleCardMark + ")";
-		//this.hiddenCard.text = trumpArrya[l + 1] + "(" + hiddenCardMunber + "," + hiddenCardMark + ")";
-		
 		//ボタンイベント
 		this.btn_hight.addEventListener("click", fl_MouseClickHandler.bind(this));
 		function fl_MouseClickHandler() {
 			if (!btnFlag) {
-				this.containerHeddin.addChild(hiddenImage);
+				createjs.Tween
+					.get(this.containerHeddin, {
+						override: false
+					})
+					.to({
+						scaleX: 0.01
+					}, 1000, createjs.Ease.backOut)
+					.call(handleComplete3)
+					.to({
+						scaleX: 0.35
+					}, 1000, createjs.Ease.backOut);
+				function handleComplete3() {
+					//Tween complete
+					console.log(trumpArrya[l]);
+					that.containerHeddin.addChild(hiddenImage);
+				};
 				if (visibleCardMunber < hiddenCardMunber) {
+					gameWin = true;
 					createjs.Tween
 						.get(this.MC_win, {
-							override: false
+							override: true
+						})
+						.set({
+							x: 190,
+							y: 155,
+							alpha: 0,
+							scaleX: 1,
+							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -917,7 +936,14 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
-							override: false
+							override: true
+						})
+						.set({
+							x: 165,
+							y: 155,
+							alpha: 0,
+							scaleX: 1,
+							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -935,11 +961,34 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		this.btn_drow.addEventListener("click", fl_MouseClickHandler_2.bind(this));
 		function fl_MouseClickHandler_2() {
 			if (!btnFlag) {
-				this.containerHeddin.addChild(hiddenImage);
+				createjs.Tween
+					.get(this.containerHeddin, {
+						override: false
+					})
+					.to({
+						scaleX: 0.01
+					}, 1000, createjs.Ease.backOut)
+					.call(handleComplete3)
+					.to({
+						scaleX: 0.35
+					}, 1000, createjs.Ease.backOut);
+				function handleComplete3() {
+					//Tween complete
+					console.log(trumpArrya[l]);
+					that.containerHeddin.addChild(hiddenImage);
+				};
 				if (visibleCardMunber == hiddenCardMunber) {
+					gameWin = true;
 					createjs.Tween
 						.get(this.MC_win, {
-							override: false
+							override: true
+						})
+						.set({
+							x: 190,
+							y: 155,
+							alpha: 0,
+							scaleX: 1,
+							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -959,7 +1008,14 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
-							override: false
+							override: true
+						})
+						.set({
+							x: 165,
+							y: 155,
+							alpha: 0,
+							scaleX: 1,
+							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -977,11 +1033,34 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		this.btn_low.addEventListener("click", fl_MouseClickHandler_3.bind(this));
 		function fl_MouseClickHandler_3() {
 			if (!btnFlag) {
-				this.containerHeddin.addChild(hiddenImage);
+				createjs.Tween
+					.get(this.containerHeddin, {
+						override: false
+					})
+					.to({
+						scaleX: 0.01
+					}, 1000, createjs.Ease.backOut)
+					.call(handleComplete3)
+					.to({
+						scaleX: 0.35
+					}, 1000, createjs.Ease.backOut);
+				function handleComplete3() {
+					//Tween complete
+					console.log(trumpArrya[l]);
+					that.containerHeddin.addChild(hiddenImage);
+				};
 				if (visibleCardMunber > hiddenCardMunber) {
+					gameWin = true;
 					createjs.Tween
 						.get(this.MC_win, {
-							override: false
+							override: true
+						})
+						.set({
+							x: 165,
+							y: 155,
+							alpha: 0,
+							scaleX: 1,
+							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -1001,7 +1080,14 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 				} else {
 					createjs.Tween
 						.get(this.MC_lost, {
-							override: false
+							override: true
+						})
+						.set({
+							x: 165,
+							y: 155,
+							alpha: 0,
+							scaleX: 1,
+							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -1019,24 +1105,27 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		function nextCard() {
 			console.log("こんぷりーと");
 			createjs.Tween.get(that.containerVisuble, {
-				override: false
+				override: true
 			}).to({
 				x: 390,
 				y: -390
 			}, 2500, createjs.Ease.quadOut);
 			createjs.Tween.get(that.containerHeddin, {
-				override: false
+				override: true
 			}).to({
 				x: 390,
 				y: -390
 			}, 2500, createjs.Ease.quadOut);
+			gameWin = false;
 			that.nextAttack();
 		}
 		
 		
 		this.nextAttack = function () {
 			that.containerVisuble.addChild(images[53]);
+			that.containerVisuble.visible = true;
 			that.containerHeddin.addChild(images[52]);
+			that.containerHeddin.visible = true;
 		
 			//カード表示のセット
 			visibleCard = trumpArrya[l++];
@@ -1044,9 +1133,60 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			visibleImage = images[visibleCard];
 			hiddenImage = images[hiddenCard];
 		
+			//カードの番号からのカードの要素の抽出
+			//割った数のあまりがカードの番号
+			//あまりが0の時はカード番号はK
+			visibleCardMunber = (visibleCard + 1) % 13;
+			if (visibleCardMunber == 0) {
+				visibleCardMunber = 13;
+			}
+		
+			hiddenCardMunber = (hiddenCard + 1) % 13;
+			if (hiddenCardMunber == 0) {
+				hiddenCardMunber = 13;
+			}
+		
+			visibleCardMark = (visibleCard + 1 - visibleCardMunber) / 13;
+			hiddenCardMark = (hiddenCard + 1 - hiddenCardMunber) / 13;
+		
+			//マークの特定
+			//１つに出来ないか後で考える
+			switch (visibleCardMark) {
+				case 0:
+					visibleCardMark = "スペード";
+					break;
+				case 1:
+					visibleCardMark = "クラブ";
+					break;
+				case 2:
+					visibleCardMark = "ハート";
+					break;
+				case 3:
+					//52番目のカードはダイヤのK。4で割り切れる。
+				default:
+					visibleCardMark = "ダイヤ";
+					break;
+			}
+			switch (hiddenCardMark) {
+				case 0:
+					hiddenCardMark = "スペード";
+					break;
+				case 1:
+					hiddenCardMark = "クラブ";
+					break;
+				case 2:
+					hiddenCardMark = "ハート";
+					break;
+				case 3:
+					//52番目のカードはダイヤのK。4で割り切れる。
+				default:
+					hiddenCardMark = "ダイヤ";
+					break;
+			}
+		
 			createjs.Tween
 				.get(this.containerVisuble, {
-					override: false
+					override: true
 				})
 				.set({
 					x: 0,
@@ -1072,10 +1212,12 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 			function handleComplete1() {
 				//Tween complete
 				that.containerVisuble.addChild(visibleImage);
+				btnFlag = false;
+				console.log("ボタンフラグ");
 			};
 			createjs.Tween
 				.get(that.containerHeddin, {
-					override: false
+					override: true
 				})
 				.set({
 					x: 0,
@@ -1102,27 +1244,47 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
 
 	// chip
-	this.MC_chip05 = new lib.MC_chip();
-	this.MC_chip05.setTransform(522,94,1,1,0,0,0,30,30);
-	this.MC_chip05.alpha = 0.5;
-
 	this.MC_chip04 = new lib.MC_chip();
-	this.MC_chip04.setTransform(522,140,1,1,0,0,0,30,30);
+	this.MC_chip04.setTransform(474,94,1,1,0,0,0,30,30);
 	this.MC_chip04.alpha = 0.5;
 
 	this.MC_chip03 = new lib.MC_chip();
-	this.MC_chip03.setTransform(522,185,1,1,0,0,0,30,30);
+	this.MC_chip03.setTransform(474,140,1,1,0,0,0,30,30);
 	this.MC_chip03.alpha = 0.5;
 
+	this.MC_chip02 = new lib.MC_chip();
+	this.MC_chip02.setTransform(474,185,1,1,0,0,0,30,30);
+	this.MC_chip02.alpha = 0.5;
+
 	this.MC_chip01 = new lib.MC_chip();
-	this.MC_chip01.setTransform(522,232,1,1,0,0,0,30,30);
+	this.MC_chip01.setTransform(474,232,1,1,0,0,0,30,30);
 	this.MC_chip01.alpha = 0.5;
 
 	this.MC_chip00 = new lib.MC_chip();
-	this.MC_chip00.setTransform(522,281,1,1,0,0,0,30,30);
+	this.MC_chip00.setTransform(474,281,1,1,0,0,0,30,30);
 	this.MC_chip00.alpha = 0.5;
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip03},{t:this.MC_chip04},{t:this.MC_chip05}]},1).wait(1));
+	this.MC_chip09 = new lib.MC_chip();
+	this.MC_chip09.setTransform(522,94,1,1,0,0,0,30,30);
+	this.MC_chip09.alpha = 0.5;
+
+	this.MC_chip08 = new lib.MC_chip();
+	this.MC_chip08.setTransform(522,140,1,1,0,0,0,30,30);
+	this.MC_chip08.alpha = 0.5;
+
+	this.MC_chip07 = new lib.MC_chip();
+	this.MC_chip07.setTransform(522,185,1,1,0,0,0,30,30);
+	this.MC_chip07.alpha = 0.5;
+
+	this.MC_chip06 = new lib.MC_chip();
+	this.MC_chip06.setTransform(522,232,1,1,0,0,0,30,30);
+	this.MC_chip06.alpha = 0.5;
+
+	this.MC_chip05 = new lib.MC_chip();
+	this.MC_chip05.setTransform(522,281,1,1,0,0,0,30,30);
+	this.MC_chip05.alpha = 0.5;
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip05},{t:this.MC_chip06},{t:this.MC_chip07},{t:this.MC_chip08},{t:this.MC_chip09},{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip02},{t:this.MC_chip03},{t:this.MC_chip04}]},1).wait(1));
 
 	// win
 	this.MC_win = new lib.MC_win();
