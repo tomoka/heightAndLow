@@ -8,9 +8,7 @@ lib.properties = {
 	height: 400,
 	fps: 24,
 	color: "#003300",
-	manifest: [
-		{src:"images/trump52.png", id:"trump52"}
-	]
+	manifest: []
 };
 
 
@@ -19,10 +17,18 @@ lib.properties = {
 
 
 
+(lib.chip = function() {
+	this.spriteSheet = ss["hightAndLow_atlas_"];
+	this.gotoAndStop(0);
+}).prototype = p = new cjs.Sprite();
+
+
+
 (lib.trump52 = function() {
-	this.initialize(img.trump52);
-}).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,455,679);
+	this.spriteSheet = ss["hightAndLow_atlas_"];
+	this.gotoAndStop(1);
+}).prototype = p = new cjs.Sprite();
+
 
 
 (lib.MC_win = function() {
@@ -101,17 +107,17 @@ p.nominalBounds = new cjs.Rectangle(0,0,165.3,72.8);
 
 	// レイヤー 2
 	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#FFFFFF").s().p("AOwDUQgmgOgbgeQgcgegOgqQgOgoAAg1QAAg0AOgpQAOgpAcgeQA3g8BfABQBegBA4A8QA3A8AABoQAABpg3A8QgcAeglAOQgmAPgvABQgwgBglgPgAO5hlQgZAjAABFQAACMBlAAQBkAAAAiMQAAhFgZgjQgZgkgyAAQgzAAgZAkgAhnDbIAAmuQA8gKBAABQBsAAA6A4QAdAdAPApQAOAoAAA0QAAA3gOArQgPAsgdAdQg6A6hsABQhAgBg8gIgAgDiJIAAEZQAOADASABQAfAAAWgJQAWgJAPgSQAdgjAAhPQAAgkgHgaQgIgagOgRQgegig8ABQgSgBgOAEgAd7DdIAAhaIBoAAIAABagAYkDdIgulMIgBAAIgtFMIh3AAIhXm0IBnAAIAuFNIABAAIAplNIB8AAIApFNIABAAIAulNIBlAAIhXG0gAHkDdIAAm0IBpAAIAAFgIC5AAIAABUgAkkDdIiNkLIgBAAIAAELIhiAAIAAm0IBiAAICNELIABAAIAAkLIBiAAIAAG0gAq7DdIgYheIiCAAIgXBeIhrAAICOm0IBtAAICOG0gArmAxIgtiwIgBAAIgtCwIBbAAgA2hDdIAAhaIBoAAIAABagA6xDdIAAk2IBmAAIAAE2gA97DdIAAi9IiHAAIAAC9IhmAAIAAm0IBmAAIAACsICHAAIAAisIBmAAIAAG0gAeABTQAAgYAGgTQAHgUAOgQIAYgXIA0gpIAQgSQAHgLAAgMQAAgnhBAAQgfAAgiAGQgiAFglAMIAAhVQBJgTBOABQAlAAAdAHQAcAHAVAPQAqAdAAAwQAAAWgGARQgGASgNAOIgWAWIg7ApQgLAJgKARQgLAQgBAVgA2cBTQAAgYAGgTQAHgUAOgQIAYgXIA0gpIAQgSQAHgLAAgMQAAgnhBAAQgfAAgiAGQgiAFglAMIAAhVQBJgTBOABQAlAAAdAHQAcAHAVAPQAqAdAAAwQAAAWgGARQgGASgNAOIgWAWIg7ApQgLAJgKARQgLAQgBAVgA6xiUIAAhPIBmAAIAABPg");
-	this.shape.setTransform(280.9,73.3);
+	this.shape.graphics.f("#FFFFFF").s().p("AOaDVQglgPgbgeQgbgegNgpQgOgpAAg2QAAgzAOgoQANgqAbgeQA2g8BdAAQBcAAA3A8QA1A8AABnQAABqg1A8QgbAeglAPQgkAOgvAAQgvAAgkgOgAOihlQgYAjABBEQAACOBigBQBiABAAiOQAAhEgYgjQgZgkgxABQgygBgZAkgAhkDaIAAmuQA6gIA/gBQBpAAA4A6QAdAcAPAoQANApAAA1QAAA3gNArQgPArgdAdQg4A7hpgBQg/AAg6gJgAgDiJIAAEZQAOADARAAQAfABAVgJQAWgJAOgSQAcgjABhOQAAglgIgaQgGgagPgRQgdghg7gBQgRABgOADgAdODeIAAhaIBmAAIAABagAX/DeIgslNIgBAAIgtFNIh0AAIhVm1IBlAAIAsFNIABAAIAplNIB5AAIApFNIABAAIAtlNIBiAAIhWG1gAHYDeIAAm1IBnAAIAAFgIC2AAIAABVgAkdDeIiKkLIgBAAIAAELIhfAAIAAm1IBfAAICLELIAAAAIAAkLIBgAAIAAG1gAqqDeIgYhgIh/AAIgWBgIhpAAICLm1IBqAAICLG1gArVAxIgrivIgCAAIgsCvIBZAAgA2ADeIAAhaIBmAAIAABagA6JDeIAAk3IBkAAIAAE3gA9ODeIAAi9IiEAAIAAC9IhkAAIAAm1IBkAAIAACsICEAAIAAisIBkAAIAAG1gAdTBSQAAgXAHgUQAGgTANgQIAYgWIAzgrIAPgSQAHgKAAgLQAAgog/AAQgeAAgiAGQghAGgkAMIAAhXQBHgSBNAAQAkAAAcAIQAcAHAUAPQAoAdAAAvQAAAXgEASQgHARgMAOIgWAWIg6ApQgKAJgKAQQgLARgBAUgA16BSQAAgXAGgUQAGgTAOgQIAXgWIAzgrIAQgSQAGgKAAgLQAAgog/AAQgeAAgiAGQggAGglAMIAAhXQBHgSBNAAQAkAAAcAIQAcAHAVAPQAoAdAAAvQAAAXgGASQgFARgNAOIgWAWIg5ApQgKAJgLAQQgKARgCAUgA6JiVIAAhNIBkAAIAABNg");
+	this.shape.setTransform(275.3,43.9,1,1,0,0,0,1,-1.1);
 
 	// レイヤー 1
 	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f("rgba(69,69,69,0.8)").s().p("Egq9ALuIAA3bMBV6AAAIAAXbg");
-	this.shape_1.setTransform(275,75,1,0.586);
+	this.shape_1.graphics.f("rgba(69,69,69,0.8)").s().p("Egq9AHCIAAuDMBV6AAAIAAODg");
+	this.shape_1.setTransform(273,47.1,1,1,0,0,0,-2,2.1);
 
 	this.addChild(this.shape_1,this.shape);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,31.1,550,87.9);
+p.nominalBounds = new cjs.Rectangle(0,0,550,90);
 
 
 (lib.MC_low = function() {
@@ -475,14 +481,18 @@ p.nominalBounds = new cjs.Rectangle(0,0,145.3,47.8);
 (lib.MC_chip = function() {
 	this.initialize();
 
+	// レイヤー 2
+	this.instance = new lib.chip();
+	this.instance.setTransform(-4,-4,0.15,0.15);
+
 	// レイヤー 1
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#FFFF00").s().p("AiMCNQg6g7gBhSQABhSA6g6QA6g6BSgBQBSABA7A6QA7A6gBBSQABBSg7A7Qg7A7hSgBQhSABg6g7g");
 	this.shape.setTransform(20,20);
 
-	this.addChild(this.shape);
+	this.addChild(this.shape,this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,0,40,40);
+p.nominalBounds = new cjs.Rectangle(-4,-4,48.1,48.1);
 
 
 (lib.containerVisuble = function() {
@@ -562,7 +572,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 
 (lib.hightAndLow = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loading:0,roop:1,result:2});
 
 	// timeline functions:
 	this.frame_0 = function() {
@@ -721,146 +731,12 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 		}
 		this.stop();
 		
-		/*this.firstAttack = function () {
-			createjs.Tween
-				.get(this.containerVisuble, {
-					override: true
-				})
-				.set({
-					x: 0,
-					y: 0
-				})
-				.to({
-					x: 170,
-					y: 180,
-					rotation: 1080,
-					scaleX: 0.35,
-					scaleY: 0.35,
-					skewX: 0,
-					skewY: 0
-				}, 1500, createjs.Ease.quadOut)
-				.to({
-					scaleX: 0.01
-				}, 1000, createjs.Ease.backOut)
-				.call(handleComplete1)
-				.to({
-					scaleX: 0.35
-				}, 1000, createjs.Ease.backOut);
-		
-			function handleComplete1() {
-				//Tween complete
-				that.containerVisuble.addChild(visibleImage);
-			};
-		
-			createjs.Tween
-				.get(this.containerHeddin, {
-					override: true
-				})
-				.set({
-					x: 0,
-					y: 0
-				})
-				.to({
-					x: 380,
-					y: 180,
-					rotation: -1080,
-					scaleX: 0.35,
-					scaleY: 0.35,
-					skewX: 0,
-					skewY: 0
-				}, 1800, createjs.Ease.quadOut)
-				.to({
-					x: 380,
-					y: 180
-				}, 500, createjs.Ease.backOut);
-		
-			createjs.Tween
-				.get(this.MC_start, {
-					override: true
-				})
-				.wait(3000)
-				.to({
-					alpha: 1
-				}, 1000)
-				.wait(1000)
-				.to({
-					alpha: 0,
-					scaleX: 4,
-					scaleY: 4
-				}, 1000, createjs.Ease.backOut)
-				.call(handleComplete0);
-		
-			function handleComplete0() {
-				//Tween complete
-				btnFlag = false;
-				console.log("ボタンフラグ");
-			};
-		
-			//カード表示のセット
-			//表示するカード
-			visibleCard = trumpArrya[0];
-			//比較するカード
-			hiddenCard = trumpArrya[1];
-			l = 3;
-			visibleImage = images[visibleCard];
-			hiddenImage = images[hiddenCard];
-		
-		
-			//カードの番号からのカードの要素の抽出
-			//割った数のあまりがカードの番号
-			//あまりが0の時はカード番号はK
-			visibleCardMunber = (visibleCard + 1) % 13;
-			if (visibleCardMunber == 0) {
-				visibleCardMunber = 13;
-			}
-		
-			hiddenCardMunber = (hiddenCard + 1) % 13;
-			if (hiddenCardMunber == 0) {
-				hiddenCardMunber = 13;
-			}
-		
-			visibleCardMark = (visibleCard + 1 - visibleCardMunber) / 13;
-			hiddenCardMark = (hiddenCard + 1 - hiddenCardMunber) / 13;
-		
-			//マークの特定
-			//１つに出来ないか後で考える
-			switch (visibleCardMark) {
-				case 0:
-					visibleCardMark = "スペード";
-					break;
-				case 1:
-					visibleCardMark = "クラブ";
-					break;
-				case 2:
-					visibleCardMark = "ハート";
-					break;
-				case 3:
-					//52番目のカードはダイヤのK。4で割り切れる。
-				default:
-					visibleCardMark = "ダイヤ";
-					break;
-			}
-			switch (hiddenCardMark) {
-				case 0:
-					hiddenCardMark = "スペード";
-					break;
-				case 1:
-					hiddenCardMark = "クラブ";
-					break;
-				case 2:
-					hiddenCardMark = "ハート";
-					break;
-				case 3:
-					//52番目のカードはダイヤのK。4で割り切れる。
-				default:
-					hiddenCardMark = "ダイヤ";
-					break;
-			}
-		}
-		*/
-		
 		function nextCard() {
 			console.log("こんぷりーと");
+			that.MC_win.setTransform(273.1,192,1,1,0,0,0,82.7,36.4);
+			that.MC_lost.setTransform(273,192,1,1,0,0,0,108.8,37.3);
+			that.containerVisuble.setTransform(79,120,0.348,0.348,0,0,0,226.7,344.6);
+			that.containerHeddin.setTransform(79,120,0.348,0.348,0,0,0,226.7,344.6);
 			createjs.Tween.get(that.containerVisuble, {
 				override: true
 			}).to({
@@ -957,31 +833,29 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 					break;
 			}
 		
+			console.log("あにめすたーと");
 			createjs.Tween
 				.get(this.MC_start, {
 					override: true
 				})
-				.set({
-					alpha: 0,
-					scaleX: 1,
-					scaleY: 1
-				})
-				.wait(3000)
+				.wait(1000)
 				.to({
 					alpha: 1
 				}, 1000)
-				.wait(1000)
+				.wait(500)
 				.to({
 					alpha: 0,
 					scaleX: 4,
 					scaleY: 4
-				}, 1000, createjs.Ease.backOut)
+				}, 2000, createjs.Ease.backOut)
+				.wait(100)
 				.call(handleComplete0);
 		
 			function handleComplete0() {
 				//Tween complete
 				btnFlag = false;
-				console.log("ボタンフラグ");
+				console.log("ボタンフラグ false");
+				that.MC_start.setTransform(275,205,1,1,0,0,0,275,45);
 			};
 		
 			createjs.Tween
@@ -1065,13 +939,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 						.get(this.MC_win, {
 							override: true
 						})
-						.set({
-							x: 190,
-							y: 155,
-							alpha: 0,
-							scaleX: 1,
-							scaleY: 1
-						})
 						.to({
 							alpha: 1
 						}, 1000)
@@ -1090,13 +957,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 					createjs.Tween
 						.get(this.MC_lost, {
 							override: true
-						})
-						.set({
-							x: 165,
-							y: 155,
-							alpha: 0,
-							scaleX: 1,
-							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -1135,13 +995,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 						.get(this.MC_win, {
 							override: true
 						})
-						.set({
-							x: 190,
-							y: 155,
-							alpha: 0,
-							scaleX: 1,
-							scaleY: 1
-						})
 						.to({
 							alpha: 1
 						}, 1000)
@@ -1161,13 +1014,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 					createjs.Tween
 						.get(this.MC_lost, {
 							override: true
-						})
-						.set({
-							x: 165,
-							y: 155,
-							alpha: 0,
-							scaleX: 1,
-							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -1206,13 +1052,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 						.get(this.MC_win, {
 							override: true
 						})
-						.set({
-							x: 165,
-							y: 155,
-							alpha: 0,
-							scaleX: 1,
-							scaleY: 1
-						})
 						.to({
 							alpha: 1
 						}, 1000)
@@ -1232,13 +1071,6 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 					createjs.Tween
 						.get(this.MC_lost, {
 							override: true
-						})
-						.set({
-							x: 165,
-							y: 155,
-							alpha: 0,
-							scaleX: 1,
-							scaleY: 1
 						})
 						.to({
 							alpha: 1
@@ -1261,43 +1093,43 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 	// chip
 	this.MC_chip04 = new lib.MC_chip();
-	this.MC_chip04.setTransform(474,94,1,1,0,0,0,30,30);
+	this.MC_chip04.setTransform(465,85,1,1,0,0,0,21,21);
 	this.MC_chip04.alpha = 0.5;
 
 	this.MC_chip03 = new lib.MC_chip();
-	this.MC_chip03.setTransform(474,140,1,1,0,0,0,30,30);
+	this.MC_chip03.setTransform(466,132,1,1,0,0,0,22,22);
 	this.MC_chip03.alpha = 0.5;
 
 	this.MC_chip02 = new lib.MC_chip();
-	this.MC_chip02.setTransform(474,185,1,1,0,0,0,30,30);
+	this.MC_chip02.setTransform(464,175,1,1,0,0,0,20,20);
 	this.MC_chip02.alpha = 0.5;
 
 	this.MC_chip01 = new lib.MC_chip();
-	this.MC_chip01.setTransform(474,232,1,1,0,0,0,30,30);
+	this.MC_chip01.setTransform(465,223,1,1,0,0,0,21,21);
 	this.MC_chip01.alpha = 0.5;
 
 	this.MC_chip00 = new lib.MC_chip();
-	this.MC_chip00.setTransform(474,281,1,1,0,0,0,30,30);
+	this.MC_chip00.setTransform(464,271,1,1,0,0,0,20,20);
 	this.MC_chip00.alpha = 0.5;
 
 	this.MC_chip09 = new lib.MC_chip();
-	this.MC_chip09.setTransform(522,94,1,1,0,0,0,30,30);
+	this.MC_chip09.setTransform(512,86,1,1,0,0,0,20,22);
 	this.MC_chip09.alpha = 0.5;
 
 	this.MC_chip08 = new lib.MC_chip();
-	this.MC_chip08.setTransform(522,140,1,1,0,0,0,30,30);
+	this.MC_chip08.setTransform(514,131,1,1,0,0,0,22,21);
 	this.MC_chip08.alpha = 0.5;
 
 	this.MC_chip07 = new lib.MC_chip();
-	this.MC_chip07.setTransform(522,185,1,1,0,0,0,30,30);
+	this.MC_chip07.setTransform(512,175,1,1,0,0,0,20,20);
 	this.MC_chip07.alpha = 0.5;
 
 	this.MC_chip06 = new lib.MC_chip();
-	this.MC_chip06.setTransform(522,232,1,1,0,0,0,30,30);
+	this.MC_chip06.setTransform(513,222,1,1,0,0,0,21,20);
 	this.MC_chip06.alpha = 0.5;
 
 	this.MC_chip05 = new lib.MC_chip();
-	this.MC_chip05.setTransform(522,281,1,1,0,0,0,30,30);
+	this.MC_chip05.setTransform(512,272,1,1,0,0,0,20,21);
 	this.MC_chip05.alpha = 0.5;
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip05},{t:this.MC_chip06},{t:this.MC_chip07},{t:this.MC_chip08},{t:this.MC_chip09},{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip02},{t:this.MC_chip03},{t:this.MC_chip04}]},1).to({state:[]},1).wait(1));
@@ -1320,7 +1152,7 @@ p.nominalBounds = new cjs.Rectangle(-75,-25,149.9,47.8);
 
 	// title
 	this.MC_start = new lib.MC_start();
-	this.MC_start.setTransform(275.4,193,1,0.933,0,0,0,275.4,76);
+	this.MC_start.setTransform(275.4,202.1,1,0.933,0,0,0,275.4,45.1);
 	this.MC_start.alpha = 0;
 	this.MC_start._off = true;
 

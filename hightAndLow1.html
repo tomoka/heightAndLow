@@ -7,7 +7,7 @@
 <script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
 <script src="http://code.createjs.com/tweenjs-0.6.1.min.js"></script>
 <script src="http://code.createjs.com/movieclip-0.8.1.min.js"></script>
-<script src="http://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.4.1.min.js"></script>
 <script src="hightAndLow.js"></script>
 
 <script>
@@ -15,32 +15,15 @@ var canvas, stage, exportRoot;
 
 function init() {
 	canvas = document.getElementById("canvas");
-	images = images||{};
-	ss = ss||{};
-
-	var loader = new createjs.LoadQueue(false);
-	loader.addEventListener("fileload", handleFileLoad);
-	loader.addEventListener("complete", handleComplete);
-loader.loadFile({src:"images/hightAndLow_atlas_.json", type:"spritesheet", id:"hightAndLow_atlas_"}, true);
-	loader.loadManifest(lib.properties.manifest);
-}
-
-function handleFileLoad(evt) {
-	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
-}
-
-function handleComplete(evt) {
-	var queue = evt.target;
-	ss["hightAndLow_atlas_"] = queue.getResult("hightAndLow_atlas_");
 	exportRoot = new lib.hightAndLow();
 
 	stage = new createjs.Stage(canvas);
 	stage.addChild(exportRoot);
 	stage.update();
-	stage.enableMouseOver();
 
 	createjs.Ticker.setFPS(lib.properties.fps);
 	createjs.Ticker.addEventListener("tick", stage);
+
 }
 </script>
 </head>
