@@ -733,35 +733,68 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		function nextCard() {
 			console.log("こんぷりーと");
-			that.MC_win.setTransform(273.1,192,1,1,0,0,0,82.7,36.4);
-			that.MC_lost.setTransform(273,192,1,1,0,0,0,108.8,37.3);
-			that.containerVisuble.setTransform(79,120,0.348,0.348,0,0,0,226.7,344.6);
-			that.containerHeddin.setTransform(79,120,0.348,0.348,0,0,0,226.7,344.6);
+			that.MC_win.setTransform(273.1, 192, 1, 1, 0, 0, 0, 82.7, 36.4);
+			that.MC_lost.setTransform(273, 192, 1, 1, 0, 0, 0, 108.8, 37.3);
+			that.containerVisuble.setTransform(170, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			that.containerHeddin.setTransform(380, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			
 			createjs.Tween.get(that.containerVisuble, {
 				override: true
 			}).to({
-				x: 390,
-				y: -390
-			}, 2500, createjs.Ease.quadOut);
+				scaleX: 0.01
+			}, 1000, createjs.Ease.backOut)
+				.call(handleComplete2)
+				.to({
+					scaleX: 0.35
+				}, 300, createjs.Ease.backOut)
+				.to({
+					x: 0,
+					y: 0
+				}, 2000, createjs.Ease.quadOut);
+		
 			createjs.Tween.get(that.containerHeddin, {
 				override: true
 			}).to({
-				x: 390,
-				y: -390
-			}, 2500, createjs.Ease.quadOut);
+				scaleX: 0.01
+			}, 1000, createjs.Ease.backOut)
+				.call(handleComplete3)
+				.to({
+					scaleX: 0.35
+				}, 300, createjs.Ease.backOut)
+				.to({
+					x: 0,
+					y: 0
+				}, 2000, createjs.Ease.quadOut)
+				.call(handleComplete4);
+				
 			gameWin = false;
 		
-			//26回目の対戦だったら終了
-			if (26 == attackCount) {
-				//リザルトへ
-				that.gotoAndPlay(2);
-			} else {
-				that.nextAttack();
+			function handleComplete4() {
+				console.log("visibleCard333---->" + visibleCard);
+				//26回目の対戦だったら終了
+				if (26 == attackCount) {
+					//リザルトへ
+					that.gotoAndPlay(2);
+				} else {
+					that.nextAttack();
+				}
+			}
+			function handleComplete2() {
+				console.log("handleComplete2");
+				//Tween complete
+				that.containerVisuble.addChild(images[53]);
+			}
+			function handleComplete3() {
+				console.log("handleComplete3");
+				//Tween complete
+				that.containerHeddin.addChild(images[52]);
 			}
 		}
 		
 		
 		this.nextAttack = function () {
+			//that.containerVisuble.setTransform(0, 0, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			//that.containerHeddin.setTransform(0, 0, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
 			that.containerVisuble.addChild(images[53]);
 			that.containerVisuble.visible = true;
 			that.containerHeddin.addChild(images[52]);
@@ -855,21 +888,17 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				//Tween complete
 				btnFlag = false;
 				console.log("ボタンフラグ false");
-				that.MC_start.setTransform(275,205,1,1,0,0,0,275,45);
+				that.MC_start.setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
 			};
 		
 			createjs.Tween
 				.get(this.containerVisuble, {
 					override: true
 				})
-				.set({
-					x: 0,
-					y: 0
-				})
 				.to({
 					x: 170,
 					y: 180,
-					rotation: 1080,
+					rotation: 360,
 					scaleX: 0.35,
 					scaleY: 0.35,
 					skewX: 0,
@@ -881,7 +910,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				.call(handleComplete1)
 				.to({
 					scaleX: 0.35
-				}, 1000, createjs.Ease.backOut);
+				}, 300, createjs.Ease.backOut);
 		
 			function handleComplete1() {
 				//Tween complete
@@ -892,14 +921,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				.get(that.containerHeddin, {
 					override: true
 				})
-				.set({
-					x: 0,
-					y: 0
-				})
 				.to({
 					x: 380,
 					y: 180,
-					rotation: -1080,
+					rotation: -360,
 					scaleX: 0.35,
 					scaleY: 0.35,
 					skewX: 0,
