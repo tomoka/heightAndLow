@@ -1,6 +1,6 @@
-# heightAndLow
+# Heigh And Low
 ## html5 canvas 勉強リポジトリ。
-- トランプゲーム Height And Low をとりあえず作ってみる。
+- トランプゲーム Heigh And Low をとりあえず作ってみる。
 - HTML5 canvasの使い方をもう少し覚える
 
 ### トランプの素材
