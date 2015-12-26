@@ -1188,7 +1188,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		this.stop();
 		
 		this.score.text = "RESULT";
-		this.winScore.text = "勝率" + Math.floor(winCount/26*100) + "％";
+		this.winScoreP.text = "勝率" + Math.floor(winCount/26)*100 + "％";
+		console.log("勝率" + Math.floor(winCount/26)*100 + "％");
 	}
 
 	// actions tween:
