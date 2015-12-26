@@ -120,6 +120,18 @@ p.nominalBounds = new cjs.Rectangle(0,0,165.3,72.8);
 p.nominalBounds = new cjs.Rectangle(0,0,550,90);
 
 
+(lib.MC_result = function() {
+	this.initialize();
+
+	// レイヤー 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFFFF").s().p("ACuFwQhUhTAAilIAAosIDOAAIAAI7QAAAoAIAdQAIAdAPASQAQARAZAJQAZAJAkAAQAiAAAZgJQAZgJAQgRQAfgjAAhRIAAo7IDKAAIAAIsQAAClhUBTQhVBSinAAQioAAhUhSgApuGDIAAitQBxBMB7AAQBAAAAhgYQAhgZAAgtQAAgogXgZQgXgZg4gSQiYgxhChFQgigkgRgrQgRgsAAg0QAAgdAGgaQAOhKA7gxQBOhCCTAAQBMAABCANQBCAMA3AYIAACrQgkgSgmgNQgZgJgagHQg+gOhAAAQg3AAgcAVQgGAEgEAFQgRAVgBAiQAAAmAZAZQAYAbAvAPQCmAyBABCQAgAhARAsQAPAtAAA2QAACBhRBBQhRBAijAAQiLAAhtg/gAarG2IAArBIjoAAIAAipIKgAAIAACpIjoAAIAALBgAOkG2IAAtqIDSAAIAALBIFyAAIAACpgA0/G2IAAtqIIvAAIAAClIljAAIAACzIFLAAIAACYIlLAAIAADVIFjAAIAAClgA6YG2IhSjuQgRgygYgSQgYgSgzAAIg7AAIAAFEIjJAAIAAtkQCEgTCcAAQBbABBCARQBDAQAsAjQA9AuATBKQAIAiAAAmQABBRgvBAQgXAggfAVQggAXgmANIAAADQAfASAZAjQAbAkATA2IBdD2gA+ZkeIAAD8IBCAAQBVAAAsgjQAWgTALgYQALgZAAgfQAAg9gmgfQgpghhVAAQgrAAggAHg");
+
+	this.addChild(this.shape);
+}).prototype = p = new cjs.Container();
+p.nominalBounds = new cjs.Rectangle(-214.7,-45,429.4,90);
+
+
 (lib.MC_low = function() {
 	this.initialize();
 
@@ -593,7 +605,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		//勝った回数と遊んだ回数
 		winCount = 0;
-		attackCount = 0;
+		attackCount = 1;
 		gameWin = false;
 		
 		
@@ -604,9 +616,12 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		index = 0;
 		btnFlag = true;
 		
-		this.btn_high.visible = false;
-		this.btn_low.visible = false;
-		this.btn_draw.visible = false;
+		//初期
+		this.btn_high.alpha = 0;
+		this.btn_low.alpha = 0;
+		this.btn_draw.alpha = 0;
+		this.containerVisuble.alpha = 0;
+		this.containerHeddin.alpha = 0;
 		
 		queue = new createjs.LoadQueue(true);　
 		
@@ -621,8 +636,37 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		}
 		function completeHandler(event) {
 			this.init();
-			console.log("こんぷりーと");
-			this.play();
+			console.log("complete card image");
+			createjs.Tween
+				.get(that.mc_loading, {
+					override: true
+				})
+				.to({
+					alpha: 0
+				}, 1500, createjs.Ease.quadOut)
+				.call(completeNext);
+				
+			/*createjs.Tween
+				.get(this.containerVisuble, {
+					override: true
+				})
+				.set({x:170, y:180})
+				.to({
+					alpha: 1
+				}, 1000, createjs.Ease.quadOut);
+			createjs.Tween
+				.get(this.containerHeddin, {
+					override: true
+				})
+				.set({x:380, y:180})
+				.to({
+					alpha: 1
+				}, 1000, createjs.Ease.quadOut);*/
+		
+			function completeNext() {
+				console.log("complete loading animation");
+				that.play();
+			}
 		};
 		
 		this.init = function () {
@@ -630,6 +674,18 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			this.containerVisuble.addChild(images[53]);
 			this.containerHeddin.addChild(images[52]);
 		}
+		function loadingAnime() {
+			console.log("loadingAnime");
+		
+			createjs.Tween
+				.get(that.mc_loading, {
+					override: true
+				})
+				.to({
+					rotation: 360
+				}, 1500, createjs.Ease.quadOut);
+		}
+		loadingAnime();
 	}
 	this.frame_1 = function() {
 		this.stop();
@@ -722,6 +778,12 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			that.containerVisuble.setTransform(170, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
 			that.containerHeddin.setTransform(380, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
 		
+			that.btn_high.alpha = 0;
+			that.btn_low.alpha = 0;
+			that.btn_draw.alpha = 0;
+		
+			that.winScore.text = winCount + "勝";
+		
 			createjs.Tween.get(that.containerVisuble, {
 				override: true
 			}).to({
@@ -732,9 +794,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					scaleX: 0.35
 				}, 300, createjs.Ease.backOut)
 				.to({
-					x: 0,
-					y: 0
-				}, 2000, createjs.Ease.quadOut);
+					x: 600,
+					y: -200,
+					rotation: -360
+				}, 1000, createjs.Ease.quadOut);
 		
 			createjs.Tween.get(that.containerHeddin, {
 				override: true
@@ -746,9 +809,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					scaleX: 0.35
 				}, 300, createjs.Ease.backOut)
 				.to({
-					x: 0,
-					y: 0
-				}, 2000, createjs.Ease.quadOut)
+					x: 600,
+					y: -200,
+					rotation: 360
+				}, 1000, createjs.Ease.quadOut)
 				.call(handleComplete4);
 		
 		
@@ -761,6 +825,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					//リザルトへ
 					that.gotoAndPlay(2);
 				} else {
+					attackCount++;
 					that.nextAttack();
 				}
 			}
@@ -778,16 +843,16 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 		this.nextAttack = function () {
-			//that.containerVisuble.setTransform(0, 0, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
-			//that.containerHeddin.setTransform(0, 0, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			that.containerVisuble.setTransform(-200, -200, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			that.containerHeddin.setTransform(-200, -200, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			that.containerVisuble.alpha = 1;
+			that.containerHeddin.alpha = 1;
+		
 			that.containerVisuble.addChild(images[53]);
 			that.containerVisuble.visible = true;
 			that.containerHeddin.addChild(images[52]);
 			that.containerHeddin.visible = true;
-			that.btn_high.visible = false;
-			that.btn_low.visible = false;
-			that.btn_draw.visible = false;
-		
+			that.score.text = attackCount + "回戦目";
 		
 			//カード表示のセット
 			l++;
@@ -801,8 +866,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			visibleImage = images[visibleCard];
 			hiddenImage = images[hiddenCard];
 		
-			attackCount++;
 			console.log("attackCount------------" + attackCount + "回戦目");
+			console.log("winCount------------" + winCount + "勝");
 		
 			//カードの番号からのカードの要素の抽出
 			//割った数のあまりがカードの番号
@@ -869,8 +934,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					alpha: 0,
 					scaleX: 4,
 					scaleY: 4
-				}, 2000, createjs.Ease.backOut)
-				.wait(100)
+				}, 1000, createjs.Ease.backOut)
 				.call(handleComplete0);
 		
 			function handleComplete0() {
@@ -878,9 +942,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				btnFlag = false;
 				console.log("ボタンフラグ false");
 				that.MC_start.setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
-				that.btn_high.visible = true;
-				that.btn_low.visible = true;
-				that.btn_draw.visible = true;
+				that.btn_high.alpha = 1;
+				that.btn_low.alpha = 1;
+				that.btn_draw.alpha = 1;
 		
 			};
 		
@@ -967,7 +1031,13 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 							scaleY: 4
 						}, 1000, createjs.Ease.backOut).call(nextCard);
 					//勝ったら印をつける
-					var name = "MC_chip0" + winCount;
+					var name = "";
+		
+					if (winCount <= 9) {
+						name = "MC_chip0" + winCount;
+					} else {
+						name = "MC_chip" + winCount;
+					}
 					console.log(name);
 					that[name].alpha = 1;
 					winCount++;
@@ -1024,7 +1094,13 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 						}, 1000, createjs.Ease.backOut).call(nextCard);
 		
 					//勝ったら印をつける
-					var name = "MC_chip0" + winCount;
+					var name = "";
+		
+					if (winCount <= 9) {
+						name = "MC_chip0" + winCount;
+					} else {
+						name = "MC_chip" + winCount;
+					}
 					console.log(name);
 					that[name].alpha = 1;
 					winCount++;
@@ -1081,7 +1157,13 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 						}, 1000, createjs.Ease.backOut).call(nextCard);
 		
 					//勝ったら印をつける
-					var name = "MC_chip0" + winCount;
+					var name = "";
+		
+					if (winCount <= 9) {
+						name = "MC_chip0" + winCount;
+					} else {
+						name = "MC_chip" + winCount;
+					}
 					console.log(name);
 					that[name].alpha = 1;
 					winCount++;
@@ -1104,10 +1186,36 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	}
 	this.frame_2 = function() {
 		this.stop();
+		
+		this.score.text = "RESULT";
+		this.winScore.text = "勝率" + Math.floor(winCount/26*100) + "％";
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1).call(this.frame_2).wait(1));
+
+	// score
+	this.winScore = new cjs.Text("--勝", "bold 20px 'M+ 1c heavy'", "#FFFFFF");
+	this.winScore.name = "winScore";
+	this.winScore.textAlign = "right";
+	this.winScore.lineHeight = 22;
+	this.winScore.lineWidth = 76;
+	this.winScore.setTransform(81,355);
+
+	this.score = new cjs.Text("000", "bold 30px 'M+ 1c heavy'", "#FFFFFF");
+	this.score.name = "score";
+	this.score.textAlign = "center";
+	this.score.lineHeight = 32;
+	this.score.lineWidth = 335;
+	this.score.setTransform(266.5,17.5);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.score},{t:this.winScore,p:{x:81,y:355,text:"--勝",font:"bold 20px 'M+ 1c heavy'",textAlign:"right",lineHeight:22,lineWidth:76}}]},1).to({state:[{t:this.score},{t:this.winScore,p:{x:266.5,y:113.5,text:"000",font:"bold 60px 'M+ 1c heavy'",textAlign:"center",lineHeight:62,lineWidth:335}}]},1).wait(1));
+
+	// loading
+	this.mc_loading = new lib.MC_chip();
+	this.mc_loading.setTransform(278.1,184.1,4.512,4.512,0,0,0,19.9,19.9);
+
+	this.timeline.addTween(cjs.Tween.get(this.mc_loading).to({_off:true},1).wait(2));
 
 	// title
 	this.MC_start = new lib.MC_start();
@@ -1116,49 +1224,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	this.MC_start._off = true;
 
 	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1).to({_off:false},0).to({_off:true},1).wait(1));
-
-	// chip
-	this.MC_chip04 = new lib.MC_chip();
-	this.MC_chip04.setTransform(465,85,1,1,0,0,0,21,21);
-	this.MC_chip04.alpha = 0.5;
-
-	this.MC_chip03 = new lib.MC_chip();
-	this.MC_chip03.setTransform(466,132,1,1,0,0,0,22,22);
-	this.MC_chip03.alpha = 0.5;
-
-	this.MC_chip02 = new lib.MC_chip();
-	this.MC_chip02.setTransform(464,175,1,1,0,0,0,20,20);
-	this.MC_chip02.alpha = 0.5;
-
-	this.MC_chip01 = new lib.MC_chip();
-	this.MC_chip01.setTransform(465,223,1,1,0,0,0,21,21);
-	this.MC_chip01.alpha = 0.5;
-
-	this.MC_chip00 = new lib.MC_chip();
-	this.MC_chip00.setTransform(464,271,1,1,0,0,0,20,20);
-	this.MC_chip00.alpha = 0.5;
-
-	this.MC_chip09 = new lib.MC_chip();
-	this.MC_chip09.setTransform(512,86,1,1,0,0,0,20,22);
-	this.MC_chip09.alpha = 0.5;
-
-	this.MC_chip08 = new lib.MC_chip();
-	this.MC_chip08.setTransform(514,131,1,1,0,0,0,22,21);
-	this.MC_chip08.alpha = 0.5;
-
-	this.MC_chip07 = new lib.MC_chip();
-	this.MC_chip07.setTransform(512,175,1,1,0,0,0,20,20);
-	this.MC_chip07.alpha = 0.5;
-
-	this.MC_chip06 = new lib.MC_chip();
-	this.MC_chip06.setTransform(513,222,1,1,0,0,0,21,20);
-	this.MC_chip06.alpha = 0.5;
-
-	this.MC_chip05 = new lib.MC_chip();
-	this.MC_chip05.setTransform(512,272,1,1,0,0,0,20,21);
-	this.MC_chip05.alpha = 0.5;
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip05},{t:this.MC_chip06},{t:this.MC_chip07},{t:this.MC_chip08},{t:this.MC_chip09},{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip02},{t:this.MC_chip03},{t:this.MC_chip04}]},1).to({state:[]},1).wait(1));
 
 	// win
 	this.MC_win = new lib.MC_win();
@@ -1178,34 +1243,144 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 
 	// btn
 	this.btn_low = new lib.btn_02();
-	this.btn_low.setTransform(531,366,1,1,0,0,0,66,20.5);
+	this.btn_low.setTransform(531,329.8,1,1,0,0,0,66,20.5);
 	new cjs.ButtonHelper(this.btn_low, 0, 1, 2, false, new lib.btn_02(), 3);
 
 	this.btn_draw = new lib.btn_01();
-	this.btn_draw.setTransform(279.9,346);
+	this.btn_draw.setTransform(279.9,308.2);
 	new cjs.ButtonHelper(this.btn_draw, 0, 1, 2, false, new lib.btn_01(), 3);
 
 	this.btn_high = new lib.btn_00();
-	this.btn_high.setTransform(109.5,343,1,1,0,0,0,-13.5,-2.5);
+	this.btn_high.setTransform(109.5,306.8,1,1,0,0,0,-13.5,-2.5);
 	new cjs.ButtonHelper(this.btn_high, 0, 1, 2, false, new lib.btn_00(), 3);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.btn_high},{t:this.btn_draw},{t:this.btn_low}]}).to({state:[]},2).wait(1));
 
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
-	this.containerHeddin.setTransform(174.8,158.6,0.33,0.33,0,0,0,226.7,344.6);
+	this.containerHeddin.setTransform(174.8,183.6,0.33,0.33,0,0,0,226.7,344.6);
 
 	this.containerVisuble = new lib.containerVisuble();
-	this.containerVisuble.setTransform(87.7,158.9,0.33,0.33,0,0,0,232.5,345.4);
+	this.containerVisuble.setTransform(87.7,183.9,0.33,0.33,0,0,0,232.5,345.4);
 
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#FFFFFF").s().p("ACuFwQhUhTgBilIAAosIDPAAIAAI7QAAApAIAcQAHAdARASQAPARAZAJQAZAJAkAAQAiAAAZgJQAZgJAQgRQAfgjAAhRIAAo7IDKAAIAAIsQgBClhTBTQhUBSioAAQioAAhUhSgApuGDIAAitQBwBMB8AAQBAAAAhgZQAhgYAAgtQAAgogXgZQgXgZg4gSQiXgxhEhFQghgkgRgrQgRgsAAg0QAAgdAFgaQAQhKA6gxQBPhCCSABQBMAABCAMQBCAMA4AYIAACrQglgSgmgNQgZgJgZgHQg/gPhAAAQg3ABgcAVIgKAJQgSAUAAAjQAAAmAZAZQAYAaAvAQQCmAyBBBCQAfAhARAsQAQAtAAA2QAACBhSBBQhRBAijAAQiLAAhtg/gAarG2IAArBIjpAAIAAipIKhAAIAACpIjoAAIAALBgAOkG2IAAtqIDRAAIAALBIFzAAIAACpgA0/G2IAAtqIIvAAIAAClIljAAIAACyIFLAAIAACZIlLAAIAADVIFjAAIAAClgA6XG2IhTjuQgRgzgYgRQgYgSgyAAIg8AAIAAFEIjIAAIAAtkQCDgSCcAAQBbAABCARQBEARArAhQA9AvATBKQAIAhAAAoQAABQguBAQgYAggfAVQgeAXgnANIAAADQAgASAZAjQAZAkAVA2IBcD2gA+ZkeIAAD8IBCAAQBVAAAsgjQAWgSALgZQAMgZAAgfQgBg9gmgfQgpghhVAAQgrAAggAHg");
-	this.shape.setTransform(254.9,74.2);
+	this.instance = new lib.MC_result();
+	this.instance.setTransform(272.9,308.2,0.511,0.511);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.containerVisuble},{t:this.containerHeddin}]}).to({state:[{t:this.shape}]},2).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.containerVisuble},{t:this.containerHeddin}]}).to({state:[{t:this.instance}]},2).wait(1));
+
+	// chip
+	this.MC_chip26 = new lib.MC_chip();
+	this.MC_chip26.setTransform(499,366,1,1,0,0,0,20,22);
+	this.MC_chip26.alpha = 0;
+
+	this.MC_chip25 = new lib.MC_chip();
+	this.MC_chip25.setTransform(483,366,1,1,0,0,0,20,22);
+	this.MC_chip25.alpha = 0;
+
+	this.MC_chip24 = new lib.MC_chip();
+	this.MC_chip24.setTransform(468.2,366,1,1,0,0,0,20,22);
+	this.MC_chip24.alpha = 0;
+
+	this.MC_chip23 = new lib.MC_chip();
+	this.MC_chip23.setTransform(453.4,366,1,1,0,0,0,20,22);
+	this.MC_chip23.alpha = 0;
+
+	this.MC_chip22 = new lib.MC_chip();
+	this.MC_chip22.setTransform(438.6,366,1,1,0,0,0,20,22);
+	this.MC_chip22.alpha = 0;
+
+	this.MC_chip21 = new lib.MC_chip();
+	this.MC_chip21.setTransform(423.8,366,1,1,0,0,0,20,22);
+	this.MC_chip21.alpha = 0;
+
+	this.MC_chip20 = new lib.MC_chip();
+	this.MC_chip20.setTransform(409,366,1,1,0,0,0,20,22);
+	this.MC_chip20.alpha = 0;
+
+	this.MC_chip19 = new lib.MC_chip();
+	this.MC_chip19.setTransform(394.2,366,1,1,0,0,0,20,22);
+	this.MC_chip19.alpha = 0;
+
+	this.MC_chip18 = new lib.MC_chip();
+	this.MC_chip18.setTransform(379.4,366,1,1,0,0,0,20,22);
+	this.MC_chip18.alpha = 0;
+
+	this.MC_chip17 = new lib.MC_chip();
+	this.MC_chip17.setTransform(364.6,366,1,1,0,0,0,20,22);
+	this.MC_chip17.alpha = 0;
+
+	this.MC_chip16 = new lib.MC_chip();
+	this.MC_chip16.setTransform(349.8,366,1,1,0,0,0,20,22);
+	this.MC_chip16.alpha = 0;
+
+	this.MC_chip15 = new lib.MC_chip();
+	this.MC_chip15.setTransform(335,366,1,1,0,0,0,20,22);
+	this.MC_chip15.alpha = 0;
+
+	this.MC_chip14 = new lib.MC_chip();
+	this.MC_chip14.setTransform(320.2,366,1,1,0,0,0,20,22);
+	this.MC_chip14.alpha = 0;
+
+	this.MC_chip13 = new lib.MC_chip();
+	this.MC_chip13.setTransform(305.4,366,1,1,0,0,0,20,22);
+	this.MC_chip13.alpha = 0;
+
+	this.MC_chip12 = new lib.MC_chip();
+	this.MC_chip12.setTransform(290.6,366,1,1,0,0,0,20,22);
+	this.MC_chip12.alpha = 0;
+
+	this.MC_chip11 = new lib.MC_chip();
+	this.MC_chip11.setTransform(275.8,366,1,1,0,0,0,20,22);
+	this.MC_chip11.alpha = 0;
+
+	this.MC_chip10 = new lib.MC_chip();
+	this.MC_chip10.setTransform(261,366,1,1,0,0,0,20,22);
+	this.MC_chip10.alpha = 0;
+
+	this.MC_chip09 = new lib.MC_chip();
+	this.MC_chip09.setTransform(246.2,366,1,1,0,0,0,20,22);
+	this.MC_chip09.alpha = 0;
+
+	this.MC_chip08 = new lib.MC_chip();
+	this.MC_chip08.setTransform(233.4,365,1,1,0,0,0,22,21);
+	this.MC_chip08.alpha = 0;
+
+	this.MC_chip07 = new lib.MC_chip();
+	this.MC_chip07.setTransform(216.6,364,1,1,0,0,0,20,20);
+	this.MC_chip07.alpha = 0;
+
+	this.MC_chip06 = new lib.MC_chip();
+	this.MC_chip06.setTransform(202.8,364,1,1,0,0,0,21,20);
+	this.MC_chip06.alpha = 0;
+
+	this.MC_chip05 = new lib.MC_chip();
+	this.MC_chip05.setTransform(187,365,1,1,0,0,0,20,21);
+	this.MC_chip05.alpha = 0;
+
+	this.MC_chip04 = new lib.MC_chip();
+	this.MC_chip04.setTransform(173.2,365,1,1,0,0,0,21,21);
+	this.MC_chip04.alpha = 0;
+
+	this.MC_chip03 = new lib.MC_chip();
+	this.MC_chip03.setTransform(159.4,366,1,1,0,0,0,22,22);
+	this.MC_chip03.alpha = 0;
+
+	this.MC_chip02 = new lib.MC_chip();
+	this.MC_chip02.setTransform(142.6,364,1,1,0,0,0,20,20);
+	this.MC_chip02.alpha = 0;
+
+	this.MC_chip01 = new lib.MC_chip();
+	this.MC_chip01.setTransform(128.8,365,1,1,0,0,0,21,21);
+	this.MC_chip01.alpha = 0;
+
+	this.MC_chip00 = new lib.MC_chip();
+	this.MC_chip00.setTransform(113,364,1,1,0,0,0,20,20);
+	this.MC_chip00.alpha = 0;
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip02},{t:this.MC_chip03},{t:this.MC_chip04},{t:this.MC_chip05},{t:this.MC_chip06},{t:this.MC_chip07},{t:this.MC_chip08},{t:this.MC_chip09},{t:this.MC_chip10},{t:this.MC_chip11},{t:this.MC_chip12},{t:this.MC_chip13},{t:this.MC_chip14},{t:this.MC_chip15},{t:this.MC_chip16},{t:this.MC_chip17},{t:this.MC_chip18},{t:this.MC_chip19},{t:this.MC_chip20},{t:this.MC_chip21},{t:this.MC_chip22},{t:this.MC_chip23},{t:this.MC_chip24},{t:this.MC_chip25},{t:this.MC_chip26}]},1).to({state:[]},1).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(286,245,534.4,337.9);
+p.nominalBounds = new cjs.Rectangle(286,270,534.4,275.1);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
