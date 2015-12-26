@@ -604,6 +604,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		index = 0;
 		btnFlag = true;
 		
+		this.btn_high.visible = false;
+		this.btn_low.visible = false;
+		this.btn_draw.visible = false;
+		
 		queue = new createjs.LoadQueue(true);　
 		
 		queue.on("fileload", fileLoadHandler, this);　
@@ -780,6 +784,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			that.containerVisuble.visible = true;
 			that.containerHeddin.addChild(images[52]);
 			that.containerHeddin.visible = true;
+			that.btn_high.visible = false;
+			that.btn_low.visible = false;
+			that.btn_draw.visible = false;
+		
 		
 			//カード表示のセット
 			l++;
@@ -870,6 +878,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				btnFlag = false;
 				console.log("ボタンフラグ false");
 				that.MC_start.setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
+				that.btn_high.visible = true;
+				that.btn_low.visible = true;
+				that.btn_draw.visible = true;
+		
 			};
 		
 			createjs.Tween
@@ -920,7 +932,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		//that.firstAttack();
 		that.nextAttack();
 		//ボタンイベント
-		this.btn_hight.addEventListener("click", fl_MouseClickHandler.bind(this));
+		this.btn_high.addEventListener("click", fl_MouseClickHandler.bind(this));
 		function fl_MouseClickHandler() {
 			if (!btnFlag) {
 				btnFlag = true;
@@ -976,7 +988,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			}
 		}
 		
-		this.btn_drow.addEventListener("click", fl_MouseClickHandler_2.bind(this));
+		this.btn_draw.addEventListener("click", fl_MouseClickHandler_2.bind(this));
 		function fl_MouseClickHandler_2() {
 			if (!btnFlag) {
 				btnFlag = true;
@@ -1169,22 +1181,22 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	this.btn_low.setTransform(531,366,1,1,0,0,0,66,20.5);
 	new cjs.ButtonHelper(this.btn_low, 0, 1, 2, false, new lib.btn_02(), 3);
 
-	this.btn_drow = new lib.btn_01();
-	this.btn_drow.setTransform(279.9,346);
-	new cjs.ButtonHelper(this.btn_drow, 0, 1, 2, false, new lib.btn_01(), 3);
+	this.btn_draw = new lib.btn_01();
+	this.btn_draw.setTransform(279.9,346);
+	new cjs.ButtonHelper(this.btn_draw, 0, 1, 2, false, new lib.btn_01(), 3);
 
-	this.btn_hight = new lib.btn_00();
-	this.btn_hight.setTransform(109.5,343,1,1,0,0,0,-13.5,-2.5);
-	new cjs.ButtonHelper(this.btn_hight, 0, 1, 2, false, new lib.btn_00(), 3);
+	this.btn_high = new lib.btn_00();
+	this.btn_high.setTransform(109.5,343,1,1,0,0,0,-13.5,-2.5);
+	new cjs.ButtonHelper(this.btn_high, 0, 1, 2, false, new lib.btn_00(), 3);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.btn_hight},{t:this.btn_drow},{t:this.btn_low}]},1).to({state:[]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.btn_high},{t:this.btn_draw},{t:this.btn_low}]}).to({state:[]},2).wait(1));
 
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
-	this.containerHeddin.setTransform(79,120,0.348,0.348,0,0,0,226.7,344.6);
+	this.containerHeddin.setTransform(174.8,158.6,0.33,0.33,0,0,0,226.7,344.6);
 
 	this.containerVisuble = new lib.containerVisuble();
-	this.containerVisuble.setTransform(76.7,113.9,0.33,0.33,0,0,0,232.5,345.4);
+	this.containerVisuble.setTransform(87.7,158.9,0.33,0.33,0,0,0,232.5,345.4);
 
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#FFFFFF").s().p("ACuFwQhUhTgBilIAAosIDPAAIAAI7QAAApAIAcQAHAdARASQAPARAZAJQAZAJAkAAQAiAAAZgJQAZgJAQgRQAfgjAAhRIAAo7IDKAAIAAIsQgBClhTBTQhUBSioAAQioAAhUhSgApuGDIAAitQBwBMB8AAQBAAAAhgZQAhgYAAgtQAAgogXgZQgXgZg4gSQiXgxhEhFQghgkgRgrQgRgsAAg0QAAgdAFgaQAQhKA6gxQBPhCCSABQBMAABCAMQBCAMA4AYIAACrQglgSgmgNQgZgJgZgHQg/gPhAAAQg3ABgcAVIgKAJQgSAUAAAjQAAAmAZAZQAYAaAvAQQCmAyBBBCQAfAhARAsQAQAtAAA2QAACBhSBBQhRBAijAAQiLAAhtg/gAarG2IAArBIjpAAIAAipIKhAAIAACpIjoAAIAALBgAOkG2IAAtqIDRAAIAALBIFzAAIAACpgA0/G2IAAtqIIvAAIAAClIljAAIAACyIFLAAIAACZIlLAAIAADVIFjAAIAAClgA6XG2IhTjuQgRgzgYgRQgYgSgyAAIg8AAIAAFEIjIAAIAAtkQCDgSCcAAQBbAABCARQBEARArAhQA9AvATBKQAIAhAAAoQAABQguBAQgYAggfAVQgeAXgnANIAAADQAgASAZAjQAZAkAVA2IBcD2gA+ZkeIAAD8IBCAAQBVAAAsgjQAWgSALgZQAMgZAAgfQgBg9gmgfQgpghhVAAQgrAAggAHg");
@@ -1193,7 +1205,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.containerVisuble},{t:this.containerHeddin}]}).to({state:[{t:this.shape}]},2).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(275,200,158.5,236.5);
+p.nominalBounds = new cjs.Rectangle(286,245,534.4,337.9);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
