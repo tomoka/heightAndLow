@@ -687,13 +687,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				.call(nextLoadingAnime);
 		
 			function nextLoadingAnime() {
-				createjs.Tween
-					.get(that.mc_loading, {
-						override: true
-					})
-					.set({
-						rotation: 0
-					});
+				that.mc_loading.setTransform(278.1,184.1,4.512,4.512,0,0,0,19.9,19.9);
 				loadingAnime();
 		
 			}
