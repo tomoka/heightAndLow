@@ -683,7 +683,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				})
 				.to({
 					rotation: 360
-				}, 100, createjs.Ease.quadOut)
+				}, 1500, createjs.Ease.quadOut)
 				.call(nextLoadingAnime);
 		
 			function nextLoadingAnime() {
