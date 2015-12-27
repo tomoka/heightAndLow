@@ -683,13 +683,20 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				})
 				.to({
 					rotation: 360
-				}, 1500, createjs.Ease.quadOut)
+				}, 100, createjs.Ease.quadOut)
 				.call(nextLoadingAnime);
-				
-				function nextLoadingAnime(){
-					loadingAnime()
-					
-				}
+		
+			function nextLoadingAnime() {
+				createjs.Tween
+					.get(that.mc_loading, {
+						override: true
+					})
+					.set({
+						rotation: 0
+					});
+				loadingAnime();
+		
+			}
 		}
 		loadingAnime();
 	}
