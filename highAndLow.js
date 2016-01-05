@@ -1022,7 +1022,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				gameWin = false;
 		
 				//26回目の対戦だったら終了
-				if (6 == attackCount) {
+				if (26 == attackCount) {
 					//リザルトへ
 					that.gotoAndPlay(2);
 				} else {
