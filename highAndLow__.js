@@ -502,10 +502,11 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 	// レイヤー 1
 	this.instance = new lib.trump52();
+	this.instance.setTransform(-227.9,-331.8);
 
 	this.addChild(this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(0,0,455,679);
+p.nominalBounds = new cjs.Rectangle(-227.9,-331.8,455,679);
 
 
 (lib.btn_result = function(mode,startPosition,loop) {
@@ -941,6 +942,17 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 		this.winScore.text = "0勝";
+		
+		
+		
+		/* 
+		カードインスタンスの生成
+		*/
+		
+		this.container1 = new lib.container();
+		this.addChild(this.container1);
+		this.container1.setTransform(120, 120, 0.35, 0.35, 0, 0, 0, 240, 320);
+		//this.container1.alpha = 1;
 		/*
 		sceneアップデート
 		
