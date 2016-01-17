@@ -502,11 +502,11 @@ p.nominalBounds = new cjs.Rectangle(0,0,455,679);
 
 	// レイヤー 1
 	this.instance = new lib.trump52();
-	this.instance.setTransform(-227.9,-331.8);
+	this.instance.setTransform(-227.5,-339.5);
 
 	this.addChild(this.instance);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(-227.9,-331.8,455,679);
+p.nominalBounds = new cjs.Rectangle(-227.5,-339.5,455,679);
 
 
 (lib.btn_result = function(mode,startPosition,loop) {
@@ -909,6 +909,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			}
 		}
 		
+		var container = new Array();
 		
 		//トランプカードをシャッフルする
 		for (k = 0; k < 52; k++) {
@@ -948,11 +949,72 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		/* 
 		カードインスタンスの生成
 		*/
+		for (var iii = 0; iii < 52; iii++) {
+		var objName = "";
 		
-		this.container1 = new lib.container();
-		this.addChild(this.container1);
-		this.container1.setTransform(120, 120, 0.35, 0.35, 0, 0, 0, 240, 320);
-		//this.container1.alpha = 1;
+			if (ii <= 9) {
+				objName =  "container0" + iii;
+				container[iii] = "container0" + iii;
+			} else {
+				objName =  "container" + iii;
+				container[iii] = "container" + iii;
+			}
+			
+			//ライブラリから別のシンボルを追加する場合は、
+			//上記手順 2 の「クラス」フィールドと以下のコードに、別の名前を入力します。
+			container[iii] = new lib.container();
+			container[iii].name = objName;
+			that.addChild(container[iii]);
+			
+			/*
+			objName.x = iii*10;
+			objName.y = iii*10;
+			objName.scaleX = 0.35;
+			objName.scaleY = 0.35;
+			*/
+			
+			var x = Math.random(iii*10)*100;
+			var y = Math.random(iii*10)*100;
+			var r = Math.random(360)*100;
+			//var r = 360/iii*4;
+			
+			//objName.setTransform(x, y, 0.35, 0.35, r, 0, 0, 0, 0);
+			container[iii].scaleX = 0.35;
+			container[iii].scaleY = 0.35;
+			//stage.setChildIndex(container[iii],(stage.getNumChildren())+1);
+			stage.setChildIndex(container[iii],5);
+			stage.setChildIndex(container[0],10);
+			console.log("深度---->" + stage.getChildIndex(container[0]));
+			console.log("深度---->" + stage.getChildIndex(this.containerHeddin));
+			
+			console.log(stage.getNumChildren());
+			
+			createjs.Tween
+				.get(container[iii], {
+					override: true
+				})
+				.to({
+					x: x,
+					y: y,
+					rotation: r
+				}, 500, createjs.Ease.quadOut);
+			
+			console.log("------objName number parame" + iii + "------");
+			console.log("name------->" + container[iii].name);
+			//console.log("alpha------>" + objName.alpha);
+			//console.log("x---------->" + objName.x);
+			//console.log("y---------->" + objName.y);
+			//console.log("scaleX----->" + objName.scaleX);
+			//console.log("scaleY----->" + objName.scaleY);
+			//console.log("r------->" + r);
+			//console.log("visible---->" + objName.visible);
+			//console.log("深度---->" + container[iii].getNumChildren());
+		}
+			console.log("container[01]深度---->" + container[01].getNumChildren());		
+			console.log("container[11]深度---->" + container[11].getNumChildren());		
+			console.log("container[51]深度---->" + container[51].getNumChildren());		
+			console.log("that['MC_chip10']深度---->" + that["MC_chip10"].getNumChildren());		
+			console.log("this.containerHeddin深度---->" + this.containerHeddin.getNumChildren());
 		/*
 		sceneアップデート
 		
