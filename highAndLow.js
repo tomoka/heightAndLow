@@ -964,7 +964,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			//上記手順 2 の「クラス」フィールドと以下のコードに、別の名前を入力します。
 			container[iii] = new lib.container();
 			container[iii].name = objName;
-			that.addChild(container[iii]);
+			stage.addChild(container[iii]);
 			
 			/*
 			objName.x = iii*10;
@@ -982,12 +982,15 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			container[iii].scaleX = 0.35;
 			container[iii].scaleY = 0.35;
 			//stage.setChildIndex(container[iii],(stage.getNumChildren())+1);
-			stage.setChildIndex(container[iii],5);
-			stage.setChildIndex(container[0],10);
-			console.log("深度---->" + stage.getChildIndex(container[0]));
-			console.log("深度---->" + stage.getChildIndex(this.containerHeddin));
-			
+			//stage.setChildIndex(container[iii],5);
+			stage.setChildIndex(container[0],stage.getNumChildren()-1);
+			console.log("container[0]深度---->" + stage.getChildIndex(container[0]));
+			console.log("container[iii]深度---->" + stage.getChildIndex(container[0]));
+			console.log("this.containerHeddin深度---->" + stage.getChildIndex(this.containerHeddin));
+
 			console.log(stage.getNumChildren());
+			console.log("parent1---->" + container[iii].parent);
+			console.log("parent2---->" + this.containerHeddin.parent);
 			
 			createjs.Tween
 				.get(container[iii], {
@@ -999,6 +1002,11 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					rotation: r
 				}, 500, createjs.Ease.quadOut);
 			
+			container[0].x = 120;
+			container[0].y = 120;
+			container[0].scaleX = 0.5;
+			container[0].scaleY = 0.5;
+
 			console.log("------objName number parame" + iii + "------");
 			console.log("name------->" + container[iii].name);
 			//console.log("alpha------>" + objName.alpha);
@@ -1010,11 +1018,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			//console.log("visible---->" + objName.visible);
 			//console.log("深度---->" + container[iii].getNumChildren());
 		}
-			console.log("container[01]深度---->" + container[01].getNumChildren());		
-			console.log("container[11]深度---->" + container[11].getNumChildren());		
-			console.log("container[51]深度---->" + container[51].getNumChildren());		
-			console.log("that['MC_chip10']深度---->" + that["MC_chip10"].getNumChildren());		
-			console.log("this.containerHeddin深度---->" + this.containerHeddin.getNumChildren());
 		/*
 		sceneアップデート
 		
