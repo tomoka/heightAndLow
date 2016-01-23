@@ -787,6 +787,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		attackCount = 1;
 		gameWin = false;
 		
+		right = 0;
+		left = 1;
+		
 		
 		//画像読み込み準備
 		images = new Array();
@@ -895,6 +898,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		scene04:ヘルプ
 		
 		------------------------------*/
+		right = -2;
+		left = -1;
 		
 		
 		//トランプカードを用意する
@@ -981,17 +986,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			//objName.setTransform(x, y, 0.35, 0.35, r, 0, 0, 0, 0);
 			container[iii].scaleX = 0.35;
 			container[iii].scaleY = 0.35;
-			//stage.setChildIndex(container[iii],(stage.getNumChildren())+1);
+			stage.setChildIndex(container[iii],(stage.getNumChildren())-iii);
 			//stage.setChildIndex(container[iii],5);
-			stage.setChildIndex(container[0],stage.getNumChildren()-1);
-			console.log("container[0]深度---->" + stage.getChildIndex(container[0]));
-			console.log("container[iii]深度---->" + stage.getChildIndex(container[0]));
-			console.log("this.containerHeddin深度---->" + stage.getChildIndex(this.containerHeddin));
-
-			console.log(stage.getNumChildren());
-			console.log("parent1---->" + container[iii].parent);
-			console.log("parent2---->" + this.containerHeddin.parent);
-			
+			console.log("深度---->" + stage.getChildIndex(container[iii]));
+				
 			createjs.Tween
 				.get(container[iii], {
 					override: true
@@ -1002,11 +1000,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					rotation: r
 				}, 500, createjs.Ease.quadOut);
 			
-			container[0].x = 120;
-			container[0].y = 120;
-			container[0].scaleX = 0.5;
-			container[0].scaleY = 0.5;
-
 			console.log("------objName number parame" + iii + "------");
 			console.log("name------->" + container[iii].name);
 			//console.log("alpha------>" + objName.alpha);
@@ -1053,8 +1046,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			console.log("こんぷりーと");
 			that.MC_win.setTransform(273.1, 192, 1, 1, 0, 0, 0, 82.7, 36.4);
 			that.MC_lost.setTransform(273, 192, 1, 1, 0, 0, 0, 108.8, 37.3);
-			that.containerVisuble.setTransform(170, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
-			that.containerHeddin.setTransform(380, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			//container[left].setTransform(170, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
+			//container[right].setTransform(380, 180, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
 		
 			that.btn_high.alpha = 0;
 			that.btn_low.alpha = 0;
@@ -1062,7 +1055,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 			that.winScore.text = winCount + "勝";
 		
-			createjs.Tween.get(that.containerVisuble, {
+			createjs.Tween.get(container[left], {
 				override: true
 			}).to({
 				scaleX: 0.01
@@ -1077,7 +1070,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					rotation: -360
 				}, 1000, createjs.Ease.quadOut);
 		
-			createjs.Tween.get(that.containerHeddin, {
+			createjs.Tween.get(container[right], {
 				override: true
 			}).to({
 				scaleX: 0.01
@@ -1095,7 +1088,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 			function handleComplete4() {
-				console.log("visibleCard333---->" + visibleCard);
+				//console.log("visibleCard333---->" + visibleCard);
 				gameWin = false;
 		
 				//26回目の対戦だったら終了
@@ -1110,91 +1103,85 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			function handleComplete2() {
 				console.log("handleComplete2");
 				//Tween complete
-				that.containerVisuble.addChild(images[53]);
+				container[left].addChild(images[53]).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);;
 			}
 			function handleComplete3() {
 				console.log("handleComplete3");
 				//Tween complete
-				that.containerHeddin.addChild(images[52]);
+				container[right].addChild(images[52]).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);;
 			}
 		}
 		
 		
 		this.nextAttack = function () {
-			that.containerVisuble.setTransform(-200, -200, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
-			that.containerHeddin.setTransform(-200, -200, 0.348, 0.348, 0, 0, 0, 240, 320); //158,236
-			that.containerVisuble.alpha = 1;
-			that.containerHeddin.alpha = 1;
 		
-			that.containerVisuble.addChild(images[53]);
-			that.containerVisuble.visible = true;
-			that.containerHeddin.addChild(images[52]);
-			that.containerHeddin.visible = true;
 			that.score.text = attackCount + "回戦目";
 		
 			//カード表示のセット
-			l++;
-			visibleCard = trumpArrya[l];
-			console.log("visibleCard-----------" + visibleCard);
+			//右：隠すカード
+			//左：見せるカード
+			right = right+2;
+			rightCardId = trumpArrya[right];
 		
-			l++;
-			hiddenCard = trumpArrya[l];
-			console.log("hiddenCard------------" + hiddenCard);
+			left = left + 2;
+			leftCardId = trumpArrya[left];
 		
-			visibleImage = images[visibleCard];
-			hiddenImage = images[hiddenCard];
+			rightCardImage = images[rightCardId];
+			leftCardImage = images[leftCardId];
 		
-			console.log("attackCount------------" + attackCount + "回戦目");
-			console.log("winCount------------" + winCount + "勝");
+			//container[left].setTransform(0, 0, 0.35, 0.35, 0, 0, 0, 120, 160); //158,236
+			//container[right].setTransform(0, 0, 0.35, 0.35, 0, 0, 0, 120, 160); //158,236
+			console.log("container[right]------------" + container[right]);
+			console.log("container[left]------------" + container[left]);
 		
 			//カードの番号からのカードの要素の抽出
 			//割った数のあまりがカードの番号
 			//あまりが0の時はカード番号はK
-			visibleCardMunber = (visibleCard + 1) % 13;
-			if (visibleCardMunber == 0) {
-				visibleCardMunber = 13;
+			leftCardMunber = (leftCardId + 1) % 13;
+			if (leftCardMunber == 0) {
+				leftCardMunber = 13;
 			}
 		
-			hiddenCardMunber = (hiddenCard + 1) % 13;
-			if (hiddenCardMunber == 0) {
-				hiddenCardMunber = 13;
+			rightCardMunber = (rightCardId + 1) % 13;
+			if (rightCardMunber == 0) {
+				rightCardMunber = 13;
 			}
 		
-			visibleCardMark = (visibleCard + 1 - visibleCardMunber) / 13;
-			hiddenCardMark = (hiddenCard + 1 - hiddenCardMunber) / 13;
+			rightCardMark = (rightCardId + 1 - rightCardMunber) / 13;
+			leftCardMark = (leftCardId + 1 - leftCardMunber) / 13;
 		
 			//マークの特定
 			//１つに出来ないか後で考える
-			switch (visibleCardMark) {
+			switch (leftCardMark) {
 				case 0:
-					visibleCardMark = "スペード";
+					leftCardMark = "スペード";
 					break;
 				case 1:
-					visibleCardMark = "クラブ";
+					leftCardMark = "クラブ";
 					break;
 				case 2:
-					visibleCardMark = "ハート";
+					leftCardMark = "ハート";
 					break;
 				case 3:
 					//52番目のカードはダイヤのK。4で割り切れる。
 				default:
-					visibleCardMark = "ダイヤ";
+					leftCardMark = "ダイヤ";
 					break;
 			}
-			switch (hiddenCardMark) {
+			switch (rightCardMark) {
 				case 0:
-					hiddenCardMark = "スペード";
+					rightCardMark = "スペード";
 					break;
 				case 1:
-					hiddenCardMark = "クラブ";
+					rightCardMark = "クラブ";
 					break;
 				case 2:
-					hiddenCardMark = "ハート";
+					rightCardMark = "ハート";
 					break;
 				case 3:
 					//52番目のカードはダイヤのK。4で割り切れる。
 				default:
-					hiddenCardMark = "ダイヤ";
+					rightCardMark = "ダイヤ";
 					break;
 			}
 		
@@ -1227,7 +1214,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			};
 		
 			createjs.Tween
-				.get(this.containerVisuble, {
+				.get(container[left], {
 					override: true
 				})
 				.to({
@@ -1249,11 +1236,14 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 			function handleComplete1() {
 				//Tween complete
-				console.log("visibleCard222---->" + visibleCard);
-				that.containerVisuble.addChild(visibleImage);
+				//console.log("visibleCard222---->" + visibleCard);
+				container[left].addChild(leftCardImage).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);
+				//container[left].addChild(leftCardImage).setTransform(0, 0, 1, 1, 0, 0, 0, 0, 0);
+				//container[left].addChild(leftCardImage);
+				//container[left];
 			};
 			createjs.Tween
-				.get(that.containerHeddin, {
+				.get(container[right], {
 					override: true
 				})
 				.to({
@@ -1271,7 +1261,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				}, 500, createjs.Ease.backOut);
 		}
 		
-		//that.firstAttack();
 		that.nextAttack();
 		//ボタンイベント
 		this.btn_high.addEventListener("click", fl_MouseClickHandler.bind(this));
@@ -1279,7 +1268,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			if (!btnFlag) {
 				btnFlag = true;
 				createjs.Tween
-					.get(this.containerHeddin, {
+					.get(container[right], {
 						override: false
 					})
 					.to({
@@ -1291,9 +1280,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					}, 1000, createjs.Ease.backOut);
 				function handleComplete3() {
 					//Tween complete
-					that.containerHeddin.addChild(hiddenImage);
+					container[right].addChild(rightCardImage).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);;
 				};
-				if (visibleCardMunber < hiddenCardMunber) {
+				if (rightCardMunber > leftCardMunber) {
 					gameWin = true;
 					createjs.Tween
 						.get(this.MC_win, {
@@ -1341,7 +1330,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			if (!btnFlag) {
 				btnFlag = true;
 				createjs.Tween
-					.get(this.containerHeddin, {
+					.get(container[right], {
 						override: false
 					})
 					.to({
@@ -1353,9 +1342,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					}, 1000, createjs.Ease.backOut);
 				function handleComplete3() {
 					//Tween complete
-					that.containerHeddin.addChild(hiddenImage);
+					container[right].addChild(rightCardImage).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);;
 				};
-				if (visibleCardMunber == hiddenCardMunber) {
+				if (rightCardMunber == leftCardMunber) {
 					gameWin = true;
 					createjs.Tween
 						.get(this.MC_win, {
@@ -1404,7 +1393,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			if (!btnFlag) {
 				btnFlag = true;
 				createjs.Tween
-					.get(this.containerHeddin, {
+					.get(container[right], {
 						override: false
 					})
 					.to({
@@ -1416,9 +1405,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					}, 1000, createjs.Ease.backOut);
 				function handleComplete3() {
 					//Tween complete
-					that.containerHeddin.addChild(hiddenImage);
+					container[right].addChild(rightCardImage).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);;
 				};
-				if (visibleCardMunber > hiddenCardMunber) {
+				if (rightCardMunber < leftCardMunber) {
 					gameWin = true;
 					createjs.Tween
 						.get(this.MC_win, {
@@ -1476,7 +1465,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		function fl_ClickToGoToAndStopAtFrame_2()
 		{
-			this.gotoAndStop(0);
+			location.reload();
 		}
 	}
 
@@ -1493,12 +1482,12 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 
 	this.score = new cjs.Text("000", "bold 30px 'M+ 1c heavy'", "#FFFFFF");
 	this.score.name = "score";
-	this.score.textAlign = "center";
+	this.score.textAlign = "right";
 	this.score.lineHeight = 32;
 	this.score.lineWidth = 335;
-	this.score.setTransform(266.5,17.5);
+	this.score.setTransform(527,17.5);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.score},{t:this.winScore,p:{x:81,y:355,font:"bold 20px 'M+ 1c heavy'",textAlign:"right",lineHeight:22,lineWidth:76}}]},1).to({state:[{t:this.score},{t:this.winScore,p:{x:266.5,y:113.5,font:"bold 60px 'M+ 1c heavy'",textAlign:"center",lineHeight:62,lineWidth:335}}]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.score,p:{x:527,textAlign:"right"}},{t:this.winScore,p:{x:81,y:355,font:"bold 20px 'M+ 1c heavy'",textAlign:"right",lineHeight:22,lineWidth:76}}]},1).to({state:[{t:this.score,p:{x:266.5,textAlign:"center"}},{t:this.winScore,p:{x:266.5,y:113.5,font:"bold 60px 'M+ 1c heavy'",textAlign:"center",lineHeight:62,lineWidth:335}}]},1).wait(1));
 
 	// loading
 	this.mc_loading = new lib.MC_chip();
