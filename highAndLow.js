@@ -280,7 +280,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,110.4,47.8);
 p.nominalBounds = new cjs.Rectangle(0,0,217.7,74.7);
 
 
-(lib.MC_hight = function() {
+(lib.MC_high = function() {
 	this.initialize();
 
 	// レイヤー 1
@@ -369,7 +369,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,217.7,74.7);
 p.nominalBounds = new cjs.Rectangle(0,0,120,47.8);
 
 
-(lib.MC_drow = function() {
+(lib.MC_draw = function() {
 	this.initialize();
 
 	// レイヤー 1
@@ -699,8 +699,8 @@ p.nominalBounds = new cjs.Rectangle(-227.5,-339.5,455,679);
 p.nominalBounds = new cjs.Rectangle(-284.5,-45,569.1,90);
 
 
-(lib.btn_02 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+(lib.low = function(mode,startPosition,loop) {
+if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー 1
 	this.instance = new lib.MC_low();
@@ -712,11 +712,11 @@ p.nominalBounds = new cjs.Rectangle(-284.5,-45,569.1,90);
 p.nominalBounds = new cjs.Rectangle(-56,-25,110.4,47.8);
 
 
-(lib.btn_01 = function(mode,startPosition,loop) {
+(lib.draw = function(mode,startPosition,loop) {
 if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー 1
-	this.instance = new lib.MC_drow();
+	this.instance = new lib.MC_draw();
 	this.instance.setTransform(-0.3,-0.1,1,1,0,0,0,72.7,23.9);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({regY:23.8,scaleX:1.54,scaleY:1.54,y:-0.2},0).wait(3));
@@ -725,11 +725,11 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 p.nominalBounds = new cjs.Rectangle(-73,-23.8,146.3,47.8);
 
 
-(lib.btn_00 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+(lib.high = function(mode,startPosition,loop) {
+if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー 1
-	this.instance = new lib.MC_hight();
+	this.instance = new lib.MC_high();
 	this.instance.setTransform(0,-1.1,1,1,0,0,0,75,23.9);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({scaleX:1.41,scaleY:1.41},0).wait(3));
@@ -799,9 +799,11 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		btnFlag = true;
 		
 		//初期
+		/*
 		this.btn_high.alpha = 0;
 		this.btn_low.alpha = 0;
 		this.btn_draw.alpha = 0;
+		*/
 		this.containerVisuble.alpha = 0;
 		this.containerHeddin.alpha = 0;
 		
@@ -1012,6 +1014,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			//console.log(iii);
 			//console.log(stage.container[iii].name);
 			console.log(stage.getChildIndex(container[iii]));
+			console.log(container[iii]);
 			console.log("----------------------------------");
 		
 		}
@@ -1055,9 +1058,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			container[right].setTransform(380, 180, 0.348, 0.348, 0, 0, 0, 240, 320);
 			*/
 		
-			that.btn_high.alpha = 0;
-			that.btn_low.alpha = 0;
-			that.btn_draw.alpha = 0;
+			btn_high.alpha = 0;
+			btn_draw.alpha = 0;
+			btn_low.alpha = 0;
+		
 			var leftX = Math.random(left * 5) * 100 + 500;
 			var leftY = Math.random(left * 5) * -100;
 			var rightX = Math.random(right * 5) * 100 + 500;
@@ -1113,9 +1117,15 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 					console.log("深度rightいれかえ--->" + container[52 - right]);
 					console.log("深度leftいれかえ---->" + container[50 - left]);
+					stage.swapChildren(container[right-2], container[right]);
+					stage.swapChildren(container[left-2], container[left]);
 					stage.swapChildren(container[52 - right], container[right]);
 					stage.swapChildren(container[50 - left], container[left]);
+					console.log("深度right置き換え後---->" + stage.getChildIndex(container[52 - right]));
+					console.log("深度left置き換え後---->" + stage.getChildIndex(container[50 - left]));
 		
+					console.log("深度rightいれかえ--->" + container[right]);
+					console.log("深度leftいれかえ---->" + container[left]);
 					console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
 					console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
 		
@@ -1152,11 +1162,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 			rightCardImage = images[rightCardId];
 			leftCardImage = images[leftCardId];
-		
-			//container[left].setTransform(0, 0, 0.35, 0.35, 0, 0, 0, 120, 160); //158,236
-			//container[right].setTransform(0, 0, 0.35, 0.35, 0, 0, 0, 120, 160); //158,236
-			//console.log("container[right]------------" + container[right]);
-			//console.log("container[left]------------" + container[left]);
 		
 			//カードの番号からのカードの要素の抽出
 			//割った数のあまりがカードの番号
@@ -1210,29 +1215,15 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			}
 		
 		
-			//console.log("深度right最初---->" + stage.getChildIndex(container[right]));
-			//console.log("深度left最初---->" + stage.getChildIndex(container[left]));
-			//console.log("深度right-2最初---->" + stage.getChildIndex(container[right - 2]));
-			//console.log("深度left-2最初---->" + stage.getChildIndex(container[left - 2]));
-			//console.log("深度right+2最初---->" + Math.abs(stage.getChildIndex(container[right + 2])));
-			//console.log("深度left+2最初---->" + Math.abs(stage.getChildIndex(container[left + 2])));
-			//console.log("深度right+4最初---->" + Math.abs(stage.getChildIndex(container[right + 4])));
-			//console.log("深度left+4最初---->" + Math.abs(stage.getChildIndex(container[left + 4])));
-		
 			//0~51
 			console.log("かーど入ってくる深度");
 		
 			console.log("深度right---->" + stage.getChildIndex(container[right]));
 			console.log("深度left---->" + stage.getChildIndex(container[left]));
-		
-			//console.log("深度right---->" + stage);
-			//console.log("深度right---->" + container[right].children);
-			//console.log("深度1---->" + valueOf(container[right]));
-		
-			//stage.setChildIndex(container[left], (stage.getNumChildren() + 2));
-		
-			//console.log("深度3---->" + stage.getNumChildren());
-			//console.log("深度3---->" + (stage.getNumChildren()));
+			//stage.swapChildren(container[right - 4], container[right]);
+			//stage.swapChildren(container[left - 4], container[left]);
+			console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
+			console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
 		
 			var MC_start = new lib.start();
 			stage.addChild(MC_start).setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
@@ -1260,14 +1251,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				//Tween complete
 				btnFlag = false;
 				console.log("ボタンフラグ false");
-				/*that.MC_start.setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);*/
-				that.btn_high.alpha = 1;
-				that.btn_low.alpha = 1;
-				that.btn_draw.alpha = 1;
 				stage.removeChild(MC_start);
 		
-				var depth = stage.getNumChildren();
-		
+				buttonAdd();
 			};
 		
 		
@@ -1294,11 +1280,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 			function handleComplete1() {
 				//Tween complete
-				//console.log("visibleCard222---->" + visibleCard);
 				container[left].addChild(leftCardImage).setTransform(-228, -342, 1, 1, 0, 0, 0, 0, 0);
-				//container[left].addChild(leftCardImage).setTransform(0, 0, 1, 1, 0, 0, 0, 0, 0);
-				//container[left].addChild(leftCardImage);
-				//container[left];
 			};
 			createjs.Tween
 				.get(container[right], {
@@ -1318,10 +1300,34 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					y: 180
 				}, 500, createjs.Ease.backOut);
 		}
+		function buttonAdd() {
+			btn_high.alpha = 1;
+			btn_draw.alpha = 1;
+			btn_low.alpha = 1;
+		
+		};
 		
 		that.nextAttack();
+		//ボタン配置
+		
+		var btn_high = new lib.high();
+		var btn_draw = new lib.draw();
+		var btn_low = new lib.low();
+		
+		stage.addChild(btn_high).setTransform(180, 310, 1, 1, 0, 0, 0, 75, 24);
+		stage.addChild(btn_draw).setTransform(340, 310, 1, 1, 0, 0, 0, 73, 24);
+		stage.addChild(btn_low).setTransform(510, 310, 1, 1, 0, 0, 0, 55, 24);
+		
+		stage.setChildIndex(btn_high, (stage.getNumChildren()) + 1);
+		stage.setChildIndex(btn_draw, (stage.getNumChildren()) + 1);
+		stage.setChildIndex(btn_low, (stage.getNumChildren()) + 1);
+		
+		btn_high.alpha = 0;
+		btn_draw.alpha = 0;
+		btn_low.alpha = 0;
+		
 		//ボタンイベント
-		this.btn_high.addEventListener("click", fl_MouseClickHandler.bind(this));
+		btn_high.addEventListener("click", fl_MouseClickHandler.bind(this));
 		function fl_MouseClickHandler() {
 			if (!btnFlag) {
 				btnFlag = true;
@@ -1348,7 +1354,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			}
 		}
 		
-		this.btn_draw.addEventListener("click", fl_MouseClickHandler_2.bind(this));
+		btn_draw.addEventListener("click", fl_MouseClickHandler_2.bind(this));
 		function fl_MouseClickHandler_2() {
 			if (!btnFlag) {
 				btnFlag = true;
@@ -1375,7 +1381,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			}
 		}
 		
-		this.btn_low.addEventListener("click", fl_MouseClickHandler_3.bind(this));
+		btn_low.addEventListener("click", fl_MouseClickHandler_3.bind(this));
 		function fl_MouseClickHandler_3() {
 			if (!btnFlag) {
 				btnFlag = true;
@@ -1527,21 +1533,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 
 	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1).to({_off:false},0).to({_off:true},1).wait(1));
 
-	// btn
-	this.btn_low = new lib.btn_02();
-	this.btn_low.setTransform(531,329.8,1,1,0,0,0,66,20.5);
-	new cjs.ButtonHelper(this.btn_low, 0, 1, 2, false, new lib.btn_02(), 3);
-
-	this.btn_draw = new lib.btn_01();
-	this.btn_draw.setTransform(279.9,308.2);
-	new cjs.ButtonHelper(this.btn_draw, 0, 1, 2, false, new lib.btn_01(), 3);
-
-	this.btn_high = new lib.btn_00();
-	this.btn_high.setTransform(109.5,306.8,1,1,0,0,0,-13.5,-2.5);
-	new cjs.ButtonHelper(this.btn_high, 0, 1, 2, false, new lib.btn_00(), 3);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.btn_high},{t:this.btn_draw},{t:this.btn_low}]}).to({state:[]},2).wait(1));
-
 	// obj
 	this.containerHeddin = new lib.containerHeddin();
 	this.containerHeddin.setTransform(174.8,183.6,0.33,0.33,0,0,0,226.7,344.6);
@@ -1667,7 +1658,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.MC_chip00},{t:this.MC_chip01},{t:this.MC_chip02},{t:this.MC_chip03},{t:this.MC_chip04},{t:this.MC_chip05},{t:this.MC_chip06},{t:this.MC_chip07},{t:this.MC_chip08},{t:this.MC_chip09},{t:this.MC_chip10},{t:this.MC_chip11},{t:this.MC_chip12},{t:this.MC_chip13},{t:this.MC_chip14},{t:this.MC_chip15},{t:this.MC_chip16},{t:this.MC_chip17},{t:this.MC_chip18},{t:this.MC_chip19},{t:this.MC_chip20},{t:this.MC_chip21},{t:this.MC_chip22},{t:this.MC_chip23},{t:this.MC_chip24},{t:this.MC_chip25},{t:this.MC_chip26}]},1).to({state:[]},1).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(286,270,534.4,275.1);
+p.nominalBounds = new cjs.Rectangle(286,270,376,223.8);
 
 })(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
 var lib, images, createjs, ss;
