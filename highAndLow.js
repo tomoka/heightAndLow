@@ -748,8 +748,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	// timeline functions:
 	this.frame_0 = function() {
 		/*
-		初期設定フレーム
-		*/
+				初期設定フレーム
+				*/
 		
 		this.stop();
 		
@@ -827,23 +827,23 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					alpha: 0
 				}, 1500, createjs.Ease.quadOut)
 				.call(completeNext);
-				
+		
 			/*createjs.Tween
-				.get(this.containerVisuble, {
-					override: true
-				})
-				.set({x:170, y:180})
-				.to({
-					alpha: 1
-				}, 1000, createjs.Ease.quadOut);
-			createjs.Tween
-				.get(this.containerHeddin, {
-					override: true
-				})
-				.set({x:380, y:180})
-				.to({
-					alpha: 1
-				}, 1000, createjs.Ease.quadOut);*/
+						.get(this.containerVisuble, {
+							override: true
+						})
+						.set({x:170, y:180})
+						.to({
+							alpha: 1
+						}, 1000, createjs.Ease.quadOut);
+					createjs.Tween
+						.get(this.containerHeddin, {
+							override: true
+						})
+						.set({x:380, y:180})
+						.to({
+							alpha: 1
+						}, 1000, createjs.Ease.quadOut);*/
 		
 			function completeNext() {
 				console.log("complete loading animation");
@@ -865,11 +865,11 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				})
 				.to({
 					rotation: 360
-				}, 1500, createjs.Ease.quadOut)
+				}, 1500, createjs.Ease.liner)
 				.call(nextLoadingAnime);
 		
 			function nextLoadingAnime() {
-				that.mc_loading.setTransform(278.1,184.1,4.512,4.512,0,0,0,19.9,19.9);
+				that.mc_loading.setTransform(278.1, 184.1, 4.512, 4.512, 0, 0, 0, 19.9, 19.9);
 				loadingAnime();
 		
 			}
@@ -879,25 +879,25 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	this.frame_1 = function() {
 		this.stop();
 		/* ---------------------------
-		トランプ配列
-		
-		#マークに関して
-		0:スペード
-		1:クラブ
-		2:ハート
-		3:ダイヤ
-		
-		#数値
-		0~12:カードの番号
-		
-		#シーンの用意
-		scene00:スタート
-		scene01:初期化
-		scene02:メインループ
-		scene03:リザルト
-		scene04:ヘルプ
-		
-		------------------------------*/
+				トランプ配列
+				
+				#マークに関して
+				0:スペード
+				1:クラブ
+				2:ハート
+				3:ダイヤ
+				
+				#数値
+				0~12:カードの番号
+				
+				#シーンの用意
+				scene00:スタート
+				scene01:初期化
+				scene02:メインループ
+				scene03:リザルト
+				scene04:ヘルプ
+				
+				------------------------------*/
 		right = 53;
 		left = 52;
 		
@@ -952,43 +952,43 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 		/* 
-		カードインスタンスの生成
-		*/
+				カードインスタンスの生成
+				*/
 		for (var iii = 0; iii < 52; iii++) {
-		var objName = "";
+			var objName = "";
 		
 			if (ii <= 9) {
-				objName =  "container0" + iii;
+				objName = "container0" + iii;
 				container[iii] = "container0" + iii;
 			} else {
-				objName =  "container" + iii;
+				objName = "container" + iii;
 				container[iii] = "container" + iii;
 			}
-			
+		
 			//ライブラリから別のシンボルを追加する場合は、
 			//上記手順 2 の「クラス」フィールドと以下のコードに、別の名前を入力します。
 			container[iii] = new lib.container();
 			container[iii].name = objName;
 			stage.addChild(container[iii]);
-			
+		
 			/*
-			objName.x = iii*10;
-			objName.y = iii*10;
-			objName.scaleX = 0.35;
-			objName.scaleY = 0.35;
-			*/
-			
-			var x = Math.random(iii*5)*-100;
-			var y = Math.random(iii*5)*-100;
-			var r = Math.random(360)*100;
+					objName.x = iii*10;
+					objName.y = iii*10;
+					objName.scaleX = 0.35;
+					objName.scaleY = 0.35;
+					*/
+		
+			var x = Math.random(iii * 5) * -100;
+			var y = Math.random(iii * 5) * -100;
+			var r = Math.random(360) * 100;
 			//var r = 360/iii*4;
-			
+		
 			//objName.setTransform(x, y, 0.35, 0.35, r, 0, 0, 0, 0);
 			container[iii].scaleX = 0.35;
 			container[iii].scaleY = 0.35;
-			stage.setChildIndex(container[iii],iii);
+			stage.setChildIndex(container[iii], iii+1);
 			//stage.setChildIndex(container[iii],5);
-				
+		
 			createjs.Tween
 				.get(container[iii], {
 					override: true
@@ -998,7 +998,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					y: y,
 					rotation: r
 				}, 500, createjs.Ease.quadOut);
-			
+		
 			//console.log("------objName number parame" + iii + "------");
 			//console.log("name------->" + container[iii].name);
 			//console.log("alpha------>" + objName.alpha);
@@ -1048,7 +1048,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		function nextCard() {
 			console.log("こんぷりーと");
-			/*that.MC_win.setTransform(273.1, 192, 1, 1, 0, 0, 0, 82.7, 36.4);
+			/*
+			that.MC_win.setTransform(273.1, 192, 1, 1, 0, 0, 0, 82.7, 36.4);
 			that.MC_lost.setTransform(273, 192, 1, 1, 0, 0, 0, 108.8, 37.3);
 			container[left].setTransform(170, 180, 0.348, 0.348, 0, 0, 0, 240, 320);
 			container[right].setTransform(380, 180, 0.348, 0.348, 0, 0, 0, 240, 320);
@@ -1063,7 +1064,6 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			var rightY = Math.random(right * 5) * -100;
 			var leftR = Math.random(360) * 100;
 			var rightR = Math.random(360) * 100;
-		
 		
 			that.winScore.text = winCount + "勝";
 		
@@ -1108,20 +1108,31 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					//リザルトへ
 					that.gotoAndPlay(2);
 				} else {
+					//0~51
+					console.log("かーどはける深度の置き換え");
+		
+					console.log("深度rightいれかえ--->" + container[52 - right]);
+					console.log("深度leftいれかえ---->" + container[50 - left]);
+					stage.swapChildren(container[52 - right], container[right]);
+					stage.swapChildren(container[50 - left], container[left]);
+		
+					console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
+					console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
+		
 					attackCount++;
 					that.nextAttack();
 				}
 			}
 			function handleComplete2() {
-				console.log("handleComplete2");
 				//Tween complete
 				container[left].removeChild(leftCardImage);
 			}
 			function handleComplete3() {
-				console.log("handleComplete3");
 				//Tween complete
 				container[right].removeChild(rightCardImage);
 			}
+		
+		
 		}
 		
 		
@@ -1144,8 +1155,8 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 			//container[left].setTransform(0, 0, 0.35, 0.35, 0, 0, 0, 120, 160); //158,236
 			//container[right].setTransform(0, 0, 0.35, 0.35, 0, 0, 0, 120, 160); //158,236
-			console.log("container[right]------------" + container[right]);
-			console.log("container[left]------------" + container[left]);
+			//console.log("container[right]------------" + container[right]);
+			//console.log("container[left]------------" + container[left]);
 		
 			//カードの番号からのカードの要素の抽出
 			//割った数のあまりがカードの番号
@@ -1199,26 +1210,29 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			}
 		
 		
-			console.log("深度right最初---->" + stage.getChildIndex(container[right]));
-			console.log("深度right+2最初---->" + stage.getChildIndex(container[right-2]));
-			console.log("深度left最初---->" + stage.getChildIndex(container[left]));
-			console.log("深度left+2最初---->" + stage.getChildIndex(container[left-2]));
-			//console.log("深度rightなまえ---->" + container[right].parent);
-			//stage.setChildIndex(container, (stage.getNumChildren() + 1));
-			stage.swapChildren(container[right+2],container[right]);
-			stage.swapChildren(container[left+2],container[left]);
-			stage.swapChildren(container[right+2],container[right+4]);
-			stage.swapChildren(container[left+2],container[left+4]);
+			//console.log("深度right最初---->" + stage.getChildIndex(container[right]));
+			//console.log("深度left最初---->" + stage.getChildIndex(container[left]));
+			//console.log("深度right-2最初---->" + stage.getChildIndex(container[right - 2]));
+			//console.log("深度left-2最初---->" + stage.getChildIndex(container[left - 2]));
+			//console.log("深度right+2最初---->" + Math.abs(stage.getChildIndex(container[right + 2])));
+			//console.log("深度left+2最初---->" + Math.abs(stage.getChildIndex(container[left + 2])));
+			//console.log("深度right+4最初---->" + Math.abs(stage.getChildIndex(container[right + 4])));
+			//console.log("深度left+4最初---->" + Math.abs(stage.getChildIndex(container[left + 4])));
+		
+			//0~51
+			console.log("かーど入ってくる深度");
+		
+			console.log("深度right---->" + stage.getChildIndex(container[right]));
+			console.log("深度left---->" + stage.getChildIndex(container[left]));
+		
 			//console.log("深度right---->" + stage);
 			//console.log("深度right---->" + container[right].children);
 			//console.log("深度1---->" + valueOf(container[right]));
-			console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
 		
-			stage.setChildIndex(container[left], (stage.getNumChildren() + 2));
+			//stage.setChildIndex(container[left], (stage.getNumChildren() + 2));
 		
 			//console.log("深度3---->" + stage.getNumChildren());
 			//console.log("深度3---->" + (stage.getNumChildren()));
-			console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
 		
 			var MC_start = new lib.start();
 			stage.addChild(MC_start).setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
@@ -1451,15 +1465,14 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		this.winScore.text = "勝率0%";
 		
 		this.score.text = "RESULT";
-		this.winScore.text = "勝率" + Math.floor(winCount/26*100) + "％";
+		this.winScore.text = "勝率" + Math.floor(winCount / 26 * 100) + "％";
 		
-		console.log("勝率" + Math.floor(winCount/26*100) + "％");
+		console.log("勝率" + Math.floor(winCount / 26 * 100) + "％");
 		/* もう一度ゲームする */
 		
 		this.btn_result.addEventListener("click", fl_ClickToGoToAndStopAtFrame_2.bind(this));
 		
-		function fl_ClickToGoToAndStopAtFrame_2()
-		{
+		function fl_ClickToGoToAndStopAtFrame_2() {
 			location.reload();
 		}
 	}
@@ -1479,16 +1492,40 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 	this.score.name = "score";
 	this.score.textAlign = "center";
 	this.score.lineHeight = 32;
-	this.score.lineWidth = 509;
-	this.score.setTransform(272.5,17.5);
+	this.score.lineWidth = 513;
+	this.score.setTransform(270.5,17.5);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.score,p:{x:272.5,lineWidth:509}},{t:this.winScore,p:{x:81,y:355,font:"bold 20px 'M+ 1c heavy'",textAlign:"right",lineHeight:22,lineWidth:76}}]},1).to({state:[{t:this.score,p:{x:266.5,lineWidth:335}},{t:this.winScore,p:{x:266.5,y:113.5,font:"bold 60px 'M+ 1c heavy'",textAlign:"center",lineHeight:62,lineWidth:335}}]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.score,p:{x:270.5,lineWidth:513}},{t:this.winScore,p:{x:81,y:355,font:"bold 20px 'M+ 1c heavy'",textAlign:"right",lineHeight:22,lineWidth:76}}]},1).to({state:[{t:this.score,p:{x:266.5,lineWidth:335}},{t:this.winScore,p:{x:266.5,y:113.5,font:"bold 60px 'M+ 1c heavy'",textAlign:"center",lineHeight:62,lineWidth:335}}]},1).wait(1));
 
 	// loading
 	this.mc_loading = new lib.MC_chip();
 	this.mc_loading.setTransform(278.1,184.1,4.512,4.512,0,0,0,19.9,19.9);
 
 	this.timeline.addTween(cjs.Tween.get(this.mc_loading).to({_off:true},1).wait(2));
+
+	// title
+	this.MC_start = new lib.start();
+	this.MC_start.setTransform(275.4,202.1,1,0.933,0,0,0,275.4,45.1);
+	this.MC_start.alpha = 0;
+	this.MC_start._off = true;
+
+	this.timeline.addTween(cjs.Tween.get(this.MC_start).wait(1).to({_off:false},0).to({_off:true},1).wait(1));
+
+	// win
+	this.MC_win = new lib.win();
+	this.MC_win.setTransform(273.1,192,1,1,0,0,0,82.7,36.4);
+	this.MC_win.alpha = 0;
+	this.MC_win._off = true;
+
+	this.timeline.addTween(cjs.Tween.get(this.MC_win).wait(1).to({_off:false},0).to({_off:true},1).wait(1));
+
+	// lost
+	this.MC_lost = new lib.lost();
+	this.MC_lost.setTransform(273,192,1,1,0,0,0,108.8,37.3);
+	this.MC_lost.alpha = 0;
+	this.MC_lost._off = true;
+
+	this.timeline.addTween(cjs.Tween.get(this.MC_lost).wait(1).to({_off:false},0).to({_off:true},1).wait(1));
 
 	// btn
 	this.btn_low = new lib.btn_02();
