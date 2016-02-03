@@ -796,7 +796,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			trumpArrya[k] = t;
 		}
 		
-		console.log("winCount!!!" + winCount + "トランプ配列" + trumpArrya);
+		//console.log("winCount!!!" + winCount + "トランプ配列" + trumpArrya);
 		
 		//勝った数のチップの表示をリセット
 		for (var ii = 0; ii < 27; ii++) {
@@ -807,7 +807,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			} else {
 				name = "MC_chip" + ii;
 			}
-			console.log("チップ表示リセット" + name);
+			//console.log("チップ表示リセット" + name);
 			that[name].alpha = 0;
 		}
 		
@@ -837,11 +837,11 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			stage.addChild(container[iii]);
 		
 			/*
-					objName.x = iii*10;
-					objName.y = iii*10;
-					objName.scaleX = 0.35;
-					objName.scaleY = 0.35;
-					*/
+			objName.x = iii*10;
+			objName.y = iii*10;
+			objName.scaleX = 0.35;
+			objName.scaleY = 0.35;
+			*/
 		
 			var x = Math.random(iii * 5) * -100;
 			var y = Math.random(iii * 5) * -100;
@@ -876,9 +876,9 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			//console.log("深度---->" + container[iii].getNumChildren());
 			//console.log(iii);
 			//console.log(stage.container[iii].name);
-			console.log(stage.getChildIndex(container[iii]));
-			console.log(container[iii]);
-			console.log("----------------------------------");
+			//console.log(stage.getChildIndex(container[iii]));
+			//console.log(container[iii]);
+			//console.log("----------------------------------");
 		
 		}
 		/*
@@ -913,7 +913,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		this.stop();
 		
 		function nextCard() {
-			console.log("こんぷりーと");
+			//console.log("こんぷりーと");
 			/*
 			that.MC_win.setTransform(273.1, 192, 1, 1, 0, 0, 0, 82.7, 36.4);
 			that.MC_lost.setTransform(273, 192, 1, 1, 0, 0, 0, 108.8, 37.3);
@@ -976,21 +976,39 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					that.gotoAndPlay(2);
 				} else {
 					//0~51
-					console.log("かーどはける深度の置き換え");
+					console.log("かーどはける深度の置き換え-----------------");
 		
-					console.log("深度rightいれかえ--->" + container[52 - right]);
-					console.log("深度leftいれかえ---->" + container[50 - left]);
-					stage.swapChildren(container[right-2], container[right]);
-					stage.swapChildren(container[left-2], container[left]);
+					stage.swapChildren(container[right - 2], container[right]);
+					stage.swapChildren(container[left - 2], container[left]);
 					stage.swapChildren(container[52 - right], container[right]);
 					stage.swapChildren(container[50 - left], container[left]);
-					console.log("深度right置き換え後---->" + stage.getChildIndex(container[52 - right]));
-					console.log("深度left置き換え後---->" + stage.getChildIndex(container[50 - left]));
+					stage.swapChildren(container[52 - right], container[right - 4]);
+					stage.swapChildren(container[50 - left], container[left - 4]);
+					stage.swapChildren(container[54 - right], container[52 - right]);
+					stage.swapChildren(container[52 - left], container[50 - left]);
+					
+					console.log("つぎの深度rightいれかえ--->" + container[right - 2]);
+					console.log("つぎの深度leftいれかえ---->" + container[left - 2]);
+					console.log("つぎの深度right置き換え後---->" + stage.getChildIndex(container[right - 2]));
+					console.log("つぎの深度left置き換え後---->" + stage.getChildIndex(container[left - 2]));
 		
-					console.log("深度rightいれかえ--->" + container[right]);
-					console.log("深度leftいれかえ---->" + container[left]);
-					console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
-					console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
+					console.log("<--------------------------->");
+					console.log("げんざいの深度rightいれかえ--->" + container[right]);
+					console.log("げんざいの深度leftいれかえ---->" + container[left]);
+					console.log("げんざいの深度right置き換え後---->" + stage.getChildIndex(container[right]));
+					console.log("げんざいの深度left置き換え後---->" + stage.getChildIndex(container[left]));
+					console.log("<--------------------------->");
+		
+					console.log("さいごの深度rightいれかえ--->" + container[52 - right]);
+					console.log("さいごの深度leftいれかえ---->" + container[50 - left]);
+					console.log("さいごの深度right置き換え後---->" + stage.getChildIndex(container[52 - right]));
+					console.log("さいごの深度left置き換え後---->" + stage.getChildIndex(container[50 - left]));
+					console.log("<--------------------------->");
+		
+					console.log("つぎのつぎの深度rightいれかえ--->" + container[right - 4]);
+					console.log("つぎのつぎの深度leftいれかえ---->" + container[left - 4]);
+					console.log("つぎのつぎの深度right置き換え後---->" + stage.getChildIndex(container[right - 4]));
+					console.log("つぎのつぎの深度left置き換え後---->" + stage.getChildIndex(container[left - 4]));
 		
 					attackCount++;
 					that.nextAttack();
@@ -1010,7 +1028,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 		this.nextAttack = function () {
-			console.log("nextAttack");
+			//console.log("nextAttack");
 		
 			that.score.text = attackCount + "回戦目";
 		
@@ -1079,21 +1097,24 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 			//0~51
-			console.log("かーど入ってくる深度");
+			console.log("かーど入ってくる深度------------------");
 		
-			console.log("深度right---->" + stage.getChildIndex(container[right]));
-			console.log("深度left---->" + stage.getChildIndex(container[left]));
+			console.log("げんざいのカード深度right---->" + stage.getChildIndex(container[right]));
+			console.log("げんざいのカード深度left---->" + stage.getChildIndex(container[left]));
+			console.log("げんざいのカードright--->" + container[right]);
+			console.log("げんざいのカードleft---->" + container[left]);
+		
 			//stage.swapChildren(container[right - 4], container[right]);
 			//stage.swapChildren(container[left - 4], container[left]);
-			console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
-			console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
+			//console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
+			//console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
 		
 			var MC_start = new lib.start();
 			stage.addChild(MC_start).setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
 			stage.setChildIndex(MC_start, (stage.getNumChildren()) + 1);
 			MC_start.alpha = 0;
 		
-			console.log("あにめすたーと");
+			//console.log("あにめすたーと");
 			createjs.Tween
 				.get(MC_start, {
 					override: true
@@ -1113,7 +1134,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			function handleComplete0() {
 				//Tween complete
 				btnFlag = false;
-				console.log("ボタンフラグ false");
+				//console.log("ボタンフラグ false");
 				stage.removeChild(MC_start);
 		
 				buttonAdd();
@@ -1198,7 +1219,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		btn_low.addEventListener("mouseover", fl_MouseClickHandler_over.bind(btn_low));
 		btn_draw.addEventListener("mouseover", fl_MouseClickHandler_over.bind(btn_draw));
 		function fl_MouseClickHandler_over() {
-			console.log("mouseover");
+			//console.log("mouseover");
 			if (!btnMouseover) {
 				btnMouseover = true;
 				createjs.Tween
@@ -1212,7 +1233,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					.call(handleComplete_over);
 				function handleComplete_over() {
 					//Tween complete
-					console.log("mouseover2");
+					//console.log("mouseover2");
 				};
 			}
 		}
@@ -1221,7 +1242,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		btn_low.addEventListener("mouseout", fl_MouseClickHandler_out.bind(btn_low));
 		btn_draw.addEventListener("mouseout", fl_MouseClickHandler_out.bind(btn_draw));
 		function fl_MouseClickHandler_out() {
-			console.log("mouseout");
+			//console.log("mouseout");
 			if (btnMouseover) {
 				createjs.Tween
 					.get(this, {
@@ -1235,7 +1256,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				function handleComplete_out() {
 					//Tween complete
 					btnMouseover = false;
-					console.log("mouseout2");
+					//console.log("mouseout2");
 				};
 		
 			}
@@ -1244,7 +1265,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		btn_low.addEventListener("mousemove", fl_MouseClickHandler_move.bind(btn_low));
 		btn_draw.addEventListener("mousemove", fl_MouseClickHandler_move.bind(btn_draw));
 		function fl_MouseClickHandler_move() {
-			console.log("mousemove");
+			//console.log("mousemove");
 			void(0);
 		}
 		
@@ -1253,7 +1274,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		btn_low.addEventListener("click", fl_MouseClickHandler.bind(btn_low));
 		btn_draw.addEventListener("click", fl_MouseClickHandler.bind(btn_draw));
 		function fl_MouseClickHandler() {
-			console.log("click");
+			//console.log("click");
 			if (!btnFlag) {
 				btnFlag = true;
 		
@@ -1316,7 +1337,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 						break;
 					default:
-						console.log("デフォルトの処理;");
+						//console.log("デフォルトの処理;");
 						break;
 				}
 		
