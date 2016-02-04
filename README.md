@@ -11,3 +11,10 @@ http://www.xn--eckzb3bzhw32znfcp1zduw.com/data/trump.php
 
 ### png圧縮
 https://pngquant.org/
+
+## とりあえず完了。
+２〜３ほど、きになる現象があったので、後で検証してまとめる
+- stage.getNumChildren())の深度の取得に関して
+- addEventListenerとシェイプの検証
+
+swfのように深度に上限があるのか確認してみたい。深度のパラメータの取り扱いをもう少し詳しく知りたい。
