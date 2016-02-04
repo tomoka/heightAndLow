@@ -765,6 +765,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 				------------------------------*/
 		right = 53;
 		left = 52;
+		depthCount = 53;
 		
 		
 		//トランプカードを用意する
@@ -976,17 +977,32 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					that.gotoAndPlay(2);
 				} else {
 					//0~51
-					console.log("かーどはける深度の置き換え-----------------");
+					/*console.log("かーどはける深度の置き換え-----------------");
 		
-					stage.swapChildren(container[right - 2], container[right]);
-					stage.swapChildren(container[left - 2], container[left]);
-					stage.swapChildren(container[52 - right], container[right]);
-					stage.swapChildren(container[50 - left], container[left]);
-					stage.swapChildren(container[52 - right], container[right - 4]);
-					stage.swapChildren(container[50 - left], container[left - 4]);
-					stage.swapChildren(container[54 - right], container[52 - right]);
-					stage.swapChildren(container[52 - left], container[50 - left]);
+					var nowCardRight = container[right];
+					var nowCardLeft = container[left];
 					
+					var nextCardRight = container[right - 2];
+					var nextCardLeft = container[left - 2];
+					
+					var preCardRight = container[right + 2];
+					var preCardLeft = container[left + 2];
+					
+					var stayCardRight = container[52 - right];
+					var stayCardLeft = container[50 - left];
+		
+					現在と次の深度の交換
+					stage.swapChildren(nowCardRight, nextCardRight);
+					stage.swapChildren(nowCardLeft, nextCardLeft);
+					
+					現在のカードが下に成るべく、最初のカードと現在のカードの交換
+					stage.swapChildren(stayCardRight, nowCardRight);
+					stage.swapChildren(stayCardLeft, nowCardLeft);
+					
+					最初のカードと次の次のカードと交換
+					stage.swapChildren(stayCardRight, container[56 - right]);
+					stage.swapChildren(stayCardLeft, container[54 - left]);
+		
 					console.log("つぎの深度rightいれかえ--->" + container[right - 2]);
 					console.log("つぎの深度leftいれかえ---->" + container[left - 2]);
 					console.log("つぎの深度right置き換え後---->" + stage.getChildIndex(container[right - 2]));
@@ -1005,11 +1021,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					console.log("さいごの深度left置き換え後---->" + stage.getChildIndex(container[50 - left]));
 					console.log("<--------------------------->");
 		
-					console.log("つぎのつぎの深度rightいれかえ--->" + container[right - 4]);
-					console.log("つぎのつぎの深度leftいれかえ---->" + container[left - 4]);
-					console.log("つぎのつぎの深度right置き換え後---->" + stage.getChildIndex(container[right - 4]));
-					console.log("つぎのつぎの深度left置き換え後---->" + stage.getChildIndex(container[left - 4]));
-		
+					console.log("つぎのつぎの深度rightいれかえ--->" + container[56 - right]);
+					console.log("つぎのつぎの深度leftいれかえ---->" + container[54 - left]);
+					console.log("つぎのつぎの深度right置き換え後---->" + stage.getChildIndex(container[56 - right]));
+					console.log("つぎのつぎの深度left置き換え後---->" + stage.getChildIndex(container[54 - left]));*/
 					attackCount++;
 					that.nextAttack();
 				}
@@ -1098,6 +1113,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 			//0~51
 			console.log("かーど入ってくる深度------------------");
+			
+			stage.setChildIndex(container[left],depthCount);
+			depthCount ++;
+			stage.setChildIndex(container[right],depthCount);
 		
 			console.log("げんざいのカード深度right---->" + stage.getChildIndex(container[right]));
 			console.log("げんざいのカード深度left---->" + stage.getChildIndex(container[left]));
@@ -1202,9 +1221,16 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		stage.addChild(btn_draw).setTransform(280, 310, 0.8, 0.8, 0, 0, 0, 73, 24);
 		stage.addChild(btn_low).setTransform(460, 310, 0.8, 0.8, 0, 0, 0, 55, 24);
 		
-		stage.setChildIndex(btn_high, (stage.getNumChildren()) + 1);
+		/*stage.setChildIndex(btn_high, (stage.getNumChildren()) + 1);
 		stage.setChildIndex(btn_draw, (stage.getNumChildren()) + 1);
-		stage.setChildIndex(btn_low, (stage.getNumChildren()) + 1);
+		stage.setChildIndex(btn_low, (stage.getNumChildren()) + 1);*/
+		
+		depthCount ++;
+		stage.setChildIndex(btn_high, depthCount);
+		depthCount ++;
+		stage.setChildIndex(btn_draw, depthCount);
+		depthCount ++;
+		stage.setChildIndex(btn_low, depthCount);
 		
 		btn_high.name = btn_high;
 		btn_draw.name = btn_draw;
