@@ -766,6 +766,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		right = 53;
 		left = 52;
 		depthCount = 53;
+		stayCardCount = 0;
 		
 		
 		//トランプカードを用意する
@@ -864,9 +865,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					y: y,
 					rotation: r
 				}, 500, createjs.Ease.quadOut);
-		
-			//console.log("------objName number parame" + iii + "------");
-			//console.log("name------->" + container[iii].name);
+		}
+		for (var nn = 0; nn < 52; nn++) {
+			console.log("------objName number parame" + nn + "------");
+			console.log("name------->" + container[nn].name);
 			//console.log("alpha------>" + objName.alpha);
 			//console.log("x---------->" + objName.x);
 			//console.log("y---------->" + objName.y);
@@ -874,13 +876,12 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 			//console.log("scaleY----->" + objName.scaleY);
 			//console.log("r------->" + r);
 			//console.log("visible---->" + objName.visible);
-			//console.log("深度---->" + container[iii].getNumChildren());
+			console.log("深度---->" + stage.getChildIndex(container[nn]));
 			//console.log(iii);
 			//console.log(stage.container[iii].name);
 			//console.log(stage.getChildIndex(container[iii]));
 			//console.log(container[iii]);
 			//console.log("----------------------------------");
-		
 		}
 		/*
 		sceneアップデート
@@ -977,7 +978,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					that.gotoAndPlay(2);
 				} else {
 					//0~51
-					/*console.log("かーどはける深度の置き換え-----------------");
+					console.log("かーどはける深度の置き換え-----------------");
 		
 					var nowCardRight = container[right];
 					var nowCardLeft = container[left];
@@ -985,46 +986,79 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 					var nextCardRight = container[right - 2];
 					var nextCardLeft = container[left - 2];
 					
+					var nextnextCardRight = container[right - 4];
+					var nextnextCardLeft = container[left - 4];
+		
 					var preCardRight = container[right + 2];
 					var preCardLeft = container[left + 2];
 					
-					var stayCardRight = container[52 - right];
-					var stayCardLeft = container[50 - left];
-		
-					現在と次の深度の交換
-					stage.swapChildren(nowCardRight, nextCardRight);
-					stage.swapChildren(nowCardLeft, nextCardLeft);
+					var stayCardRight = container[stayCardCount];
+					//stayCardCount++;
+					var stayCardLeft = container[stayCardCount];
+					//stayCardCount++;
 					
-					現在のカードが下に成るべく、最初のカードと現在のカードの交換
-					stage.swapChildren(stayCardRight, nowCardRight);
-					stage.swapChildren(stayCardLeft, nowCardLeft);
-					
-					最初のカードと次の次のカードと交換
-					stage.swapChildren(stayCardRight, container[56 - right]);
-					stage.swapChildren(stayCardLeft, container[54 - left]);
+					var stayNextCardRight = container[stayCardCount + 1];
+					var stayNextCardLeft = container[stayCardCount + 2];
 		
-					console.log("つぎの深度rightいれかえ--->" + container[right - 2]);
-					console.log("つぎの深度leftいれかえ---->" + container[left - 2]);
-					console.log("つぎの深度right置き換え後---->" + stage.getChildIndex(container[right - 2]));
-					console.log("つぎの深度left置き換え後---->" + stage.getChildIndex(container[left - 2]));
-		
-					console.log("<--------------------------->");
+					//現在と次の深度の交換
+					stage.swapChildren(nextCardRight,nowCardRight);
+					stage.swapChildren(nextCardLeft,nowCardLeft);
+		                                            
+					console.log("つぎの深度rightいれかえ--->" + nextCardRight);
+					console.log("つぎの深度leftいれかえ---->" + nextCardLeft);
+					console.log("つぎの深度right置き換え後---->" + stage.getChildIndex(nextCardRight));
+					console.log("つぎの深度left置き換え後---->" + stage.getChildIndex(nextCardLeft));
 					console.log("げんざいの深度rightいれかえ--->" + container[right]);
 					console.log("げんざいの深度leftいれかえ---->" + container[left]);
 					console.log("げんざいの深度right置き換え後---->" + stage.getChildIndex(container[right]));
 					console.log("げんざいの深度left置き換え後---->" + stage.getChildIndex(container[left]));
 					console.log("<--------------------------->");
 		
-					console.log("さいごの深度rightいれかえ--->" + container[52 - right]);
-					console.log("さいごの深度leftいれかえ---->" + container[50 - left]);
-					console.log("さいごの深度right置き換え後---->" + stage.getChildIndex(container[52 - right]));
-					console.log("さいごの深度left置き換え後---->" + stage.getChildIndex(container[50 - left]));
+					stage.setChildIndex(nowCardLeft, stayCardCount);
+					stayCardCount++;
+					stage.setChildIndex(nowCardRight, stayCardCount);
+					stayCardCount++;
+					//現在のカードが下に成るべく、最初のカードと現在のカードの交換
+					//stage.swapChildren(stayCardRight, nowCardRight);
+					//stage.swapChildren(stayCardLeft, nowCardLeft);
+					console.log("さいごの深度rightいれかえ--->" + stayCardRight);
+					console.log("さいごの深度leftいれかえ---->" + stayCardLeft);
+					console.log("さいごの深度right置き換え後---->" + stage.getChildIndex(stayCardRight));
+					console.log("さいごの深度left置き換え後---->" + stage.getChildIndex(stayCardLeft));
+					console.log("げんざいの深度rightいれかえ--->" + container[right]);
+					console.log("げんざいの深度leftいれかえ---->" + container[left]);
+					console.log("げんざいの深度right置き換え後---->" + stage.getChildIndex(container[right]));
+					console.log("げんざいの深度left置き換え後---->" + stage.getChildIndex(container[left]));
+					console.log("<--------------------------->");
+					
+					//最初のカードと次の次のカードと交換
+					//stage.swapChildren(stayCardRight, nextnextCardRight);
+					//stage.swapChildren(stayCardLeft, nextnextCardLeft);
+		
+					console.log("さいごの深度rightいれかえ--->" + stayCardRight);
+					console.log("さいごの深度leftいれかえ---->" + stayCardLeft);
+					console.log("さいごの深度right置き換え後---->" + stage.getChildIndex(stayCardRight));
+					console.log("さいごの深度left置き換え後---->" + stage.getChildIndex(stayCardLeft));
+					console.log("つぎのつぎの深度rightいれかえ--->" + nextnextCardRight);
+					console.log("つぎのつぎの深度leftいれかえ---->" + nextnextCardLeft);
+					console.log("つぎのつぎの深度right置き換え後---->" + stage.getChildIndex(nextnextCardRight));
+					console.log("つぎのつぎの深度left置き換え後---->" + stage.getChildIndex(nextnextCardLeft));
+					console.log("<--------------------------->");
+					
+					//最初のカードと次の次のカードと交換
+					//stage.swapChildren(stayCardRight, stayNextCardRight);
+					//stage.swapChildren(stayCardLeft, stayNextCardLeft);
+		
+					console.log("さいごの深度rightいれかえ--->" + stayCardRight);
+					console.log("さいごの深度leftいれかえ---->" + stayCardLeft);
+					console.log("さいごの深度right置き換え後---->" + stage.getChildIndex(stayCardRight));
+					console.log("さいごの深度left置き換え後---->" + stage.getChildIndex(stayCardLeft));
+					console.log("さいご次の深度rightいれかえ--->" + stayNextCardRight);
+					console.log("さいご次の深度leftいれかえ---->" + stayNextCardLeft);
+					console.log("さいご次の深度right置き換え後---->" + stage.getChildIndex(stayNextCardRight));
+					console.log("さいご次の深度left置き換え後---->" + stage.getChildIndex(stayNextCardLeft));
 					console.log("<--------------------------->");
 		
-					console.log("つぎのつぎの深度rightいれかえ--->" + container[56 - right]);
-					console.log("つぎのつぎの深度leftいれかえ---->" + container[54 - left]);
-					console.log("つぎのつぎの深度right置き換え後---->" + stage.getChildIndex(container[56 - right]));
-					console.log("つぎのつぎの深度left置き換え後---->" + stage.getChildIndex(container[54 - left]));*/
 					attackCount++;
 					that.nextAttack();
 				}
@@ -1112,25 +1146,24 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{loa
 		
 		
 			//0~51
-			console.log("かーど入ってくる深度------------------");
+			console.log("かーど入ってくる深度------------------" + depthCount);
 			
-			stage.setChildIndex(container[left],depthCount);
-			depthCount ++;
-			stage.setChildIndex(container[right],depthCount);
+			//stage.setChildIndex(container[left],depthCount);
+			//depthCount ++;
+			//stage.setChildIndex(container[right],depthCount);
 		
 			console.log("げんざいのカード深度right---->" + stage.getChildIndex(container[right]));
 			console.log("げんざいのカード深度left---->" + stage.getChildIndex(container[left]));
 			console.log("げんざいのカードright--->" + container[right]);
 			console.log("げんざいのカードleft---->" + container[left]);
 		
-			//stage.swapChildren(container[right - 4], container[right]);
-			//stage.swapChildren(container[left - 4], container[left]);
 			//console.log("深度right置き換え後---->" + stage.getChildIndex(container[right]));
 			//console.log("深度left置き換え後---->" + stage.getChildIndex(container[left]));
 		
 			var MC_start = new lib.start();
 			stage.addChild(MC_start).setTransform(275, 205, 1, 1, 0, 0, 0, 275, 45);
 			stage.setChildIndex(MC_start, (stage.getNumChildren()) + 1);
+			console.log("すたーと深度---->" + stage.getChildIndex(MC_start));
 			MC_start.alpha = 0;
 		
 			//console.log("あにめすたーと");
