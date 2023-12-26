@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>highAndLow</title>
 
-<script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
-<script src="http://code.createjs.com/tweenjs-0.6.1.min.js"></script>
-<script src="http://code.createjs.com/movieclip-0.8.1.min.js"></script>
-<script src="http://code.createjs.com/preloadjs-0.6.1.min.js"></script>
-<script src="highAndLow.js"></script>
+<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+<script src="https://code.createjs.com/movieclip-0.8.1.min.js"></script>
+<script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+<script src="https://tomoka.github.io/highAndLow/highAndLow.js"></script>
 
 <script>
 var canvas, stage, exportRoot;
@@ -21,7 +21,7 @@ function init() {
 	var loader = new createjs.LoadQueue(false);
 	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
-loader.loadFile({src:"images/highAndLow_atlas_.json", type:"spritesheet", id:"highAndLow_atlas_"}, true);
+loader.loadFile({src:"https://tomoka.github.io/highAndLow/images/highAndLow_atlas_.json", type:"spritesheet", id:"highAndLow_atlas_"}, true);
 	loader.loadManifest(lib.properties.manifest);
 }
 
