@@ -21,7 +21,7 @@ function init() {
 	var loader = new createjs.LoadQueue(false);
 	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
-loader.loadFile({src:"images/highAndLow_atlas_.json", type:"spritesheet", id:"highAndLow_atlas_"}, true);
+loader.loadFile({src:"https://tomoka.github.io/highAndLow/images/highAndLow_atlas_.json", type:"spritesheet", id:"highAndLow_atlas_"}, true);
 	loader.loadManifest(lib.properties.manifest);
 }
 
